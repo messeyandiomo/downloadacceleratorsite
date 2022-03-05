@@ -17,7 +17,7 @@
     <title>Download Accelerator</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light shadow">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white shadow">
         <div class="container">
           <a class="navbar-brand text-dark" style="font-weight: bold;" href="#">
             <img src="{% static 'downloadaccelerator/images/daclogo.png' %}" alt="" width="25" height="25" class="d-inline-block align-text-top">
@@ -30,24 +30,83 @@
                 <a class="nav-link active" style="font-weight: bold; color: #4e7fa1;" aria-current="page" href="#">HOME</a>
               </li>
               <li class="nav-item">
-                <a id="features" class="nav-link text-dark" href="#">FEATURES</a>
+                <a id="features" class="nav-link text-dark" style="font-weight: bold;" href="#">FEATURES</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" href="#">ABOUT AUTHOR</a>
+                <a class="nav-link text-dark" style="font-weight: bold;" href="#">ABOUT AUTHOR</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark">DOWNLOAD</a>
+                <a class="nav-link text-dark" style="font-weight: bold;" href="#">DOWNLOAD</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled text-dark">SUPPORT</a>
+                <a class="nav-link disabled" style="font-weight: bold;">SUPPORT</a>
               </li>
             </ul>
           </div>
         </div>
-      </nav>
-    
-    {% block content %}
+    </nav>
 
+    <img src="{% static 'downloadaccelerator/images/banner.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+
+    <div class="container">
+      <div class="row g-2 p-4">
+        <div class="col-6">
+          <div class="p-3">
+            <h2>Download files faster</h2>
+            <p>
+              Download Accelerator (DAC) to stop waiting for your downloads. You will be truly amazed how fast downloadaccelerator downloads your files. Download Accelerator will also repair broken and resume interrupted downloads due to lost connections and network problems.
+            </p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="p-3 shadow">
+            <img src="{% static 'downloadaccelerator/images/capture.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+          </div>
+        </div>
+      </div>
+      <div class="row g-2 p-4">
+        <div class="col-6">
+          <div class="p-3 shadow">
+            <img src="{% static 'downloadaccelerator/images/capture.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="p-3">
+            <h2>Powerful download software</h2>
+            <p>
+              Our software uses unique algorithms to receive Internet data in a fastest possible way.
+					Download Accelerator will accelerate downloads all times because of its innovative dynamic file
+					segmentation technology. Unlike other download managers and accelerators, Download Accelerator threads
+					downloaded files dynamically during download process, and it reuses available connections without additional connect
+					and login stages to achieve the best possible acceleration performance.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row g-2 p-4">
+        <div class="col-6">
+          <h2>Download files from Firefox</h2>
+          <p>
+            Download Accelerator integrates seamlessly into FireFox. We develop browser extensions, and we have the best engineering solutions available today. Download Accelerator offers the
+					installation of its extension for
+					<a href="https://addons.mozilla.org/fr/firefox/addon/download_accelerator/">FireFox</a>
+          </p>
+          <p class="fw-light" >
+            You need always to keep Download Accelerator extension installed and enabled in FireFox to take over downloads from it
+					and to have Download Accelerator's right click menu items! If you have any problem, first check that "Download Accelerator integration module" extension
+					is installed and enabled in your browser.
+          </p>
+        </div>
+        <div class="col-6">
+          <div class="p-3 shadow">
+            <img src="{% static 'downloadaccelerator/images/capture.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% block content %}
+    
     {% endblock %}
 
     <footer style="background-color: #4e7fa1;" class="p-3">
