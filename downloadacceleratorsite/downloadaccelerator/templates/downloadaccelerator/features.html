@@ -5,10 +5,10 @@
 <div class="collapse navbar-collapse" id="navbarNav">
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link active" style="font-weight: bold;" aria-current="page" href="{% url 'downloadaccelerator:home' %}">HOME</a>
+      <a class="nav-link text-dark" style="font-weight: bold;" aria-current="page" href="{% url 'downloadaccelerator:home' %}">HOME</a>
     </li>
     <li class="nav-item">
-      <a id="features" class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:features' %}">FEATURES</a>
+      <a id="features" class="nav-link active" style="font-weight: bold;" href="{% url 'downloadaccelerator:features' %}">FEATURES</a>
     </li>
     <li class="nav-item">
       <a class="nav-link text-dark" style="font-weight: bold;" href="#">ABOUT AUTHOR</a>
@@ -24,7 +24,14 @@
 {% endblock navigation %}
 
 {% block banner %}
-<img src="{% static 'downloadaccelerator/images/banner.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+<div class="main-banner">
+	<img src="{% static 'downloadaccelerator/images/banner-features.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+    <div class="container-banner">
+        <h1 class="text-light">Download Accelerator Features</h1>
+        <div class="text-light">Explore all Download Accelerator features</div>
+        <button type="button" class="btn btn-outline-light">TRY DOWNLOAD ACCELERATOR</button>
+    </div>
+</div>
 {% endblock banner %}
 
 {% block content %}
@@ -83,7 +90,7 @@
 {% endblock content %}
 
 {% block footer %}
-<footer class="p-4" id="footer-home">
-  <p class="text-center text-dark"> Copyrights, developed by Messey à Ndiomo</p>
+<footer class="p-4" id="footer-features">
+  <p class="text-center text-light"> Copyrights, developed by Messey à Ndiomo</p>
 </footer>
 {% endblock footer %}

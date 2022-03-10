@@ -1,0 +1,27 @@
+nav .navbar-nav li .nav-link:hover{
+    
+    color: #4e7fa1 !important;
+  }
+
+  nav .navbar-nav li .active{
+    color: #4e7fa1 !important;
+  }
+
+  .main-banner .container-banner img{
+    z-index: 1;
+  }
+
+  .main-banner .container-banner{
+      position: absolute;
+      top: 140px;
+      left: 150px;
+      z-index: 2;
+  }
+  
+  #footer-home{
+    background-image: url("images/banner.png");
+  }
+
+  #footer-features{
+    background-image: url("images/banner-features.png");
+  }
