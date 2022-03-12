@@ -14,7 +14,7 @@
       <a class="nav-link text-dark" style="font-weight: bold;" href="#">ABOUT AUTHOR</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-dark" style="font-weight: bold;" href="#">DOWNLOAD</a>
+      <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}">DOWNLOAD</a>
     </li>
     <li class="nav-item">
       <a class="nav-link disabled" style="font-weight: bold;">SUPPORT</a>
@@ -24,13 +24,13 @@
 {% endblock navigation %}
 
 {% block banner %}
-<div class="main-banner">
+<div class="main-banner d-flex flex-column justify-content-center">
 	<img src="{% static 'downloadaccelerator/images/banner-features.png' %}" class="img-fluid" alt="" width="100%" height="auto">
-    <div class="container-banner">
-        <h1 class="text-light">Download Accelerator Features</h1>
-        <div class="text-light font-bold">Explore all Download Accelerator features</div>
-        <button type="button" class="btn btn-outline-light font-bold">TRY DOWNLOAD ACCELERATOR</button>
-    </div>
+  <div class="container-banner" id="text-banner-features">
+    <h1 class="text-light">Download Accelerator Features</h1>
+    <div class="text-light font-bold">Explore all Download Accelerator features</div>
+    <button type="button" class="btn btn-outline-light font-bold">TRY DOWNLOAD ACCELERATOR</button>
+  </div>
 </div>
 {% endblock banner %}
 

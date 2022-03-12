@@ -19,17 +19,23 @@ nav .navbar-nav li .nav-link:hover{
     z-index: 1;
   }
 
-  .main-banner .container-banner{
-      position: absolute;
-      left: 10%;
-      margin-top: 5%;
-      z-index: 2;
+  .container-banner{
+    position: absolute;
+    z-index: 2;
   }
+
+  #text-banner-features, #text-banner-download{
+    margin-left: 10%;
+  }
+
+  /*#text-banner-home{
+    left: 0%;
+  }*/
 
   .navbar-toggler{
     color: #4e7fa1 !important;
   }
-  
+
   
   #footer-home{
     background-image: url("images/banner.png");
@@ -37,4 +43,8 @@ nav .navbar-nav li .nav-link:hover{
 
   #footer-features{
     background-image: url("images/banner-features.png");
+  }
+
+  #footer-download{
+    background-image: url("images/banner-download.png");
   }

@@ -6,3 +6,6 @@ def home(request):
 
 def features(request):
     return render(request, 'downloadaccelerator/features.html')
+
+def download(request):
+    return render(request, 'downloadaccelerator/download.html')
