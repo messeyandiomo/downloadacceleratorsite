@@ -7,8 +7,12 @@ nav .navbar-nav li .nav-link:hover{
     color: #4e7fa1 !important;
   }
 
-  .main-banner{
-      display: flex;
+  .font-bold{
+      font-weight: bold;
+  }
+
+  .container-banner{
+      display: inline-block;
   }
 
   .main-banner img {
@@ -17,12 +21,15 @@ nav .navbar-nav li .nav-link:hover{
 
   .main-banner .container-banner{
       position: absolute;
-      top: 20%;
       left: 10%;
-      grid-column-start: 2;
-      grid-row-start: 2;
+      margin-top: 5%;
       z-index: 2;
   }
+
+  .navbar-toggler{
+    color: #4e7fa1 !important;
+  }
+  
   
   #footer-home{
     background-image: url("images/banner.png");
