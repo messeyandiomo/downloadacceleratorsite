@@ -36,7 +36,12 @@ nav .navbar-nav li .nav-link:hover{
     color: #4e7fa1 !important;
   }
 
-  
+  #btn-download-features:hover{
+    color: white;
+    background-color: seagreen;
+    border-color: seagreen;
+  }
+
   #footer-home{
     background-image: url("images/banner.png");
   }
