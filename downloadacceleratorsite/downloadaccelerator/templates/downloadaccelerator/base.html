@@ -51,7 +51,17 @@
         $('.btn-download').click(
           function() {
             window.open("https://addons.mozilla.org/fr/firefox/addon/download_accelerator/");
-          });
+          }
+        );
+
+        $('#togglePassword').click(
+          () => {
+            var newType = $('#password').attr('type') === 'password' ? 'text' : 'password';
+            $('#password').attr('type', newType);
+            this.classList.toggle('fa-eye-slash');
+            this.classList.toggle('fa-eye');
+          }
+        );
       });
       
     </script>
