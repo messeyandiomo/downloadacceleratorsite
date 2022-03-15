@@ -58,8 +58,7 @@
           () => {
             var newType = $('#password').attr('type') === 'password' ? 'text' : 'password';
             $('#password').attr('type', newType);
-            this.classList.toggle('fa-eye-slash');
-            this.classList.toggle('fa-eye');
+            $('#togglePassword').toggleClass('fa-eye-slash').toggleClass('fa-eye');
           }
         );
       });
