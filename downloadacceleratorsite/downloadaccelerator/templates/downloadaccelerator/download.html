@@ -1,6 +1,10 @@
 {% extends "downloadaccelerator/base.html" %}
 {% load static %}
 
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'downloadaccelerator/download.css' %}">
+{% endblock css %}
+
 {% block navigation %}
 <div class="collapse navbar-collapse" id="navbarNav">
   <ul class="navbar-nav">
@@ -58,12 +62,12 @@
                         <form>
                             <div class="form-group input-group mb-3">
                                 <span class="input-group-text"> <i class="fa fa-user fa-lg"></i> </span>
-                                <input name="" class="form-control" placeholder="Full name" type="text">
+                                <input name="" class="form-control" placeholder="Full name" type="text" id="name">
                             </div> <!-- form-group// -->
 
                             <div class="form-group input-group mb-3">
                                 <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                                <input name="" class="form-control" placeholder="Email address" type="email">
+                                <input name="" class="form-control" placeholder="Email address" type="email" id="email">
                             </div> <!-- form-group// -->
                             
                             <div class="form-group input-group mb-3">
@@ -74,7 +78,8 @@
 
                             <div class="form-group input-group mb-3">
                                 <span class="input-group-text"> <i class="fa fa-lock fa-lg"></i> </span>
-                                <input class="form-control" placeholder="Repeat password" type="password">
+                                <input class="form-control" placeholder="Repeat password" type="password" id="password2">
+                                <i class="input-group-text fa fa-eye-slash" id="togglePassword2"></i>
                             </div> <!-- form-group// -->
 
                             <div class="form-group d-grid gap-2 mb-3">
@@ -119,3 +124,8 @@
   <p class="text-center text-light"> Copyrights, developed by Messey à Ndiomo</p>
 </footer>
 {% endblock footer %}
+
+
+{% block js %}
+<script type="text/javascript" src="{{ STATIC_URL }} static/downloadaccelerator/download.js"></script>
+{% endblock js %}

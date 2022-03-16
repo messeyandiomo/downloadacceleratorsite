@@ -1,0 +1,13 @@
+#text-banner-features{
+    margin-left: 10%;
+}
+
+#btn-download-features:hover{
+    color: white;
+    background-color: seagreen;
+    border-color: seagreen;
+}
+
+#footer-features{
+    background-image: url("images/banner-features.png");
+}

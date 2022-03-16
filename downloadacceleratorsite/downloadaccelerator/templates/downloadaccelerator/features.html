@@ -1,6 +1,10 @@
 {% extends "downloadaccelerator/base.html" %}
 {% load static %}
 
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'downloadaccelerator/features.css' %}">
+{% endblock css %}
+
 {% block navigation %}
 <div class="collapse navbar-collapse" id="navbarNav">
   <ul class="navbar-nav">
