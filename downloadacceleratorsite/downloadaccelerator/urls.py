@@ -9,4 +9,5 @@ urlpatterns = [
     path('home.html', views.home, name='home'),
     path('features.html', views.features, name='features'),
     path('download.html', views.download, name='download'),
+    path('<str:username>', views.checkUser, name='user'),
 ]
