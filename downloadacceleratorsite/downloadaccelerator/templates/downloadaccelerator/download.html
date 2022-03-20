@@ -162,6 +162,10 @@ $(function() {
     
     $('#btn-createAccount').click(
       function () {
+        var nameClean = false;
+        var emailClean = false;
+        var passwordClean = false;
+
         if(($('#name').val().length === 0) | (!(/^[a-zA-Z][a-zA-Z0-9_-]*/.test($('#name').val())))){
           if(!$('#name').hasClass('border-danger'))
             $('#name').addClass('border-danger');
@@ -179,6 +183,7 @@ $(function() {
             $('#name').removeClass('border-danger');
             $('#name').tooltip('disable');
           }
+          nameClean = true;
         }
         if(($('#email').val().length === 0) |(!(/^[a-zA-Z](?:[a-zA-Z0-9_.-])*@[a-zA-Z]+\.[a-z]{2,5}/.test($('#email').val())))){
           if(!$('#email').hasClass('border-danger'))
@@ -189,6 +194,7 @@ $(function() {
           if ($('#email').hasClass('border-danger'))
             $('#email').removeClass('border-danger');
           $('#email').tooltip('disable');
+          emailClean = true;
         }
         if($('input[placeholder = "Create password"]').val() != $('input[placeholder = "Repeat password"]').val()){
           $('input[placeholder = "Create password"]').addClass('border-danger');
@@ -203,6 +209,10 @@ $(function() {
             $('input[placeholder = "Repeat password"]').removeClass('border-danger');
             $('input[placeholder = "Repeat password"]').tooltip('disable');
           }
+          passwordClean = true;
+        }
+        if(nameClean && emailClean && passwordClean){
+          /* add user in the data base */
         }
       }
     );
