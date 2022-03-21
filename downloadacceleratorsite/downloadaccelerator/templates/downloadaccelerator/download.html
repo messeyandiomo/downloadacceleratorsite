@@ -159,6 +159,22 @@ $(function() {
       });
       return ret;
     }
+
+    function createUser(username, email, password){
+      var ret = false;
+      $.ajax({
+        async: false,
+        type: 'GET',
+        url: "{% url 'downloadaccelerator:createuser' %}",
+        data: {"username": username, "email": email, "password": password},
+        success: function (response) {
+          if (response["register"]){
+            ret = true;
+          }
+        }
+      });
+      return ret;
+    }
     
     $('#btn-createAccount').click(
       function () {
@@ -213,6 +229,7 @@ $(function() {
         }
         if(nameClean && emailClean && passwordClean){
           /* add user in the data base */
+          createUser($('#name').val(), $('#email').val(), $('input[placeholder = "Create password"]').val());
         }
       }
     );

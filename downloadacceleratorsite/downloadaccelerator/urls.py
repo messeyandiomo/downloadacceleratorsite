@@ -10,4 +10,5 @@ urlpatterns = [
     path('features.html', views.features, name='features'),
     path('download.html', views.download, name='download'),
     path('username', views.checkUser, name='user'),
+    path('createuser', views.createUser, name='createuser'),
 ]
