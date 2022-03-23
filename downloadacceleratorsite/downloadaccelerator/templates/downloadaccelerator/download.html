@@ -44,9 +44,36 @@
       <div class="col-sm-12 col-lg-6">
         <div class="p-3">
           <h2>Registration</h2>
-          <p>Thus, you may access to the <a href="">forums</a> and if you have any questions about Download Accelerator, you will contact its conceptor. So you can register <a data-bs-toggle="modal" data-bs-target="#modal-registration" href="">here</a>.</p>
+          <p>Thus, you may access to the <a data-bs-toggle="modal" data-bs-target="#modal-connexion" href="">forums</a> and if you have any questions about Download Accelerator, you will contact its conceptor. So you can register <a data-bs-toggle="modal" data-bs-target="#modal-registration" href="">here</a>.</p>
 
-          <!-- Modal -->
+          <!-- Modal Connexion -->
+          <div class="modal fade" id="modal-connexion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header mx-auto">
+                        <h5 class="modal-title" id="">Sign into your Account</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group input-group mb-3">
+                                <span class="input-group-text"> <i class="fa fa-user fa-lg"></i> </span>
+                                <input name="" class="form-control" data-toggle="tooltip" title="Enter your connexion name" placeholder="Full name" type="text" id="connexionName">
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <span class="input-group-text"> <i class="fa fa-lock fa-lg"></i> </span>
+                                <input class="form-control" placeholder="Enter password" type="password">
+                                <i class="input-group-text fa fa-eye-slash"></i>
+                            </div> <!-- form-group// -->
+                        </form>
+                    </div>
+                    <div class="modal-footer mx-auto">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Login</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- End Modal Connexion -->
+          <!-- Modal Registration-->
           <div class="modal fade" id="modal-registration" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
@@ -103,7 +130,7 @@
                 </div>
             </div>
           </div>
-
+          <!-- End Modal Registration -->
         </div>
       </div>
     </div>
