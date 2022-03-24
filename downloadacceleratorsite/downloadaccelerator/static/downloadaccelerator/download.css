@@ -6,6 +6,10 @@
     background-image: url("images/banner-download.png");
 }
 
+a {
+    text-decoration: none;
+}
+
 
   /* description of download modal only */
   .divider-text {
