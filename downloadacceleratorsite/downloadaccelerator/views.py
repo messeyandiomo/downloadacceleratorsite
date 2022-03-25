@@ -37,5 +37,5 @@ def userAuth(request):
         if user is not None :
             return JsonResponse({"auth": True}, status=200)
         else:
-            return JsonResponse({"auth": False}, status=300)
-    return JsonResponse({}, status=400)
+            return JsonResponse({"auth": False}, status=200)
+    return JsonResponse({}, status=200)

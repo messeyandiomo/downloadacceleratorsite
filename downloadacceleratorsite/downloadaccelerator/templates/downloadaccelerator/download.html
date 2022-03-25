@@ -231,6 +231,7 @@ $(function() {
                 $('#connexionName').attr('title', 'The username or password is not correct');
                 $('#connexionName').tooltip({placement: 'right'}).tooltip('show');
                 $('#connexionPassword').val('');
+                $('#connexionPassword').focus();
               }
               else{
                 $('#modal-connexion').modal('toggle');
