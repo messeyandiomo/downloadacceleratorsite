@@ -11,4 +11,5 @@ urlpatterns = [
     path('download.html', views.download, name='download'),
     path('username', views.checkUser, name='user'),
     path('createuser', views.createUser, name='createuser'),
+    path('userauth', views.userAuth, name='userauth'),
 ]

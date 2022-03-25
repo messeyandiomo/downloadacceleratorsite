@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from django.http import JsonResponse
 
 # Create your views here.
@@ -24,8 +25,17 @@ def checkUser(request):
 def createUser(request):
     if request.is_ajax and request.method == 'GET':
         user = User.objects.create_user(username = request.GET.get("username"), email = request.GET.get("email"), password = request.GET.get("password"))
-        if user:
+        if user is not None:
             return JsonResponse({"register": True}, status=200)
         else:
             return JsonResponse({"register": False}, status=300)
+    return JsonResponse({}, status=400)
+
+def userAuth(request):
+    if request.is_ajax and request.method == 'POST':
+        user = authenticate(username=request.POST['name'], password=request.POST['password'])
+        if user is not None :
+            return JsonResponse({"auth": True}, status=200)
+        else:
+            return JsonResponse({"auth": False}, status=300)
     return JsonResponse({}, status=400)
