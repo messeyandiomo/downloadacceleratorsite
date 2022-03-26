@@ -188,36 +188,68 @@ $(function() {
     $('#connexionButton').click(
         function(){
             if($('#connexionName').val().length === 0){
-                if(!$('#connexionName').hasClass('border-danger')){
-                    $('#connexionName').addClass('border-danger');
-                    $('#connexionName').attr('title', 'This field must not be empty');
-                    $('#connexionName').tooltip({placement: 'right'}).tooltip('show');
-                }
+              if(!$('#connexionName').hasClass('border-danger')){
+                $('#connexionName').addClass('border-danger');
+              }
+              $('#connexionName').attr('title', 'This field must not be empty');
+              $('#connexionName').tooltip({placement: 'right'}).tooltip('show');
+            } else{
+              if($('#connexionName').hasClass('border-danger')){
+                $('#connexionName').removeClass('border-danger');
+                $('#connexionName').tooltip('disable');
+              }
             }
             if($('#connexionPassword').val().length === 0){
-                if(!$('#connexionPassword').hasClass('border-danger')){
-                    $('#connexionPassword').addClass('border-danger');
-                    $('#connexionPassword').attr('title', 'This field must not be empty');
-                    $('#connexionPassword').tooltip({placement: 'right'}).tooltip('show');
-                }
+              if(!$('#connexionPassword').hasClass('border-danger')){
+                $('#connexionPassword').addClass('border-danger');
+              }
+              $('#connexionPassword').attr('title', 'This field must not be empty');
+              $('#connexionPassword').tooltip({placement: 'right'}).tooltip('show');
+            } else {
+              if($('#connexionPassword').hasClass('border-danger')){
+                $('#connexionPassword').removeClass('border-danger');
+                $('#connexionPassword').tooltip('disable');
+              }
             }
             if(($('#connexionName').val().length != 0)&&($('#connexionPassword').val().length != 0)){
-                if($('#connexionName').hasClass('border-danger')){
-                    $('#connexionName').removeClass('border-danger');
-                    $('#connexionName').tooltip('disable');
-                }
-                if($('#connexionPassword').hasClass('border-danger')){
-                    $('#connexionPassword').removeClass('border-danger');
-                    $('#connexionPassword').tooltip('disable');
-                }
-                $('#connexionForm').submit();
+              /*$('#connexionName').attr('title', '');
+              $('#connexionPassword').attr('title', '');
+              $('#connexionForm').submit();*/
+              if(userAuth($('#connexionForm'))){
+                $('#modal-connexion').modal('toggle');
+                alert($('#connexionName').val() + ', welcome to the forum');
+              }
+              else{
+                $('#connexionPassword').val('');
+                $('#connexionPassword').focus();
+                $('#connexionPassword').tooltip('disable');
+                $('#connexionName').attr('title', 'The username or password is not correct');
+                $('#connexionName').tooltip('enable');
+                $('#connexionName').tooltip({placement: 'right'}).tooltip('show');
+              }
             }
-            
         }
     );
 
+    function userAuth(connexionForm){
+      var ret = false;
+      var serializedData = connexionForm.serialize();
+      $.ajax({
+        async: false,
+        type: 'POST',
+        url: "{% url 'downloadaccelerator:userauth' %}",
+        data: serializedData,
+        success: function(response){
+          if(response["auth"]){
+            ret = true;
+          }
+        }
+      });
+      return ret;
+    }
+
     /* manage of submit event on connexion modal */
-    $('#connexionForm').submit(
+    /*$('#connexionForm').submit(
         function(e){
           e.preventDefault();
           var serializedData = $(this).serialize();
@@ -228,10 +260,11 @@ $(function() {
             data: serializedData,
             success: function(response){
               if(!response["auth"]){
-                $('#connexionName').attr('title', 'The username or password is not correct');
-                $('#connexionName').tooltip({placement: 'right'}).tooltip('show');
                 $('#connexionPassword').val('');
                 $('#connexionPassword').focus();
+                $('#connexionPassword').tooltip('disable');
+                $('#connexionName').attr('title', 'The username or password is not correct');
+                $('#connexionName').tooltip({placement: 'right'}).tooltip('show');
               }
               else{
                 $('#modal-connexion').modal('toggle');
@@ -240,7 +273,7 @@ $(function() {
             }
           });
         }
-    );
+    );*/
 
     $('input[placeholder = "Create password"]').change(
         function(){
