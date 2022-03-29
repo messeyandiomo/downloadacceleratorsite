@@ -56,15 +56,21 @@
                     <div class="modal-body">
                         <form id="connexionForm">
                         {% csrf_token %}
-                            <div class="form-group input-group mb-3">
+                            <div class="form-group input-group" id="firstDiv">
                                 <span class="input-group-text"> <i class="fa fa-user fa-lg"></i> </span>
-                                <input name="name" class="form-control" data-toggle="tooltip" title="Enter your connexion name" placeholder="Full name" type="text" id="connexionName">
+                                <input name="name" class="form-control" data-toggle="tooltip" data-bs-placement="top" title="The username or password is not correct" placeholder="Full name" type="text" id="connexionName">
                             </div> <!-- form-group// -->
+                            <div class="fst-italic text-white text-center" id="nameDanger">
+                              <small>This field must not be empty</small>
+                            </div>
                             <div class="form-group input-group">
                                 <span class="input-group-text"> <i class="fa fa-key"></i> </span>
                                 <input name="password" class="form-control" placeholder="Enter password" data-toggle="tooltip" title="" type="password" id="connexionPassword">
                                 <i class="input-group-text fa fa-eye-slash"></i>
                             </div> <!-- form-group// -->
+                            <div class="fst-italic text-white text-center" id="passwordDanger">
+                              <small>This field must not be empty</small>
+                            </div>
                         </form>
                     </div>
                     <div class="mx-auto mb-3">

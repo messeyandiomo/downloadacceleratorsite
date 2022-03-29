@@ -187,49 +187,59 @@ $(function() {
     /* click on connexion button */
     $('#connexionButton').click(
         function(){
-            if($('#connexionName').val().length === 0){
-              if(!$('#connexionName').hasClass('border-danger')){
-                $('#connexionName').addClass('border-danger');
-              }
-              $('#connexionName').attr('title', 'This field must not be empty');
-              $('#connexionName').tooltip({placement: 'right'}).tooltip('show');
-            } else{
-              if($('#connexionName').hasClass('border-danger')){
-                $('#connexionName').removeClass('border-danger');
-                $('#connexionName').tooltip('disable');
-              }
+          
+          var emptyName = ($('#connexionName').val().length === 0) ? true : false;
+          var emptyPassword = ($('#connexionPassword').val().length === 0) ? true : false;
+          
+          if(!emptyName && !emptyPassword){
+            if(userAuth($('#connexionForm'))){
+              $('#modal-connexion').modal('toggle');
+              alert($('#connexionName').val() + ', welcome to the forum');
             }
-            if($('#connexionPassword').val().length === 0){
-              if(!$('#connexionPassword').hasClass('border-danger')){
-                $('#connexionPassword').addClass('border-danger');
-              }
-              $('#connexionPassword').attr('title', 'This field must not be empty');
-              $('#connexionPassword').tooltip({placement: 'right'}).tooltip('show');
-            } else {
-              if($('#connexionPassword').hasClass('border-danger')){
-                $('#connexionPassword').removeClass('border-danger');
-                $('#connexionPassword').tooltip('disable');
-              }
+            else{
+              $('#connexionName').tooltip('enable').tooltip('show');
+              $('#connexionPassword').val('');
+              $('#connexionPassword').focus();
+              filledInput($('#connexionPassword'), $('#passwordDanger'));
             }
-            if(($('#connexionName').val().length != 0)&&($('#connexionPassword').val().length != 0)){
-              /*$('#connexionName').attr('title', '');
-              $('#connexionPassword').attr('title', '');
-              $('#connexionForm').submit();*/
-              if(userAuth($('#connexionForm'))){
-                $('#modal-connexion').modal('toggle');
-                alert($('#connexionName').val() + ', welcome to the forum');
-              }
-              else{
-                $('#connexionPassword').val('');
-                $('#connexionPassword').focus();
-                $('#connexionPassword').tooltip('disable');
-                $('#connexionName').attr('title', 'The username or password is not correct');
-                $('#connexionName').tooltip('enable');
-                $('#connexionName').tooltip({placement: 'right'}).tooltip('show');
-              }
-            }
+          }
+          else if(emptyName && emptyPassword){
+            emptyInput($('#connexionName'), $('#nameDanger'));
+            emptyInput($('#connexionPassword'), $('#passwordDanger'));
+            $('#connexionName').tooltip('disable');
+          }
+          else if(emptyName && !emptyPassword){
+            emptyInput($('#connexionName'), $('#nameDanger'));
+            filledInput($('#connexionPassword'), $('#passwordDanger'));
+            $('#connexionName').tooltip('disable');
+          }
+          else if(!emptyName && emptyPassword){
+            emptyInput($('#connexionPassword'), $('#passwordDanger'));
+            filledInput($('#connexionName'), $('#nameDanger'));
+            $('#connexionName').tooltip('disable');
+          }
         }
     );
+
+    function emptyInput(objectInput, objectNotice){
+      if(!objectInput.hasClass('border-danger')){
+        objectInput.addClass('border-danger');
+      }
+      if(!objectNotice.hasClass('text-danger')){
+        objectNotice.removeClass('text-white');
+        objectNotice.addClass('text-danger');
+      }
+    }
+
+    function filledInput(objectInput, objectNotice){
+      if(objectInput.hasClass('border-danger')){
+        objectInput.removeClass('border-danger');
+      }
+      if(objectNotice.hasClass('text-danger')){
+        objectNotice.removeClass('text-danger');
+        objectNotice.addClass('text-white');
+      }
+    }
 
     function userAuth(connexionForm){
       var ret = false;
@@ -247,33 +257,7 @@ $(function() {
       });
       return ret;
     }
-
-    /* manage of submit event on connexion modal */
-    /*$('#connexionForm').submit(
-        function(e){
-          e.preventDefault();
-          var serializedData = $(this).serialize();
-          $.ajax({
-            async: false,
-            type: 'POST',
-            url: "{% url 'downloadaccelerator:userauth' %}",
-            data: serializedData,
-            success: function(response){
-              if(!response["auth"]){
-                $('#connexionPassword').val('');
-                $('#connexionPassword').focus();
-                $('#connexionPassword').tooltip('disable');
-                $('#connexionName').attr('title', 'The username or password is not correct');
-                $('#connexionName').tooltip({placement: 'right'}).tooltip('show');
-              }
-              else{
-                $('#modal-connexion').modal('toggle');
-                alert($('#connexionName').val() + ', welcome to the forum');
-              }
-            }
-          });
-        }
-    );*/
+    
 
     $('input[placeholder = "Create password"]').change(
         function(){
