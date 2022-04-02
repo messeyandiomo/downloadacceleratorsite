@@ -1,6 +1,9 @@
 {% extends "downloadaccelerator/downloadbase.html" %}
+{% load static %}
+
 
 {% block js %}
+<script type="text/javascript" src="{{ STATIC_URL }} static/downloadaccelerator/jquery-ui.min.js"></script>
 <script>
 $(function() {
     
@@ -184,6 +187,35 @@ $(function() {
     );
 
 
+    /*function showWelcomeDialogBox(username){
+      $("#welcomemessage").html("welcome to the forums");
+      $("#welcome").dialog({
+        resizable: false,
+        title: username + " welcome to the forums",
+        modal: true,
+        width: '400px',
+        height: 'auto',
+        bgiframe: false,
+        hide: { effect: 'scale', duration: 400 },
+        buttons: [
+          {
+            text: 'OK',
+            "class": "showcss",
+            click: function () {
+              $("#welcome").dialog('close');
+            }
+          }
+        ]
+      });
+    }*/
+
+    /* click on button which gives access to forums */
+    $('#forumModal').click(
+      function(){
+        $('#welcome').modal('toggle');
+      }
+    );
+
     /* click on connexion button */
     $('#connexionButton').click(
         function(){
@@ -194,7 +226,8 @@ $(function() {
           if(!emptyName && !emptyPassword){
             if(userAuth($('#connexionForm'))){
               $('#modal-connexion').modal('toggle');
-              alert($('#connexionName').val() + ', welcome to the forum');
+              $("#welcomemessage").html($('#connexionName').val() + " welcome to forums");
+              $('#welcome').modal('show');
             }
             else{
               $('#connexionName').tooltip('enable').tooltip('show');

@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'downloadaccelerator/jquery-ui.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'downloadaccelerator/download.css' %}">
 {% endblock css %}
 
@@ -83,6 +84,20 @@
             </div>
           </div>
           <!-- End Modal Connexion -->
+          <!-- Dialog welcome to the forums -->
+          <div class="modal fade" id="welcome" data-bs-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-body text-center">
+                    <label id="welcomemessage"></label>
+                  </div>
+                  <div class="mx-auto mb-3">
+                    <button type="button" class="btn btn-primary" id="forumModal">OK</button>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <!-- End Dialog welcome to the forums -->
           <!-- Modal Registration-->
           <div class="modal fade" id="modal-registration" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
