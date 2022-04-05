@@ -20,6 +20,14 @@
     <li class="nav-item">
       <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}">DOWNLOAD</a>
     </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link text-dark" data-bs-toggle="dropdown" aria-expanded="false" id="forumsList" style="font-weight: bold;" href="#">FORUMS</a>
+      <ul class="dropdown-menu" aria-labelledby="formusList">
+        <li><a class="dropdown-item" href="{% url 'downloadaccelerator:forums' %}">Linux</a></li>
+        <li><a class="dropdown-item" href="#">Django</a></li>
+        <li><a class="dropdown-item" href="#">Download Accelerator</a></li>
+      </ul>
+    </li>
     <li class="nav-item">
       <a class="nav-link disabled" style="font-weight: bold;">SUPPORT</a>
     </li>

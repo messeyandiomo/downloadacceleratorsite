@@ -12,4 +12,5 @@ urlpatterns = [
     path('username', views.checkUser, name='user'),
     path('createuser', views.createUser, name='createuser'),
     path('userauth', views.userAuth, name='userauth'),
+    path('forums', views.forums, name='forums'),
 ]

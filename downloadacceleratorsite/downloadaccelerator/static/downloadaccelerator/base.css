@@ -7,6 +7,24 @@
     color: #4e7fa1 !important;
   }
 
+  .navbar-toggler{
+    font-size: medium;
+    font-weight: bold;
+  }
+
+  .navbar-toggler > span{
+    font-weight: bold;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .navbar-toggler:focus,.navbar-toggler:active,.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
   .font-bold{
       font-weight: bold;
   }
@@ -26,4 +44,24 @@
 
   .navbar-toggler{
     color: #4e7fa1 !important;
-  }  
+  }
+
+  .dropdown-item:hover{
+    color: #4e7fa1 !important;
+    background-color: white;
+  }
+
+  /*.dropdown-menu {
+    outline: none;
+  }*/
+
+  .dropdown>.dropdown-menu {
+    display: none;
+    margin-top: 10px;
+    margin-left: 9px;
+  }
+  
+  .dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+      pointer-events: none;
+  }

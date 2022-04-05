@@ -13,6 +13,9 @@ def features(request):
 def download(request):
     return render(request, 'downloadaccelerator/download.html')
 
+def forums(request):
+    return render(request, 'downloadaccelerator/forums.html')
+
 def checkUser(request):
     if request.is_ajax and request.method == 'GET':
         username = request.GET.get("username", None)

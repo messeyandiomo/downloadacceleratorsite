@@ -1,0 +1,50 @@
+{% extends "downloadaccelerator/base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'downloadaccelerator/features.css' %}">
+{% endblock css %}
+
+{% block navigation %}
+<div class="collapse navbar-collapse" id="navbarNav">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link text-dark" style="font-weight: bold;" aria-current="page" href="{% url 'downloadaccelerator:home' %}">HOME</a>
+    </li>
+    <li class="nav-item">
+      <a id="features" class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:features' %}">FEATURES</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark" style="font-weight: bold;" href="#">ABOUT AUTHOR</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}">DOWNLOAD</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link active" data-bs-toggle="dropdown" aria-expanded="false" id="forumsList" style="font-weight: bold;" href="#">FORUMS</a>
+      <ul class="dropdown-menu" aria-labelledby="formusList">
+        <li><a class="dropdown-item" href="{% url 'downloadaccelerator:forums' %}">Linux</a></li>
+        <li><a class="dropdown-item" href="#">Django</a></li>
+        <li><a class="dropdown-item" href="#">Download Accelerator</a></li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" style="font-weight: bold;">SUPPORT</a>
+    </li>
+  </ul>
+</div>
+{% endblock navigation %}
+
+{% block banner %}
+<div class="main-banner d-flex flex-column justify-content-center">
+	<img src="{% static 'downloadaccelerator/images/banner-forums.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+  <div class="container-banner" id="text-banner-features">
+    <h1 class="text-light">Download Accelerator Features</h1>
+    <div class="text-light font-bold">Explore all Download Accelerator features</div>
+    <button type="button" class="btn btn-outline-light font-bold btn-download" id="btn-download-features">TRY DOWNLOAD ACCELERATOR</button>
+  </div>
+</div>
+{% endblock banner %}
+
+{% block content %}
+{% endblock content %}

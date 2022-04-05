@@ -6,9 +6,7 @@
     background-image: url("images/banner-download.png");
 }
 
-a {
-    text-decoration: none;
-}
+
 
 
   /* description of download modal only */
@@ -42,7 +40,3 @@ a {
     background-color: #42AEEC;
     color: #fff;
 }
-
-
-.showcss{ display:block;}
-.hidecss{ display:none;}
