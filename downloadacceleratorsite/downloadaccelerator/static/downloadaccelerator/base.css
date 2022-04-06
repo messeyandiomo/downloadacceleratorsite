@@ -51,9 +51,9 @@
     background-color: white;
   }
 
-  /*.dropdown-menu {
-    outline: none;
-  }*/
+  .dropdown-menu, .navbar-toggler {
+    border: none;
+  }
 
   .dropdown>.dropdown-menu {
     display: none;
