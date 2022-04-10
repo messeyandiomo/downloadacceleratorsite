@@ -28,8 +28,47 @@
             MORE
             <span class="fa fa-angle-down"></span>
           </a>
-          {% block navigation %}
-          {% endblock navigation %}
+          <!--navigation-->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                {% block home %}
+                <a class="nav-link text-dark" style="font-weight: bold;" aria-current="page" href="{% url 'downloadaccelerator:home' %}">HOME</a>
+                {% endblock home %}
+              </li>
+              <li class="nav-item">
+                {% block features %}
+                <a id="features" class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:features' %}">FEATURES</a>
+                {% endblock features %}
+              </li>
+              <li class="nav-item">
+                {% block aboutAuthor %}
+                <a class="nav-link text-dark" style="font-weight: bold;" href="#">ABOUT AUTHOR</a>
+                {% endblock aboutAuthor %}
+              </li>
+              <li class="nav-item">
+                {% block download %}
+                <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}">DOWNLOAD</a>
+                {% endblock download %}
+              </li>
+              <li class="nav-item dropdown">
+                {% block forums %}
+                <a class="nav-link text-dark" data-bs-toggle="dropdown" aria-expanded="false" id="forumsList" style="font-weight: bold;" href="#">FORUMS</a>
+                {% endblock forums %}
+                <ul class="dropdown-menu" aria-labelledby="formusList">
+                  <li><a class="dropdown-item" href="{% url 'downloadaccelerator:forums' 'linux' %}">Linux</a></li>
+                  <li><a class="dropdown-item" href="{% url 'downloadaccelerator:forums' 'django' %}">Django</a></li>
+                  <li><a class="dropdown-item" href="{% url 'downloadaccelerator:forums' 'dac' %}">Download Accelerator</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                {% block support %}
+                <a class="nav-link disabled" style="font-weight: bold;">SUPPORT</a>
+                {% endblock support %}
+              </li>
+            </ul>
+          </div>
+          <!-- End of navigation -->
         </div>
     </nav>
 

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
 
+
 # Create your views here.
 def home(request):
     return render(request, 'downloadaccelerator/home.html')
@@ -13,8 +14,8 @@ def features(request):
 def download(request):
     return render(request, 'downloadaccelerator/download.html')
 
-def forums(request):
-    return render(request, 'downloadaccelerator/forums.html')
+def forums(request, forumName):
+    return render(request, 'downloadaccelerator/forums.html', {'forumName': forumName})
 
 def checkUser(request):
     if request.is_ajax and request.method == 'GET':

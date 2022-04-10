@@ -6,11 +6,10 @@ from . import views
 app_name = 'downloadaccelerator'
 urlpatterns = [
     path('', views.home, name='home'),
-    path('home.html', views.home, name='home'),
     path('features.html', views.features, name='features'),
-    path('download.html', views.download, name='download'),
+    path('download', views.download, name='download'),
     path('username', views.checkUser, name='user'),
     path('createuser', views.createUser, name='createuser'),
     path('userauth', views.userAuth, name='userauth'),
-    path('forums', views.forums, name='forums'),
+    path('<str:forumName>', views.forums, name='forums'),
 ]

@@ -6,35 +6,9 @@
 <link rel="stylesheet" type="text/css" href="{% static 'downloadaccelerator/download.css' %}">
 {% endblock css %}
 
-{% block navigation %}
-<div class="collapse navbar-collapse" id="navbarNav">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link text-dark" style="font-weight: bold;" aria-current="page" href="{% url 'downloadaccelerator:home' %}">HOME</a>
-    </li>
-    <li class="nav-item">
-      <a id="features" class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:features' %}">FEATURES</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-dark" style="font-weight: bold;" href="#">ABOUT AUTHOR</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}">DOWNLOAD</a>
-    </li>
-    <li class="nav-item dropdown">
-      <a class="nav-link text-dark" data-bs-toggle="dropdown" aria-expanded="false" id="forumsList" style="font-weight: bold;" href="#">FORUMS</a>
-      <ul class="dropdown-menu" aria-labelledby="formusList">
-        <li><a class="dropdown-item" href="{% url 'downloadaccelerator:forums' %}">Linux</a></li>
-        <li><a class="dropdown-item" href="#">Django</a></li>
-        <li><a class="dropdown-item" href="#">Download Accelerator</a></li>
-      </ul>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" style="font-weight: bold;">SUPPORT</a>
-    </li>
-  </ul>
-</div>
-{% endblock navigation %}
+{% block download %}
+<a class="nav-link active" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}">DOWNLOAD</a>
+{% endblock download %}
 
 {% block banner %}
 <div class="main-banner d-flex flex-column justify-content-center">
