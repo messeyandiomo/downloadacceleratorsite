@@ -59,13 +59,44 @@
                     <div class="mx-auto mb-3">
                       <button type="button" class="btn btn-primary" id="connexionButton">Login</button>
                     </div>
-                    <div class="small mx-auto mb-3"><a class="text-muted" href="#!">Forgot password?</a></div>
+                    <div class="small mx-auto mb-3"><a class="text-muted" data-bs-toggle="modal" data-bs-target="#modal-forget-password" href="#!">Forgot password?</a></div>
                     <div class="mx-auto mb-3">Don't have an account? <a href="#!" class="link-info" data-bs-toggle="modal" data-bs-target="#modal-registration">Register here</a></div>
                     
                 </div>
             </div>
           </div>
           <!-- End Modal Connexion -->
+
+          <!-- Modal forget password -->
+          <div class="modal fade" id="modal-forget-password" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="mx-auto mt-3">
+                      <h5 class="modal-title" id="">Forgotten Password</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form id="forgetPassForm">
+                        {% csrf_token %}
+                            <div class="form-group input-group">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                <input name="forgetPassEmail" class="form-control" data-toggle="tooltip" title="Please type a valid email address" placeholder="Email address" type="email" id="forgetPassEmail">
+                            </div> <!-- form-group// -->
+                            <!--<div class="fst-italic text-white text-center" id="forgetPassNameDanger">
+                              <small>This field must not be empty</small>
+                            </div>-->
+                        </form>
+                    </div>
+                    <div class="mx-auto mb-2">
+                      <button type="button" class="btn btn-primary" id="forgetPassButton">Reinitialize Password</button>
+                    </div>
+                    <div class="mx-auto mb-3">
+                      <a href="#!" class="link-info" data-bs-toggle="modal" data-bs-target="#modal-connexion"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- End Modal forget password -->
+
           <!-- Dialog welcome to the forums -->
           <div class="modal fade" id="welcome" data-bs-backdrop="static">
             <div class="modal-dialog modal-dialog-centered">
