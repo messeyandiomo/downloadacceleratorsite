@@ -255,6 +255,22 @@ $(function() {
         }
     );
 
+    /* click on forgot password link */
+    $('#forgotPassword').click(
+      function(e){
+        var emptyName = ($('#connexionName').val().length === 0) ? true : false;
+        if(emptyName){
+          emptyInput($('#connexionName'), $('#nameDanger'));
+        }
+        else {
+          filledInput($('#connexionName'), $('#nameDanger'));
+          $('#modal-connexion').modal('hide');
+          $('#modal-forget-password').modal('show');
+          $('#forgetName').val($('#connexionName').val());
+        }
+      }
+    );
+
     function emptyInput(objectInput, objectNotice){
       if(!objectInput.hasClass('border-danger')){
         objectInput.addClass('border-danger');
