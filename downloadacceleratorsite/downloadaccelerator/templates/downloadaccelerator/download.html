@@ -223,6 +223,7 @@ $(function() {
           
           var emptyName = ($('#connexionName').val().length === 0) ? true : false;
           var emptyPassword = ($('#connexionPassword').val().length === 0) ? true : false;
+          var warn = 'This field must not be empty';
           
           if(!emptyName && !emptyPassword){
             if(userAuth($('#connexionForm'))){
@@ -238,17 +239,17 @@ $(function() {
             }
           }
           else if(emptyName && emptyPassword){
-            emptyInput($('#connexionName'), $('#nameDanger'));
-            emptyInput($('#connexionPassword'), $('#passwordDanger'));
+            dangerInput($('#connexionName'), $('#nameDanger'), $('#nameDanger small'), warn);
+            dangerInput($('#connexionPassword'), $('#passwordDanger'), $('#passwordDanger small'), warn);
             $('#connexionName').tooltip('disable');
           }
           else if(emptyName && !emptyPassword){
-            emptyInput($('#connexionName'), $('#nameDanger'));
+            dangerInput($('#connexionName'), $('#nameDanger'), $('#nameDanger small'), warn);
             filledInput($('#connexionPassword'), $('#passwordDanger'));
             $('#connexionName').tooltip('disable');
           }
           else if(!emptyName && emptyPassword){
-            emptyInput($('#connexionPassword'), $('#passwordDanger'));
+            dangerInput($('#connexionPassword'), $('#passwordDanger'), $('#passwordDanger small'), warn);
             filledInput($('#connexionName'), $('#nameDanger'));
             $('#connexionName').tooltip('disable');
           }
@@ -260,18 +261,66 @@ $(function() {
       function(e){
         var emptyName = ($('#connexionName').val().length === 0) ? true : false;
         if(emptyName){
-          emptyInput($('#connexionName'), $('#nameDanger'));
+          dangerInput($('#connexionName'), $('#nameDanger'), $('#nameDanger small'), 'This field must not be empty');
         }
         else {
-          filledInput($('#connexionName'), $('#nameDanger'));
-          $('#modal-connexion').modal('hide');
-          $('#modal-forget-password').modal('show');
-          $('#forgetName').val($('#connexionName').val());
+          if(userExist($('#connexionName').val())){
+            filledInput($('#connexionName'), $('#nameDanger'));
+            $('#modal-connexion').modal('hide');
+            $('#modal-forget-password').modal('show');
+            $('#forgetName').val($('#connexionName').val());
+          }
+          else{
+            dangerInput($('#connexionName'), $('#nameDanger'), $('#nameDanger small'), 'This user does not exists');
+          }
         }
       }
     );
 
-    function emptyInput(objectInput, objectNotice){
+    /* Reinitialize password on forgotten Password modal */
+    $('#forgetPassButton').click(
+      function(){
+
+        if(($('#forgetPassEmail').val().length === 0) |(!(/^[a-zA-Z](?:[a-zA-Z0-9_.-])*@[a-zA-Z]+\.[a-z]{2,5}/.test($('#forgetPassEmail').val())))){
+          if(!$('#forgetPassEmail').hasClass('border-danger'))
+            $('#forgetPassEmail').addClass('border-danger');
+          $('#forgetPassEmail').tooltip({placement: 'right'}).tooltip('show');
+        }
+        else{
+          filledInput($('#forgetPassEmail'), $('#forgetPassNameDanger'))
+          $('#forgetPassEmail').tooltip('disable');
+          if(checkUserMail($('#forgetName').val(), $('#forgetPassEmail').val())){
+            /* send a new password to the user */
+          }
+          else {
+            var warn = 'This mail does not belongs to ' + $('#forgetName').val();
+            dangerInput($('#forgetPassEmail'), $('#forgetPassNameDanger'), $('#forgetPassNameDanger small'), warn);
+          }
+        }
+      }
+    );
+
+    /* check if an email belong to user */
+    function checkUserMail(username, usermail){
+      
+      var ret = false;
+      $.ajax({
+        async: false,
+        type: 'GET',
+        url: "{% url 'downloadaccelerator:checkUserMail' %}",
+        data: {"username": username, "email": usermail},
+        success: function (response) {
+          if (response["valid"]){
+            ret = true;
+          }
+        }
+      });
+
+      return ret;
+    }
+
+
+    function dangerInput(objectInput, objectNotice, objectWarning, warning){
       if(!objectInput.hasClass('border-danger')){
         objectInput.addClass('border-danger');
       }
@@ -279,6 +328,7 @@ $(function() {
         objectNotice.removeClass('text-white');
         objectNotice.addClass('text-danger');
       }
+      objectWarning.html(warning);
     }
 
     function filledInput(objectInput, objectNotice){

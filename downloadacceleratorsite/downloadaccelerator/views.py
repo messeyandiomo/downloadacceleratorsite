@@ -26,6 +26,16 @@ def checkUser(request):
             return JsonResponse({"valid": True}, status=300)
     return JsonResponse({}, status=400)
 
+
+def checkUserMail(request):
+    if request.is_ajax and request.method == 'GET':
+        if User.objects.filter(username = request.GET.get("username"), email = request.GET.get("email")).exists():
+            return JsonResponse({"valid": True}, status=200)
+        else:
+            return JsonResponse({"valid": False}, status=300)
+    return JsonResponse({}, status=400)
+
+
 def createUser(request):
     if request.is_ajax and request.method == 'GET':
         user = User.objects.create_user(username = request.GET.get("username"), email = request.GET.get("email"), password = request.GET.get("password"))
