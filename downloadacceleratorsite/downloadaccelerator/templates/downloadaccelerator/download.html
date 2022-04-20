@@ -291,6 +291,10 @@ $(function() {
           $('#forgetPassEmail').tooltip('disable');
           if(checkUserMail($('#forgetName').val(), $('#forgetPassEmail').val())){
             /* send a new password to the user */
+            if(passwordReset($('#forgetPassForm'))){
+              window.open("/password_reset/done/", "_self");
+              $('#modal-forget-password').modal('toggle');
+            }
           }
           else {
             var warn = 'This mail does not belongs to ' + $('#forgetName').val();
@@ -316,6 +320,23 @@ $(function() {
         }
       });
 
+      return ret;
+    }
+
+    function passwordReset(forgetPassForm){
+      var ret = false;
+      var serializedData = forgetPassForm.serialize();
+      $.ajax({
+        async: false,
+        type: 'POST',
+        url: "{% url 'downloadaccelerator:passwordreset' %}",
+        data: serializedData,
+        success: function(response){
+          if(response["reset"]){
+            ret = true;
+          }
+        }
+      });
       return ret;
     }
 

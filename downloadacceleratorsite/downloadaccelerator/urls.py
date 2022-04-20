@@ -11,5 +11,6 @@ urlpatterns = [
     path('createuser', views.createUser, name='createuser'),
     path('userauth', views.userAuth, name='userauth'),
     path('checkusermail', views.checkUserMail, name='checkUserMail'),
+    path('passwordreset', views.passwordReset, name='passwordreset'),
     path('<str:forumName>', views.forums, name='forums'),
 ]

@@ -3,6 +3,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
 
+from django.contrib.auth.forms import PasswordResetForm
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.contrib.auth.tokens import default_token_generator
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
+
+
 
 # Create your views here.
 def home(request):
@@ -33,6 +41,29 @@ def checkUserMail(request):
             return JsonResponse({"valid": True}, status=200)
         else:
             return JsonResponse({"valid": False}, status=300)
+    return JsonResponse({}, status=400)
+
+
+def passwordReset(request):
+    if request.is_ajax and request.method == "POST":
+        user = User.objects.filter(username=request.POST["forgetName"], email=request.POST["forgetPassEmail"]).first()
+        if user is not None:
+            subject = "Password Reset Requested"
+            email_template_name = "password/password_reset_email.html"
+            c = {
+                "email":user.email,
+				'domain':'127.0.0.1:8000',
+				'site_name': 'downloadaccelerator',
+				"uid": urlsafe_base64_encode(force_bytes(user.pk)),
+				"user": user,
+				'token': default_token_generator.make_token(user),
+				'protocol': 'http',
+			}
+            email = render_to_string(email_template_name, c)
+            send_mail(subject, email, 'admin@example.com' , [user.email], fail_silently=False)
+            return JsonResponse({"reset": True}, status=200)
+        else:
+            return JsonResponse({"reset": False}, status=300)
     return JsonResponse({}, status=400)
 
 
