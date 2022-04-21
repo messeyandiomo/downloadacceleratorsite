@@ -30,16 +30,17 @@
   }
 
   .container-banner{
-      display: inline-block;
+    display: inline-block;
+    position: absolute;
+    z-index: 2;
   }
 
   .main-banner img {
     z-index: 1;
   }
 
-  .container-banner{
-    position: absolute;
-    z-index: 2;
+  .text-banner{
+    margin-left: 10%;
   }
 
   .navbar-toggler{
