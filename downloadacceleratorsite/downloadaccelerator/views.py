@@ -22,6 +22,12 @@ def features(request):
 def download(request):
     return render(request, 'downloadaccelerator/download.html')
 
+def modalconnexion(request, modaltype=None):
+    if modaltype is not None:
+        return render(request, 'downloadaccelerator/modalconnexion.html', {'modaltype': modaltype})
+    else:
+        return render(request, 'downloadaccelerator/modalconnexion.html')
+
 def forums(request, forumName):
     return render(request, 'downloadaccelerator/forums.html', {'forumName': forumName})
 
