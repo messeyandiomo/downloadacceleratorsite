@@ -38,7 +38,7 @@ def forums(request, forumName=None):
     if forumName is not None:
         return render(request, 'downloadaccelerator/forums.html', {'forumName': forumName})
     else:
-        return render(request, 'downloadaccelerator/forums.html')
+        return render(request, 'downloadaccelerator/forums.html', {'forumName': 'forums'})
 
 def checkUser(request):
     if request.is_ajax and request.method == 'GET':

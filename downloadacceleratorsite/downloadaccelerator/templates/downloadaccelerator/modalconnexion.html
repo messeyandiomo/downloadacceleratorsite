@@ -52,7 +52,7 @@ $(function(){
           
           if(!emptyName && !emptyPassword){
             if(userAuth($('#connexionForm'))){
-              window.open("{% url 'downloadaccelerator:forums' 'linux' %}", "_self");
+              window.open("{% url 'downloadaccelerator:forums' %}", "_self");
             }
             else{
               $('#connexionName').tooltip('enable').tooltip('show');
