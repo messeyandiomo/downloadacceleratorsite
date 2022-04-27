@@ -3,7 +3,7 @@
 
 
 {% block js %}
-<script type="text/javascript" src="{{ STATIC_URL }} static/downloadaccelerator/forums.js"></script>
+<script type="text/javascript" src="{% static 'downloadaccelerator/forums.js' %}"></script>
 
 <script>
 $(
@@ -13,7 +13,9 @@ $(
                 $(obj).addClass('choisedForum');
         }
 
-        $('#footer-forums').css('background-image', "url(static/downloadaccelerator/images/banner-{{ forumName }}.png)");
+        {% with footerlink="downloadaccelerator/images/banner-"|add:forumName|add:".png" %}
+        $('#footer-forums').css('background-image', "url({% static footerlink %})");
+        {% endwith %}
     }
 );
 </script>

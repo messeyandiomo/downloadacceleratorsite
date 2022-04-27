@@ -11,9 +11,14 @@
 
 {% block banner %}
 <div class="main-banner d-flex flex-column justify-content-center">
-  {% with link="downloadaccelerator/images/banner-"|add:forumName|add:".png" %}
-  <img src="{% static link %}" class="img-fluid" alt="" width="100%" height="auto">
-  {% endwith %}  
+  {% if forumName %}
+    {% with link="downloadaccelerator/images/banner-"|add:forumName|add:".png" %}
+    <img src="{% static link %}" class="img-fluid" alt="" width="100%" height="auto">
+    {% endwith %}
+  {% else %}
+    <img src="{% static 'downloadaccelerator/images/banner-forums.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+  {% endif %}
+  
   <!--
   <div class="container-banner" id="text-banner-features">
     <h1 class="text-light">Download Accelerator Features</h1>

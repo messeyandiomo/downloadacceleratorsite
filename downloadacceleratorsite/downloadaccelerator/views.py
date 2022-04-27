@@ -28,8 +28,17 @@ def modalconnexion(request, modaltype=None):
     else:
         return render(request, 'downloadaccelerator/modalconnexion.html')
 
-def forums(request, forumName):
-    return render(request, 'downloadaccelerator/forums.html', {'forumName': forumName})
+def modalwelcome(request, username=None):
+    if username is not None:
+        return render(request, 'downloadaccelerator/modalwelcome.html', {'username': username})
+    else:
+        return render(request, 'downloadaccelerator/modalwelcome.html')
+
+def forums(request, forumName=None):
+    if forumName is not None:
+        return render(request, 'downloadaccelerator/forums.html', {'forumName': forumName})
+    else:
+        return render(request, 'downloadaccelerator/forums.html')
 
 def checkUser(request):
     if request.is_ajax and request.method == 'GET':
