@@ -85,8 +85,15 @@
     {% block content %}
     {% endblock content %}
 
-    {% block footer %}
-    {% endblock footer %}
+    <footer class="d-flex flex-column justify-content-center align-items-center">
+    {% block footerimage %}
+    {% endblock footerimage %}
+    {% block footertext %}
+    <div class="container-footer text-center my-auto">
+      <p class="text-center text-light"> Copyrights, developed by Messey à Ndiomo</p>
+    </div>
+    {% endblock footertext %}
+    </footer>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

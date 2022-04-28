@@ -35,9 +35,16 @@
     z-index: 2;
   }
 
-  .main-banner img {
+  .container-footer{
+    display: inline-block;
+    
+    z-index: 2;
+  }
+
+  .main-banner img, footer img {
     z-index: 1;
   }
+  
 
   .text-banner{
     margin-left: 10%;

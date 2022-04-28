@@ -12,10 +12,6 @@ $(
             if($(obj).html() == "{{ forumName }}")
                 $(obj).addClass('choisedForum');
         }
-
-        {% with footerlink="downloadaccelerator/images/banner-"|add:forumName|add:".png" %}
-        $('#footer-forums').css('background-image', "url({% static footerlink %})");
-        {% endwith %}
     }
 );
 </script>

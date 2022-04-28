@@ -82,8 +82,15 @@
   </div>
 {% endblock content %}
 
-{% block footer %}
-<footer class="p-4" id="footer-forums">
-  <p class="text-center text-light"> Copyrights, developed by Messey à Ndiomo</p>
-</footer>
-{% endblock footer %}
+{% block footerimage %}
+  {% if forumName %}
+    {% with link="downloadaccelerator/images/footer-banner-"|add:forumName|add:".png" %}
+    <img src="{% static link %}" class="img-fluid" alt="" width="100%" height="auto">
+    {% endwith %}
+  {% else %}
+    <img src="{% static 'downloadaccelerator/images/footer-banner-forums.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+  {% endif %}
+{% endblock footerimage %}
+
+{% block footertext %}
+{% endblock footertext %}
