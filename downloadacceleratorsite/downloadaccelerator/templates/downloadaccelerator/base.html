@@ -85,16 +85,22 @@
     {% block content %}
     {% endblock content %}
 
-    <footer class="d-flex flex-column justify-content-center align-items-center">
+
+  <footer class="text-center text-white" style="background-color: #45637d;">
     {% block footerimage %}
     {% endblock footerimage %}
-    {% block footertext %}
-    <div class="container-footer text-center my-auto">
-      <p class="text-center text-light"> Copyrights, developed by Messey à Ndiomo</p>
-    </div>
-    {% endblock footertext %}
-    </footer>
-
+    <!-- Copyright -->
+    {% block copyright %}
+      <div class="text-center p-3"
+       {% block copyrightstyle %}
+        style="background-color: rgba(0, 0, 0, 0.2);"
+       {% endblock copyrightstyle %}>
+       © 2022 Copyright, developed by <a class="text-white" href=""> Messey à Ndiomo</a>
+      </div>
+    {% endblock copyright %}
+    <!-- Copyright -->
+  </footer>
+  
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
