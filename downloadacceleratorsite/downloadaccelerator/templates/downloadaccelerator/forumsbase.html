@@ -33,7 +33,7 @@
 <div class="container">
     <div class="row g-5 p-4">
       <div class="col-sm-12 col-lg-6">
-        <div class="p-3">
+        <div class="p-5">
           <h2>Download files faster</h2>
           <p>Download Accelerator (DAC) to stop waiting for your downloads. You will be truly amazed how fast downloadaccelerator downloads your files. Download Accelerator will also repair broken and resume interrupted downloads due to lost connections and network problems.</p>
         </div>
@@ -82,15 +82,3 @@
   </div>
 {% endblock content %}
 
-{% block footerimage %}
-  {% if forumName %}
-    {% with link="downloadaccelerator/images/footer-banner-"|add:forumName|add:".png" %}
-    <img src="{% static link %}" class="img-fluid" alt="" width="100%" height="auto">
-    {% endwith %}
-  {% else %}
-    <img src="{% static 'downloadaccelerator/images/footer-banner-forums.png' %}" class="img-fluid" alt="" width="100%" height="auto">
-  {% endif %}
-{% endblock footerimage %}
-
-{% block copyright %}
-{% endblock copyright %}

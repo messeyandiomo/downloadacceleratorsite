@@ -38,3 +38,6 @@ def password_reset_request(request):
 	password_reset_form = PasswordResetForm()
 	return render(request=request, template_name="password/password_reset_form.html", context={"password_reset_form":password_reset_form})
 
+
+def password_reset_complete(request):
+	return render(request, "password/password_reset_complete.html")

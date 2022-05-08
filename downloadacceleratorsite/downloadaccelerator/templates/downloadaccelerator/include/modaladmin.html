@@ -1,0 +1,34 @@
+<!-- Admin Modal Connexion -->
+<div class="modal fade" id="admin-modal-connexion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="mx-auto mt-3">
+                <h5 class="modal-title" id="">Sign in</h5>
+            </div>
+            <div class="modal-body">
+                <form id="connexionForm">
+                {% csrf_token %}
+                    <div class="form-group input-group" id="firstDiv">
+                        <span class="input-group-text"> <i class="fa fa-user fa-lg"></i> </span>
+                        <input name="name" class="form-control" data-toggle="tooltip" data-bs-placement="top" title="The username or password is not correct" placeholder="Full name" type="text" id="connexionName">
+                    </div> 
+                    <div class="fst-italic text-white text-center" id="nameDanger">
+                        <small>This field must not be empty</small>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-text"> <i class="fa fa-key"></i> </span>
+                        <input name="password" class="form-control" placeholder="Enter password" data-toggle="tooltip" title="" type="password" id="connexionPassword">
+                        <i class="input-group-text fa fa-eye-slash"></i>
+                    </div> 
+                    <div class="fst-italic text-white text-center" id="passwordDanger">
+                        <small>This field must not be empty</small>
+                    </div>
+                </form>
+            </div>
+            <div class="mx-auto mb-3">
+                <button type="button" class="btn btn-primary" id="connexionButton">Login</button>
+            </div>  
+        </div>
+    </div>
+</div>
+<!-- End Admin Modal Connexion -->

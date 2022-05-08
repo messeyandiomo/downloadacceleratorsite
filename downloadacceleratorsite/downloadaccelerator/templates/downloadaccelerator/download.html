@@ -1,372 +1,71 @@
-{% extends "downloadaccelerator/downloadbase.html" %}
+{% extends "downloadaccelerator/base.html" %}
 {% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'downloadaccelerator/jquery-ui.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'downloadaccelerator/download.css' %}">
+{% endblock css %}
+
+{% block download %}
+<a class="nav-link active" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}">DOWNLOAD</a>
+{% endblock download %}
+
+{% block banner %}
+<div class="main-banner d-flex flex-column justify-content-center">
+	<img src="{% static 'downloadaccelerator/images/banner-download.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+    <div class="container-banner text-banner">
+        <h1 class="text-light">Download Accelerator Features</h1>
+        <div class="text-light font-bold">Explore all Download Accelerator features</div>
+        <button type="button" class="btn btn-success font-bold btn-download">TRY DOWNLOAD ACCELERATOR</button>
+    </div>
+</div>
+{% endblock banner %}
+
+{% block content %}
+<div class="container">
+    <div class="row g-5 p-4">
+      <div class="col-sm-12 col-lg-6">
+        <div class="p-5">
+          <h2>Registration</h2>
+          <p>Thus, you may access to the <a id="idforumconnexion" href="" data-bs-toggle="modal" data-bs-target="#modal-connexion">forums</a> and if you have any questions about Download Accelerator, you will contact its conceptor. So you can register <a data-bs-toggle="modal" data-bs-target="#modal-registration" href="">here</a>.</p>
+
+          {% include "downloadaccelerator/include/modalregistration.html" %}
+          {% include "downloadaccelerator/include/modalconnexion.html" %}
+          {% include "downloadaccelerator/include/modalforgetpass.html" %}
+          {% include "downloadaccelerator/include/modalwelcome.html" %}
+          
+          <br>
+          
+          <h2>Installation Instructions</h2>
+          <ul class="">
+            <li>First of all, You must have a linux distribution installed on your computer and the browser FireFox installed.</li>
+            <li>Then, install Download Accelerator module integration of <a href="https://addons.mozilla.org/fr/firefox/addon/download_accelerator/">FireFox</a>.</li>
+            <li>If you dont have snapstore installed, install it by typing on your favorite terminal <strong>sudo snap install snap-store</strong> on Ubuntu or <strong>snap install snap-store</strong> in superuser on others distributions.</li>
+            <li>Install the Download Accelerator snap from <strong>snap-store</strong>.</li>
+            <li>Launch Download Accelerator. This step is very important, to let the configuration of Download Accelerator snap.</li>
+            <li>Retart your user session</li>
+            <li>Once you are restart your session, Download Accelerator is ready to be use.</li>
+          </ul>
+            
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock content %}
 
 
 {% block js %}
-<script type="text/javascript" src="{{ STATIC_URL }} static/downloadaccelerator/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{% static 'downloadaccelerator/jquery-ui.min.js' %}"></script>
 <script>
-$(function() {
-    
-    /**
-     * management of password button
-     */
-    $('.fa-eye-slash').click(
-      function () {
-        var newType = $(this).siblings('input').attr('type') === 'password' ? 'text' : 'password';
-        $(this).siblings('input').attr('type', newType);
-        $(this).toggleClass('fa-eye-slash').toggleClass('fa-eye');
-      }
-    );
-    
-
-    /**
-     * management of name submitting button
-     */
-    function userExist(username) {
-      var ret = false;
-      $.ajax({
-        async: false,
-        type: 'GET',
-        url: "{% url 'downloadaccelerator:user' %}",
-        data: {"username": username},
-        success: function (response) {
-          if (!response["valid"]) {
-            ret = true;
-          }
-        }
-      });
-      return ret;
-    }
-
-    function createUser(username, email, password){
-      var ret = false;
-      $.ajax({
-        async: false,
-        type: 'GET',
-        url: "{% url 'downloadaccelerator:createuser' %}",
-        data: {"username": username, "email": email, "password": password},
-        success: function (response) {
-          if (response["register"]){
-            ret = true;
-          }
-        }
-      });
-      return ret;
-    }
-
-    var percentage = 0;
-    function checkProgressbar(n, m){
-      if (n < 6) {
-        percentage = 0;
-        $("#progressbar").css("background", "#dd4b39");
-      }
-      else if (n < 8) {
-        percentage = 20;
-        $("#progressbar").css("background", "#9c27b0");
-      }
-      else if (n < 10) {
-        percentage = 40;
-        $("#progressbar").css("background", "#ff9800");
-      }
-      else {
-        percentage = 60;
-        $("#progressbar").css("background", "#4caf50");
-      }
-      // Check for the character-set constraints
-      // and update percentage variable as needed.
-           
-      //Lowercase Words only
-      if ((m.match(/[a-z]/) != null)) {
-        percentage += 10;
-      }
-      //Uppercase Words only
-      if ((m.match(/[A-Z]/) != null)) {
-        percentage += 10;
-      }
-      //Digits only
-      if ((m.match(/0|1|2|3|4|5|6|7|8|9/) != null)) {
-        percentage += 10;
-      }
-      //Special characters
-      if ((m.match(/\W/) != null) && (m.match(/\D/) != null)){
-        percentage += 10;
-      }
-      // Update the width of the progress bar
-      $("#progressbar").css("width", percentage + "%");
-      /* print the password state on progress bar */
-      if(percentage < 50){
-        $('#progressbar').html('LOW');
-      }
-      else if(percentage < 70){
-        $('#progressbar').html('NORMAL');
-      }
-      else if(percentage < 85){
-        $('#progressbar').html('MEDIUM');
-      }
-      else if(percentage < 95){
-        $('#progressbar').html('STRONG');
-      }
-      else{
-        $('#progressbar').html('VERY STRONG');
-      }
-    }
-
-    /* manage of keyup inside password input */
-    $('input[placeholder = "Create password"]').keyup(
-      function() {
-        var m = $(this).val();
-        var n = m.length;
-        // Function for checking progress bar
-        checkProgressbar(n, m);
-      }
-    );
-    
-    $('#btn-createAccount').click(
-      function () {
-        var nameClean = false;
-        var emailClean = false;
-        var passwordClean = false;
-
-        if(($('#name').val().length === 0) | (!(/^[a-zA-Z][a-zA-Z0-9_-]*/.test($('#name').val())))){
-          if(!$('#name').hasClass('border-danger'))
-            $('#name').addClass('border-danger');
-          $('#name').tooltip('dispose');
-          $('#name').attr('title', 'This field must not be empty and should begin with alphabetic character').tooltip({placement: 'right'}).tooltip('show');
-        }
-        else if(userExist($('#name').val())){
-          if(!$('#name').hasClass('border-danger'))
-            $('#name').addClass('border-danger');
-          $('#name').tooltip('dispose');
-          $('#name').attr('title', 'A user with that name already exist. Suggest another name').tooltip({placement: 'right'}).tooltip('show');
-        }
-        else{
-          if ($('#name').hasClass('border-danger')) {
-            $('#name').removeClass('border-danger');
-            $('#name').tooltip('disable');
-          }
-          nameClean = true;
-        }
-        if(($('#email').val().length === 0) |(!(/^[a-zA-Z](?:[a-zA-Z0-9_.-])*@[a-zA-Z]+\.[a-z]{2,5}/.test($('#email').val())))){
-          if(!$('#email').hasClass('border-danger'))
-            $('#email').addClass('border-danger');
-          $('#email').tooltip({placement: 'right'}).tooltip('show');
-        }
-        else{
-          if ($('#email').hasClass('border-danger'))
-            $('#email').removeClass('border-danger');
-          $('#email').tooltip('disable');
-          emailClean = true;
-        }
-        if($('input[placeholder = "Create password"]').val() != $('input[placeholder = "Repeat password"]').val()){
-          $('input[placeholder = "Create password"]').addClass('border-danger');
-          $('input[placeholder = "Repeat password"]').addClass('border-danger');
-          $('input[placeholder = "Repeat password"]').attr('title', 'This password is not equal to the previous! Please, fix this!').tooltip({placement: 'right'}).tooltip('show');
-        }
-        else if(percentage < 70){
-          if (!$('input[placeholder = "Create password"]').hasClass('border-danger')) {
-            $('input[placeholder = "Create password"]').addClass('border-danger');
-          }
-          $('input[placeholder = "Create password"]').attr('title', 'This password too weak. Please adjust it').tooltip({placement: 'right'}).tooltip('show');
-        }
-        else{
-          if ($('input[placeholder = "Create password"]').hasClass('border-danger')) {
-            $('input[placeholder = "Create password"]').removeClass('border-danger');
-            $('input[placeholder = "Create password"]').tooltip('disable');
-          }
-          if ($('input[placeholder = "Repeat password"]').hasClass('border-danger')) {
-            $('input[placeholder = "Repeat password"]').removeClass('border-danger');
-            $('input[placeholder = "Repeat password"]').tooltip('disable');
-          }
-          passwordClean = true;
-        }
-        if(nameClean && emailClean && passwordClean){
-          /* add user in the data base */
-          createUser($('#name').val(), $('#email').val(), $('input[placeholder = "Create password"]').val());
-        }
-      }
-    );
-
-    /* click on button which gives access to forums */
-    $('#forumModal').click(
-      function(){
-        $('#welcome').modal('toggle');
-        window.open('forums','_self');
-      }
-    );
-
-    /* click on connexion button */
-    $('#connexionButton').click(
-        function(){
-          
-          var emptyName = ($('#connexionName').val().length === 0) ? true : false;
-          var emptyPassword = ($('#connexionPassword').val().length === 0) ? true : false;
-          var warn = 'This field must not be empty';
-          
-          if(!emptyName && !emptyPassword){
-            if(userAuth($('#connexionForm'))){
-              $('#modal-connexion').modal('toggle');
-              $("#welcomemessage").html($('#connexionName').val() + " welcome to forums");
-              $('#welcome').modal('show');
-            }
-            else{
-              $('#connexionName').tooltip('enable').tooltip('show');
-              $('#connexionPassword').val('');
-              $('#connexionPassword').focus();
-              filledInput($('#connexionPassword'), $('#passwordDanger'));
-            }
-          }
-          else if(emptyName && emptyPassword){
-            dangerInput($('#connexionName'), $('#nameDanger'), $('#nameDanger small'), warn);
-            dangerInput($('#connexionPassword'), $('#passwordDanger'), $('#passwordDanger small'), warn);
-            $('#connexionName').tooltip('disable');
-          }
-          else if(emptyName && !emptyPassword){
-            dangerInput($('#connexionName'), $('#nameDanger'), $('#nameDanger small'), warn);
-            filledInput($('#connexionPassword'), $('#passwordDanger'));
-            $('#connexionName').tooltip('disable');
-          }
-          else if(!emptyName && emptyPassword){
-            dangerInput($('#connexionPassword'), $('#passwordDanger'), $('#passwordDanger small'), warn);
-            filledInput($('#connexionName'), $('#nameDanger'));
-            $('#connexionName').tooltip('disable');
-          }
-        }
-    );
-
-    /* click on forgot password link */
-    $('#forgotPassword').click(
-      function(e){
-        var emptyName = ($('#connexionName').val().length === 0) ? true : false;
-        if(emptyName){
-          dangerInput($('#connexionName'), $('#nameDanger'), $('#nameDanger small'), 'This field must not be empty');
-        }
-        else {
-          if(userExist($('#connexionName').val())){
-            filledInput($('#connexionName'), $('#nameDanger'));
-            $('#modal-connexion').modal('hide');
-            $('#modal-forget-password').modal('show');
-            $('#forgetName').val($('#connexionName').val());
-          }
-          else{
-            dangerInput($('#connexionName'), $('#nameDanger'), $('#nameDanger small'), 'This user does not exists');
-          }
-        }
-      }
-    );
-
-    /* Reinitialize password on forgotten Password modal */
-    $('#forgetPassButton').click(
-      function(){
-
-        if(($('#forgetPassEmail').val().length === 0) |(!(/^[a-zA-Z](?:[a-zA-Z0-9_.-])*@[a-zA-Z]+\.[a-z]{2,5}/.test($('#forgetPassEmail').val())))){
-          if(!$('#forgetPassEmail').hasClass('border-danger'))
-            $('#forgetPassEmail').addClass('border-danger');
-          $('#forgetPassEmail').tooltip({placement: 'right'}).tooltip('show');
-        }
-        else{
-          filledInput($('#forgetPassEmail'), $('#forgetPassNameDanger'))
-          $('#forgetPassEmail').tooltip('disable');
-          if(checkUserMail($('#forgetName').val(), $('#forgetPassEmail').val())){
-            /* send a new password to the user */
-            if(passwordReset($('#forgetPassForm'))){
-              window.open("/password_reset/done/", "_self");
-              $('#modal-forget-password').modal('toggle');
-            }
-          }
-          else {
-            var warn = 'This mail does not belongs to ' + $('#forgetName').val();
-            dangerInput($('#forgetPassEmail'), $('#forgetPassNameDanger'), $('#forgetPassNameDanger small'), warn);
-          }
-        }
-      }
-    );
-
-    /* check if an email belong to user */
-    function checkUserMail(username, usermail){
-      
-      var ret = false;
-      $.ajax({
-        async: false,
-        type: 'GET',
-        url: "{% url 'downloadaccelerator:checkUserMail' %}",
-        data: {"username": username, "email": usermail},
-        success: function (response) {
-          if (response["valid"]){
-            ret = true;
-          }
-        }
-      });
-
-      return ret;
-    }
-
-    function passwordReset(forgetPassForm){
-      var ret = false;
-      var serializedData = forgetPassForm.serialize();
-      $.ajax({
-        async: false,
-        type: 'POST',
-        url: "{% url 'downloadaccelerator:passwordreset' %}",
-        data: serializedData,
-        success: function(response){
-          if(response["reset"]){
-            ret = true;
-          }
-        }
-      });
-      return ret;
-    }
-
-
-    function dangerInput(objectInput, objectNotice, objectWarning, warning){
-      if(!objectInput.hasClass('border-danger')){
-        objectInput.addClass('border-danger');
-      }
-      if(!objectNotice.hasClass('text-danger')){
-        objectNotice.removeClass('text-white');
-        objectNotice.addClass('text-danger');
-      }
-      objectWarning.html(warning);
-    }
-
-    function filledInput(objectInput, objectNotice){
-      if(objectInput.hasClass('border-danger')){
-        objectInput.removeClass('border-danger');
-      }
-      if(objectNotice.hasClass('text-danger')){
-        objectNotice.removeClass('text-danger');
-        objectNotice.addClass('text-white');
-      }
-    }
-
-    function userAuth(connexionForm){
-      var ret = false;
-      var serializedData = connexionForm.serialize();
-      $.ajax({
-        async: false,
-        type: 'POST',
-        url: "{% url 'downloadaccelerator:userauth' %}",
-        data: serializedData,
-        success: function(response){
-          if(response["auth"]){
-            ret = true;
-          }
-        }
-      });
-      return ret;
-    }
-    
-
-    $('input[placeholder = "Create password"]').change(
-        function(){
-            checkProgressbar($(this).val().length, $(this).val());
-        }
-    );
-
-    /* initialisation of progress bar */
-    checkProgressbar($('input[placeholder = "Create password"]').val().length, $('input[placeholder = "Create password"]').val());
-
+$(
+  function(){
+    {% include "downloadaccelerator/include/common.js" %}
+    {% include "downloadaccelerator/include/modalregistration.js" %}
+    {% include "downloadaccelerator/include/modalconnexion.js" %}
+    {% include "downloadaccelerator/include/modalforgetpass.js" %}
+    {% include "downloadaccelerator/include/modalwelcome.js" %}
   }
 );
 </script>
 {% endblock js %}
+
