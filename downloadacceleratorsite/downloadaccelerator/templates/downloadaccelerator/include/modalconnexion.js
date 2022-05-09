@@ -13,6 +13,12 @@
               $(this).parents('.modal').modal('toggle');
               $("#welcomemessage").html($('#connexionName').val() + " welcome to forums");
               $('#welcome').modal('show');
+              setTimeout(
+                function(){
+                  $('#welcome').modal('toggle');
+                  window.open("{% url 'downloadaccelerator:forums' %}","_self");
+                }, 2000
+              );
             }
             else{
               $('#connexionName').tooltip('enable').tooltip('show');
