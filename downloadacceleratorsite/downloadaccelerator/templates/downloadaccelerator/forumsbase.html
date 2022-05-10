@@ -17,16 +17,14 @@
     {% endwith %}
   {% else %}
     <img src="{% static 'downloadaccelerator/images/banner-forums.png' %}" class="img-fluid" alt="" width="100%" height="auto">
-  {% endif %}
-  
-  <div class="container-banner text-banner">
-    <h1 class="text-light">Welcome to DAC Knowledge Base!</h1>
-    <div class="input-group">
-      <input type="search" class="form-control rounded-start border-success" placeholder="What are you looking for ?" aria-label="Search" aria-describedby="search-addon" />
-      <button type="button" class="btn btn-success">search</button>
+    <div class="container-banner text-banner">
+      <h1 class="text-light">Welcome to DAC Knowledge Base!</h1>
+      <div class="input-group">
+        <input type="search" class="form-control rounded-start border-success" placeholder="What are you looking for ?" aria-label="Search" aria-describedby="search-addon" />
+        <button type="button" class="btn btn-success">search</button>
+      </div>
     </div>
-  </div>
-  
+  {% endif %}
 </div>
 {% endblock banner %}
 

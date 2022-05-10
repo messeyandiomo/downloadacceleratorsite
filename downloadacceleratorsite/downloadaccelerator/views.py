@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 
 from django.contrib.auth.forms import PasswordResetForm
@@ -27,7 +27,7 @@ def forums(request, forumName=None):
     if forumName is not None:
         return render(request, 'downloadaccelerator/forums.html', {'forumName': forumName})
     else:
-        return render(request, 'downloadaccelerator/forums.html', {'forumName': 'forums'})
+        return render(request, 'downloadaccelerator/forums.html')
 
 def checkUser(request):
     if request.is_ajax and request.method == 'GET':
@@ -84,6 +84,7 @@ def userAuth(request):
     if request.is_ajax and request.method == 'POST':
         user = authenticate(username=request.POST['name'], password=request.POST['password'])
         if user is not None :
+            login(request, user)
             return JsonResponse({"auth": True}, status=200)
         else:
             return JsonResponse({"auth": False}, status=200)
