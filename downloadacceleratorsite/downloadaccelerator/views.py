@@ -23,11 +23,26 @@ def download(request):
     return render(request, 'downloadaccelerator/download.html')
 
 
+#def forums(request, forumName=None):
+#    if forumName is not None:
+#        return render(request, 'downloadaccelerator/forums.html', {'forumName': forumName})
+#    else:
+#        return render(request, 'downloadaccelerator/forums.html')
+
+
 def forums(request, forumName=None):
+    context = None
+    if request.method == 'GET':
+        username = request.GET.get("username", None)
+        if username is not None :
+            context = {'username': username}
     if forumName is not None:
-        return render(request, 'downloadaccelerator/forums.html', {'forumName': forumName})
+        context['forumName'] = forumName
+    if context is not None:
+        return render(request, 'downloadaccelerator/forums.html', context)
     else:
         return render(request, 'downloadaccelerator/forums.html')
+                
 
 def checkUser(request):
     if request.is_ajax and request.method == 'GET':

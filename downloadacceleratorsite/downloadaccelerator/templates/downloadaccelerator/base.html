@@ -73,6 +73,13 @@
               </li>
             </ul>
           </div>
+          <div class="d-grid gap-2">
+            {% if username %}
+            <button type="button" name="" id="idbuttonuser" class="btn">{{ username }}</button>
+            {% else %}
+            <button type="button" name="" id="idbuttonuser" class="btn"></button>
+            {% endif %}
+          </div>
           <!-- End of navigation -->
         </div>
     </nav>
