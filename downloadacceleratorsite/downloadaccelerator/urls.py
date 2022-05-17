@@ -10,6 +10,7 @@ urlpatterns = [
     path('username', views.checkUser, name='user'),
     path('createuser', views.createUser, name='createuser'),
     path('userauth', views.userAuth, name='userauth'),
+    path('userlogout', views.logOutUser, name='logoutuser'),
     path('checkusermail', views.checkUserMail, name='checkUserMail'),
     path('passwordreset', views.passwordReset, name='passwordreset'),
     path('forums/', views.forums, name='forums'),

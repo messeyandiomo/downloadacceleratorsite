@@ -17,8 +17,6 @@
                 function(){
                   $('#welcome').modal('toggle');
                   $('#idbuttonuser').html($('#connexionName').val());
-                  $('#idbuttonuser').removeClass('disabled text-white');
-                  //getTemplate({'username': $('#connexionName').val()}, "{% url 'downloadaccelerator:forums' %}");
                   window.open("{% url 'downloadaccelerator:forums' %}" + "?username=" + $('#connexionName').val(),"_self");
                 }, 2000
               );
@@ -88,15 +86,5 @@
         return ret;
     }
     
-    function getTemplate(paramDict, template){
-      $.ajax({
-        async: false,
-        type: 'GET',
-        url: template,
-        data: paramDict,
-        success: function(response){
-          $('body').html(response);
-        }
-      });
-    }
+    
     

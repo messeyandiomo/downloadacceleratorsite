@@ -27,12 +27,16 @@
       <div class="col-sm-12 col-lg-6">
         <div class="p-5">
           <h2>Registration</h2>
-          <p>Thus, you may access to the <a id="idforumconnexion" href="" data-bs-toggle="modal" data-bs-target="#modal-connexion">forums</a> and if you have any questions about Download Accelerator, you will contact its conceptor. So you can register <a data-bs-toggle="modal" data-bs-target="#modal-registration" href="">here</a>.</p>
-
+          {% if username and username != '' %}
+          <p>Thus, you may access to the <a>forums</a> and if you have any questions about Download Accelerator, you will contact its conceptor. So you can register <a>here</a>.</p>
+          {% else %}
+          <p>Thus, you may access to the <a id="idforumconnexion" href="" data-bs-toggle="modal" data-bs-target="#modal-connexion">forums</a> and if you have any questions about Download Accelerator, you will contact its conceptor. So you can register <a id="idforumregistration" data-bs-toggle="modal" data-bs-target="#modal-registration" href="">here</a>.</p>
           {% include "downloadaccelerator/include/modalregistration.html" %}
           {% include "downloadaccelerator/include/modalconnexion.html" %}
           {% include "downloadaccelerator/include/modalforgetpass.html" %}
           {% include "downloadaccelerator/include/modalwelcome.html" %}
+          {% endif %}
+          
           
           <br>
           
@@ -55,6 +59,7 @@
 
 
 {% block js %}
+{{ block.super }}
 <script type="text/javascript" src="{% static 'downloadaccelerator/jquery-ui.min.js' %}"></script>
 <script>
 $(

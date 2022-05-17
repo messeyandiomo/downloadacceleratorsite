@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 
 from django.contrib.auth.forms import PasswordResetForm
@@ -13,15 +13,47 @@ from django.core.mail import send_mail
 
 
 # Create your views here.
+#def home(request):
+#    return render(request, 'downloadaccelerator/home.html')
+
 def home(request):
-    return render(request, 'downloadaccelerator/home.html')
+    context = {}
+    if request.method == 'GET':
+        username = request.GET.get("username", None)
+        if username is not None :
+            context = {'username': username}
+    if len(context) != 0:
+        return render(request, 'downloadaccelerator/home.html', context)
+    else:
+        return render(request, 'downloadaccelerator/home.html')
+
+#def features(request):
+#    return render(request, 'downloadaccelerator/features.html')
 
 def features(request):
-    return render(request, 'downloadaccelerator/features.html')
+    context = {}
+    if request.method == 'GET':
+        username = request.GET.get("username", None)
+        if username is not None :
+            context = {'username': username}
+    if len(context) != 0:
+        return render(request, 'downloadaccelerator/features.html', context)
+    else:
+        return render(request, 'downloadaccelerator/features.html')
+
+#def download(request):
+#    return render(request, 'downloadaccelerator/download.html')
 
 def download(request):
-    return render(request, 'downloadaccelerator/download.html')
-
+    context = {}
+    if request.method == 'GET':
+        username = request.GET.get("username", None)
+        if username is not None :
+            context = {'username': username}
+    if len(context) != 0:
+        return render(request, 'downloadaccelerator/download.html', context)
+    else:
+        return render(request, 'downloadaccelerator/download.html')
 
 #def forums(request, forumName=None):
 #    if forumName is not None:
@@ -31,14 +63,14 @@ def download(request):
 
 
 def forums(request, forumName=None):
-    context = None
+    context = {}
     if request.method == 'GET':
         username = request.GET.get("username", None)
         if username is not None :
             context = {'username': username}
     if forumName is not None:
         context['forumName'] = forumName
-    if context is not None:
+    if len(context) != 0:
         return render(request, 'downloadaccelerator/forums.html', context)
     else:
         return render(request, 'downloadaccelerator/forums.html')
@@ -51,6 +83,17 @@ def checkUser(request):
             return JsonResponse({"valid": False}, status=200)
         else:
             return JsonResponse({"valid": True}, status=300)
+    return JsonResponse({}, status=400)
+
+
+def logOutUser(request):
+    if request.is_ajax and request.method == 'GET':
+        username = request.GET.get("username", None)
+        if User.objects.filter(username = username).exists():
+            logout(request)
+            return JsonResponse({"success": True}, status=200)
+        else:
+            return JsonResponse({"success": False}, status=300)
     return JsonResponse({}, status=400)
 
 
