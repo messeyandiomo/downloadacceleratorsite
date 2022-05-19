@@ -1,18 +1,80 @@
-{% extends "downloadaccelerator/forumsbase.html" %}
+{% extends "downloadaccelerator/base.html" %}
 {% load static %}
 
 
-{% block js %}
-{{ block.super }}
-<script>
-$(
-    function(){
-        for (var obj of $('.dropdown-item')){
-            if($(obj).html() == "{{ forumName }}")
-                $(obj).addClass('choisedForum');
-        }
-    }
-);
-</script>
+{% block forums %}
+<a class="nav-link active" data-bs-toggle="dropdown" aria-expanded="false" id="forumsList" style="font-weight: bold;" href="#">FORUMS</a>
+{% endblock forums %}
 
-{% endblock js %}
+{% block banner %}
+<div class="main-banner d-flex flex-column justify-content-center">
+  {% if forumName %}
+    {% with link="downloadaccelerator/images/banner-"|add:forumName|add:".png" %}
+    <img src="{% static link %}" class="img-fluid" alt="" width="100%" height="auto">
+    {% endwith %}
+  {% else %}
+    <img src="{% static 'downloadaccelerator/images/banner-forums.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+    <div class="container-banner text-banner">
+      <h1 class="text-light">Welcome to DAC Knowledge Base!</h1>
+      <div class="input-group">
+        <input type="search" class="form-control rounded-start border-success" placeholder="What are you looking for ?" aria-label="Search" aria-describedby="search-addon" />
+        <button type="button" class="btn btn-success">search</button>
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock banner %}
+
+{% block content %}
+<div class="container">
+    <div class="row g-5 p-4">
+      <div class="col-sm-12 col-lg-6">
+        <div class="p-5">
+          <h2>Download files faster</h2>
+          <p>Download Accelerator (DAC) to stop waiting for your downloads. You will be truly amazed how fast downloadaccelerator downloads your files. Download Accelerator will also repair broken and resume interrupted downloads due to lost connections and network problems.</p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <div class="p-3 shadow">
+          <img src="{% static 'downloadaccelerator/images/capture-home-1.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <div class="p-3 shadow">
+          <img src="{% static 'downloadaccelerator/images/capture-home-2.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <div class="p-3">
+          <h2>Powerful download software</h2>
+          <p>
+            Our software uses unique algorithms to receive Internet data in a fastest possible way.
+                  Download Accelerator will accelerate downloads all times because of its innovative dynamic file
+                  segmentation technology. Unlike other download managers and accelerators, Download Accelerator threads
+                  downloaded files dynamically during download process, and it reuses available connections without additional connect
+                  and login stages to achieve the best possible acceleration performance.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <div class="p-3">
+          <h2>Download files from Firefox</h2>
+          <p>Download Accelerator integrates seamlessly into FireFox. We develop browser extensions, and we have the best engineering solutions available today. Download Accelerator offers the
+                  installation of its extension for
+                  <a href="https://addons.mozilla.org/fr/firefox/addon/download_accelerator/">FireFox</a>
+          </p>
+          <p class="fw-light" >You need always to keep Download Accelerator extension installed and enabled in FireFox to take over downloads from it
+                  and to have Download Accelerator's right click menu items! If you have any problem, first check that "Download Accelerator integration module" extension
+                  is installed and enabled in your browser.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <div class="p-3 shadow">
+          <img src="{% static 'downloadaccelerator/images/capture-home-3.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+

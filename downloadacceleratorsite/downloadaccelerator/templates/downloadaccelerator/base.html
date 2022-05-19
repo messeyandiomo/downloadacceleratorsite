@@ -146,6 +146,11 @@
                   eltforum = document.createTextNode(element);
                   eltA.appendChild(eltforum);
                   eltA.className = 'dropdown-item';
+                  {% if forumName %}
+                  if(element == "{{ forumName }}"){
+                    eltA.classList.add('choisedForum');
+                  }
+                  {% endif %}
                   {% if username and username != '' %}
                   eltA.href = "{% url 'downloadaccelerator:forums' 'elt' %}?username={{ username }}".replace('elt', element);
                   {% else %}
@@ -240,6 +245,7 @@
         }
       }
     );
+
     </script>
     {% endblock js %}
 
