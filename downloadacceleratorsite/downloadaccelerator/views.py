@@ -13,8 +13,6 @@ from django.core.mail import send_mail
 
 
 # Create your views here.
-#def home(request):
-#    return render(request, 'downloadaccelerator/home.html')
 
 def home(request):
     context = {}
@@ -27,8 +25,7 @@ def home(request):
     else:
         return render(request, 'downloadaccelerator/home.html')
 
-#def features(request):
-#    return render(request, 'downloadaccelerator/features.html')
+
 
 def features(request):
     context = {}
@@ -41,8 +38,7 @@ def features(request):
     else:
         return render(request, 'downloadaccelerator/features.html')
 
-#def download(request):
-#    return render(request, 'downloadaccelerator/download.html')
+
 
 def download(request):
     context = {}
@@ -54,12 +50,6 @@ def download(request):
         return render(request, 'downloadaccelerator/download.html', context)
     else:
         return render(request, 'downloadaccelerator/download.html')
-
-#def forums(request, forumName=None):
-#    if forumName is not None:
-#        return render(request, 'downloadaccelerator/forums.html', {'forumName': forumName})
-#    else:
-#        return render(request, 'downloadaccelerator/forums.html')
 
 
 def forums(request, forumName=None):
@@ -95,6 +85,7 @@ def logOutUser(request):
         else:
             return JsonResponse({"success": False}, status=300)
     return JsonResponse({}, status=400)
+
 
 
 def checkUserMail(request):

@@ -68,27 +68,6 @@
                 <a class="nav-link text-dark" data-bs-toggle="dropdown" aria-expanded="false" id="forumsList" style="font-weight: bold;" href="#">FORUMS</a>
                 {% endblock forums %}
                 <ul class="dropdown-menu" aria-labelledby="formusList">
-                  <li>
-                    {% if username and username != '' %}
-                    <a class="dropdown-item" href="{% url 'downloadaccelerator:forums' 'linux' %}?username={{ username }}">linux</a>
-                    {% else %}
-                    <a class="dropdown-item" href="{% url 'downloadaccelerator:forums' 'linux' %}">linux</a>
-                    {% endif %}
-                  </li>
-                  <li>
-                    {% if username and username != '' %}
-                    <a class="dropdown-item" href="{% url 'downloadaccelerator:forums' 'django' %}?username={{ username }}">django</a>
-                    {% else %}
-                    <a class="dropdown-item" href="{% url 'downloadaccelerator:forums' 'django' %}">django</a>
-                    {% endif %}
-                  </li>
-                  <li>
-                    {% if username and username != '' %}
-                    <a class="dropdown-item" href="{% url 'downloadaccelerator:forums' 'dac' %}?username={{ username }}">Download Accelerator</a>
-                    {% else %}
-                    <a class="dropdown-item" href="{% url 'downloadaccelerator:forums' 'dac' %}">Download Accelerator</a>
-                    {% endif %}
-                  </li>
                 </ul>
               </li>
               <li class="nav-item">
@@ -149,7 +128,116 @@
     <script>
     $(
       function(){
-        {% include "downloadaccelerator/include/base.js" %}
+        $('.btn-download').click(
+          function() {
+            window.open("https://addons.mozilla.org/fr/firefox/addon/download_accelerator/");
+          }
+        );
+
+        $('#forumsList').hover(
+          function(){
+            if(!$.trim($('ul[class="dropdown-menu"]').html())){
+              var forums = getForums();
+              if(forums != null){
+                var eltLi = null;
+                var eltA = null;
+                forums.forEach(element => {
+                  eltA = document.createElement('a');
+                  eltforum = document.createTextNode(element);
+                  eltA.appendChild(eltforum);
+                  eltA.className = 'dropdown-item';
+                  {% if username and username != '' %}
+                  eltA.href = "{% url 'downloadaccelerator:forums' 'elt' %}?username={{ username }}".replace('elt', element);
+                  {% else %}
+                  eltA.href = "{% url 'downloadaccelerator:forums' 'elt' %}".replace('elt', element);
+                  {% endif %}
+                  eltLi = document.createElement('li');
+                  eltLi.appendChild(eltA);
+                  $('ul[class="dropdown-menu"]').append(eltLi);
+                });
+              }
+            }
+            $('.dropdown-menu').slideDown('slow');
+          },
+          function () {
+            setTimeout(function () {
+              if (!$('.dropdown-menu').is(':hover')) {
+                $('.dropdown-menu').slideUp('slow');
+              }
+            }, 1000);
+          }
+        );
+
+        $('.dropdown-menu').mouseleave(
+          function(){
+            $(this).slideUp('slow');
+          }
+        );
+
+        $('.navbar-toggler').click(
+          function () {
+            if($('.navbar-toggler > span').hasClass('fa-angle-down')){
+              $('.navbar-toggler > span').removeClass('fa-angle-down');
+              $('.navbar-toggler > span').addClass('fa-angle-up');
+            } else {
+              $('.navbar-toggler > span').removeClass('fa-angle-up');
+              $('.navbar-toggler > span').addClass('fa-angle-down');
+            }
+          }
+        );
+
+        $('#idbuttonuser').click(
+          function () {
+            if ('{{ username }}' != '') {
+              if (logout('{{ username }}')) {
+                $(this).prop('disabled', true);
+                window.open($(location).attr('href').split('?')[0], "_self");
+              }
+            }
+          }
+        );
+
+        $('#idbuttonuser').hover(
+          function () {
+            if ($(this).html().length != 0) {
+              $(this).html("SignOut");
+            }
+          },
+          function () {
+            $(this).html('{{ username }}');
+          }
+        );
+    
+        function logout(name) {
+          var ret = false;
+          $.ajax({
+            async: false,
+            type: 'GET',
+            url: "{% url 'downloadaccelerator:logoutuser' %}",
+            data: {"username": name},
+            success: function (response) {
+              if (response["success"]){
+                ret = true;
+              }
+            }
+          });
+          return ret;
+        }
+
+        function getForums() {
+          var ret = null;
+          $.ajax({
+            async: false,
+            type: 'GET',
+            url: "{% url 'Discussion_forum:getforums' %}",
+            success: function (response) {
+              if(response["exist"]){
+                ret = response["forumsList"];
+              }
+            }
+          });
+          return ret;
+        }
       }
     );
     </script>
