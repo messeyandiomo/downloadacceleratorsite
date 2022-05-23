@@ -17,7 +17,7 @@
                 function(){
                   $('#welcome').modal('toggle');
                   $('#idbuttonuser').html($('#connexionName').val());
-                  window.open("{% url 'downloadaccelerator:forums' %}" + "?username=" + $('#connexionName').val(),"_self");
+                  window.open("{% url 'Discussion_forum:forums' %}" + "?username=" + $('#connexionName').val(),"_self");
                 }, 2000
               );
             }

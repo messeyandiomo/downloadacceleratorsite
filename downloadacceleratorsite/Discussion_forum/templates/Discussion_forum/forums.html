@@ -1,0 +1,193 @@
+{% extends "downloadaccelerator/base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'Discussion_forum/forums.css' %}">
+{% endblock css %}
+
+{% block forums %}
+<a class="nav-link active" data-bs-toggle="dropdown" aria-expanded="false" id="forumsList" style="font-weight: bold;" href="#">FORUMS</a>
+{% endblock forums %}
+
+{% block banner %}
+<div class="main-banner d-flex flex-column justify-content-center">
+  {% if forumName %}
+    {% with link="Discussion_forum/images/banner-"|add:forumName|add:".png" %}
+    <img src="{% static link %}" class="img-fluid" alt="" width="100%" height="auto">
+    {% endwith %}
+  {% else %}
+    <img src="{% static 'Discussion_forum/images/banner-forums.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+    <div class="container-banner text-banner">
+      <h1 class="text-light">Welcome to DAC Knowledge Base!</h1>
+      <div class="input-group">
+        <input type="search" class="form-control rounded-start border-success" placeholder="What are you looking for ?" aria-label="Search" aria-describedby="search-addon" />
+        <button type="button" class="btn btn-success">search</button>
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock banner %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="ibox-content forum-container">
+
+                <div class="forum-title">
+                    <div class="pull-right forum-desc">
+                        <small>Total posts: 320,800</small>
+                    </div>
+                    <h3>Forums list</h3>
+                </div>
+
+                <div class="forum-item active">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="forum-icon">
+                                <i class="fab fa-linux"></i>
+                            </div>
+                            <a href="forum_post.html" class="forum-item-title">Linux</a>
+                            <div class="forum-sub-title">Talk linux kernels, operating systems wich use linux kernels like Debian, Ubuntu, Redhat and many others.</div>
+                        </div>
+                        <div class="col-md-1 forum-info">
+                            <span class="views-number">
+                                1216
+                            </span>
+                            <div>
+                                <small>Views</small>
+                            </div>
+                        </div>
+                        <div class="col-md-1 forum-info">
+                            <span class="views-number">
+                                368
+                            </span>
+                            <div>
+                                <small>Topics</small>
+                            </div>
+                        </div>
+                        <div class="col-md-1 forum-info">
+                            <span class="views-number">
+                                140
+                            </span>
+                            <div>
+                                <small>Posts</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="forum-item">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="forum-icon">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <a href="forum_post.html" class="forum-item-title">Django</a>
+                            <div class="forum-sub-title">New to the community? Please stop by, say hi and tell us a bit about yourself. </div>
+                        </div>
+                        <div class="col-md-1 forum-info">
+                            <span class="views-number">
+                                890
+                            </span>
+                            <div>
+                                <small>Views</small>
+                            </div>
+                        </div>
+                        <div class="col-md-1 forum-info">
+                            <span class="views-number">
+                                120
+                            </span>
+                            <div>
+                                <small>Topics</small>
+                            </div>
+                        </div>
+                        <div class="col-md-1 forum-info">
+                            <span class="views-number">
+                                154
+                            </span>
+                            <div>
+                                <small>Posts</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="forum-item active">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="forum-icon">
+                                <!--<i class="fab fa-dac"></i>-->
+                                <img src="{% static 'Discussion_forum/images/dac-icon.jpg' %}" alt="" width="16" height="16">
+                            </div>
+                            <a href="forum_post.html" class="forum-item-title">Download Accelerator</a>
+                            <div class="forum-sub-title">This forum features announcements from the community staff. If there is a new post in this forum, please check it out. </div>
+                        </div>
+                        <div class="col-md-1 forum-info">
+                            <span class="views-number">
+                                680
+                            </span>
+                            <div>
+                                <small>Views</small>
+                            </div>
+                        </div>
+                        <div class="col-md-1 forum-info">
+                            <span class="views-number">
+                                124
+                            </span>
+                            <div>
+                                <small>Topics</small>
+                            </div>
+                        </div>
+                        <div class="col-md-1 forum-info">
+                            <span class="views-number">
+                                61
+                            </span>
+                            <div>
+                                <small>Posts</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="forum-item">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="forum-icon">
+                                <i class="fab fa-java"></i>
+                            </div>
+                            <a href="forum_post.html" class="forum-item-title">Java</a>
+                            <div class="forum-sub-title">This forum is for private, staff member only discussions, usually pertaining to the community itself. </div>
+                        </div>
+                        <div class="col-md-1 forum-info">
+                            <span class="views-number">
+                                1450
+                            </span>
+                            <div>
+                                <small>Views</small>
+                            </div>
+                        </div>
+                        <div class="col-md-1 forum-info">
+                            <span class="views-number">
+                                652
+                            </span>
+                            <div>
+                                <small>Topics</small>
+                            </div>
+                        </div>
+                        <div class="col-md-1 forum-info">
+                            <span class="views-number">
+                                572
+                            </span>
+                            <div>
+                                <small>Posts</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  </div>
+{% endblock content %}
+

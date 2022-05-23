@@ -7,4 +7,6 @@ urlpatterns = [
     path('addInForum/',addInForum,name='addInForum'),
     path('addInDiscussion/',addInDiscussion,name='addInDiscussion'),
     path('getforums', getForums, name='getforums'),
+    path('forums/', forums, name='forums'),
+    path('forums/<str:forumName>', forums, name='forums'),
 ]

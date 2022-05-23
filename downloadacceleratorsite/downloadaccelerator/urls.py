@@ -13,6 +13,4 @@ urlpatterns = [
     path('userlogout', views.logOutUser, name='logoutuser'),
     path('checkusermail', views.checkUserMail, name='checkUserMail'),
     path('passwordreset', views.passwordReset, name='passwordreset'),
-    path('forums/', views.forums, name='forums'),
-    path('forums/<str:forumName>', views.forums, name='forums'),
 ]

@@ -52,18 +52,7 @@ def download(request):
         return render(request, 'downloadaccelerator/download.html')
 
 
-def forums(request, forumName=None):
-    context = {}
-    if request.method == 'GET':
-        username = request.GET.get("username", None)
-        if username is not None :
-            context = {'username': username}
-    if forumName is not None:
-        context['forumName'] = forumName
-    if len(context) != 0:
-        return render(request, 'downloadaccelerator/forums.html', context)
-    else:
-        return render(request, 'downloadaccelerator/forums.html')
+
                 
 
 def checkUser(request):
