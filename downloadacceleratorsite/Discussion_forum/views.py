@@ -7,7 +7,7 @@ from django.http import JsonResponse
 # Create your views here.
 
 def home(request):
-    forums=forum.objects.all()
+    forums=Forum.objects.all()
     count=forums.count()
     discussions=[]
     for i in forums:
@@ -42,10 +42,10 @@ def addInDiscussion(request):
 def getForums(request):
     forumsList = []
     if request.is_ajax and request.method == 'GET':
-        forums=forum.objects.all()
+        forums=Forum.objects.all()
         if forums is not None:
             for f in forums :
-                forumsList.append(f.name)
+                forumsList.append({"name": f.name, "title": f.title, "description": f.description})
             return JsonResponse({"exist": True, "forumsList": forumsList}, status=200)
         else:
             return JsonResponse({"exist": False}, status=300)

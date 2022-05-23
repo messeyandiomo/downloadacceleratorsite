@@ -143,7 +143,9 @@ function createUser(username, email, password){
       }
       if(nameClean && emailClean && passwordClean){
         /* add user in the data base */
-        createUser($('#name').val(), $('#email').val(), $('input[placeholder = "Create password"]').val());
+        if(createUser($('#name').val(), $('#email').val(), $('input[placeholder = "Create password"]').val())){
+          $('#modal-registration').modal('toggle');
+        }
       }
     }
   );

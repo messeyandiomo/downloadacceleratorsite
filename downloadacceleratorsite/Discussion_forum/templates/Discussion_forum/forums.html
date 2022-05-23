@@ -118,7 +118,7 @@
                         <div class="col-md-9">
                             <div class="forum-icon">
                                 <!--<i class="fab fa-dac"></i>-->
-                                <img src="{% static 'Discussion_forum/images/dac-icon.jpg' %}" alt="" width="16" height="16">
+                                <img src="{% static 'Discussion_forum/images/dac-icon.jpg' %}" alt="downloadaccelerator icon" width="16" height="16">
                             </div>
                             <a href="forum_post.html" class="forum-item-title">Download Accelerator</a>
                             <div class="forum-sub-title">This forum features announcements from the community staff. If there is a new post in this forum, please check it out. </div>
@@ -191,3 +191,17 @@
   </div>
 {% endblock content %}
 
+{% block js %}
+{{ block.super }}
+<script>
+$(
+    function(){
+        var forums = getForums();
+        if(forums != null){
+            //forums.forEach(element => {
+            //});
+        }
+    }
+);
+</script>
+{% endblock js %}

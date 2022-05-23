@@ -143,18 +143,18 @@
                 var eltA = null;
                 forums.forEach(element => {
                   eltA = document.createElement('a');
-                  eltforum = document.createTextNode(element);
+                  eltforum = document.createTextNode(element.title);
                   eltA.appendChild(eltforum);
                   eltA.className = 'dropdown-item';
                   {% if forumName %}
-                  if(element == "{{ forumName }}"){
+                  if(element.name == "{{ forumName }}"){
                     eltA.classList.add('choisedForum');
                   }
                   {% endif %}
                   {% if username and username != '' %}
-                  eltA.href = "{% url 'Discussion_forum:forums' 'elt' %}?username={{ username }}".replace('elt', element);
+                  eltA.href = "{% url 'Discussion_forum:forums' 'elt' %}?username={{ username }}".replace('elt', element.name);
                   {% else %}
-                  eltA.href = "{% url 'Discussion_forum:forums' 'elt' %}".replace('elt', element);
+                  eltA.href = "{% url 'Discussion_forum:forums' 'elt' %}".replace('elt', element.name);
                   {% endif %}
                   eltLi = document.createElement('li');
                   eltLi.appendChild(eltA);
