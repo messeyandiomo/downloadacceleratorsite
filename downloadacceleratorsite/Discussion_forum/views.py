@@ -45,7 +45,7 @@ def getForums(request):
         forums=Forum.objects.all()
         if forums is not None:
             for f in forums :
-                forumsList.append({"name": f.name, "title": f.title, "description": f.description})
+                forumsList.append({"name": f.name, "title": f.title})
             return JsonResponse({"exist": True, "forumsList": forumsList}, status=200)
         else:
             return JsonResponse({"exist": False}, status=300)
@@ -59,7 +59,11 @@ def forums(request, forumName=None):
             context = {'username': username}
     if forumName is not None:
         context['forumName'] = forumName
-    if len(context) != 0:
-        return render(request, 'Discussion_forum/forums.html', context)
     else:
-        return render(request, 'Discussion_forum/forums.html')
+        forumsList = []
+        forums = Forum.objects.all()
+        if forums is not None:
+            for f in forums:
+                forumsList.append({"name": f.name, "title": f.title, "description": f.description})
+            context["forumsList"] = forumsList
+    return render(request, 'Discussion_forum/forums.html', context)

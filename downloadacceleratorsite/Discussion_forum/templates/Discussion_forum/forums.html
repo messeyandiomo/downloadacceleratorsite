@@ -42,8 +42,50 @@
                     </div>
                     <h3>Forums list</h3>
                 </div>
-
-                <div class="forum-item active">
+                {% if forumName %}
+                <!-- Ouput of the forumName disussion -->
+                {% elif forumsList %}
+                    {% for f in forumsList %}
+                    <div class="forum-item active">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="forum-icon">
+                                    {% if f.name == 'dac' %}
+                                    <img src="{% static 'Discussion_forum/images/dac-icon.jpg' %}" alt="downloadaccelerator icon" width="16" height="16">
+                                    {% elif f.name == 'django' %}
+                                    <i class="fab fa-python"></i>
+                                    {% else %}
+                                    <i class="fab fa-{{ f.name }}"></i>
+                                    {% endif %}
+                                </div>
+                                <a href="forum_post.html" class="forum-item-title">{{ f.title }}</a>
+                                <div class="forum-sub-title">{{ f.description }}</div>
+                            </div>
+                            <div class="col-md-1 forum-info">
+                                <span class="views-number">1216</span>
+                                <div>
+                                    <small>Views</small>
+                                </div>
+                            </div>
+                            <div class="col-md-1 forum-info">
+                                <span class="views-number">368</span>
+                                <div>
+                                    <small>Topics</small>
+                                </div>
+                            </div>
+                            <div class="col-md-1 forum-info">
+                                <span class="views-number">140</span>
+                                <div>
+                                    <small>Posts</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <!-- The forums list is empty -->
+                {% endif %}
+                <!--<div class="forum-item active">
                     <div class="row">
                         <div class="col-md-9">
                             <div class="forum-icon">
@@ -117,7 +159,7 @@
                     <div class="row">
                         <div class="col-md-9">
                             <div class="forum-icon">
-                                <!--<i class="fab fa-dac"></i>-->
+                                
                                 <img src="{% static 'Discussion_forum/images/dac-icon.jpg' %}" alt="downloadaccelerator icon" width="16" height="16">
                             </div>
                             <a href="forum_post.html" class="forum-item-title">Download Accelerator</a>
@@ -183,7 +225,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
