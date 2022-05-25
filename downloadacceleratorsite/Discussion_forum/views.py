@@ -59,6 +59,12 @@ def forums(request, forumName=None):
             context = {'username': username}
     if forumName is not None:
         context['forumName'] = forumName
+        questionsList = []
+        questions = Question.objects.filter(forum=Forum.objects.filter(name=forumName).get().id)
+        if questions is not None:
+            for q in questions:
+                questionsList.append({"id": q.id, "forumname": forumName, "username": q.user, "topic": q.topic, "details": q.details})
+            context["questionsList"] = questionsList
     else:
         forumsList = []
         forums = Forum.objects.all()

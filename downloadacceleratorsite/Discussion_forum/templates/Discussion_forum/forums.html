@@ -36,15 +36,67 @@
 
             <div class="ibox-content forum-container">
 
+                {% if forumName %}
+                <!-- Ouput of the forumName disussion -->
+                <div class="forum-title">
+                    <div class="pull-right forum-desc">
+                        <small>Total posts: 20,800</small>
+                    </div>
+                    <h3>Discussions list</h3>
+                </div>
+                    {% for q in questionsList %}
+                    <div class="forum-item active">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="discussion-icon">{{ q.username }}</div>
+                                <a href="forum_post.html" class="forum-item-title">{{ q.topic }}</a>
+                                <div class="forum-sub-title">{{ q.details }}</div>
+                            </div>
+                            <div class="col-md-1 forum-info">
+                                <span class="views-number">121</span>
+                                <div>
+                                    <small>Views</small>
+                                </div>
+                            </div>
+                            <div class="col-md-1 forum-info">
+                                <span class="views-number">16</span>
+                                <div>
+                                    <small>Posts</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% if username and username != '' %}
+                    <!-- Add discussion must be code here -->
+                    <form method="post">
+                    {% csrf_token %}
+                        <fieldset class="">
+                            <div class="mb-2 row">
+                                <label for="idTopic" class="col-sm-2 col-form-label">Topic:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="idTopic" class="form-control">
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="idDetails" class="col-sm-2 col-form-label">Details:</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" id="idDetails" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-10">
+                                <input id="idAddDiscussion" type="submit" class="btn btn-primary" value="Add Discussion" style="float:right;">
+                            </div>
+                        </fieldset>
+                    </form>
+                    {% endif %}
+                {% elif forumsList %}
                 <div class="forum-title">
                     <div class="pull-right forum-desc">
                         <small>Total posts: 320,800</small>
                     </div>
                     <h3>Forums list</h3>
                 </div>
-                {% if forumName %}
-                <!-- Ouput of the forumName disussion -->
-                {% elif forumsList %}
                     {% for f in forumsList %}
                     <div class="forum-item active">
                         <div class="row">

@@ -86,11 +86,15 @@
     .forum-desc {
       color: #999;
     }
-    .forum-icon {
+    .forum-icon, .discussion-icon {
       float: left;
       width: 30px;
       margin-right: 20px;
       text-align: center;
+    }
+    .discussion-icon{
+      color:seagreen;
+      font-weight: bold;
     }
     a.forum-item-title {
       color: inherit;
