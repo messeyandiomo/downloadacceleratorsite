@@ -6,7 +6,12 @@ class CreateInForum(ModelForm):
         model= Forum
         fields = "__all__"
 
-class CreateInDiscussion(ModelForm):
+class CreateInQuestion(ModelForm):
     class Meta:
-        model= Discussion
+        model= Question
+        fields = "__all__"
+
+class CreateInAnswer(ModelForm):
+    class Meta:
+        model= Answer
         fields = "__all__"
