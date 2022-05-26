@@ -77,6 +77,11 @@
       color: #999;
       margin-left: 50px;
     }
+
+    .discussion-sub-title{
+      color: #999;
+    }
+
     .forum-title {
       margin: 15px 0 15px 0;
     }
@@ -86,13 +91,13 @@
     .forum-desc {
       color: #999;
     }
-    .forum-icon, .discussion-icon {
+    .forum-icon, .discussion-username {
       float: left;
       width: 30px;
       margin-right: 20px;
       text-align: center;
     }
-    .discussion-icon{
+    .discussion-username{
       color:seagreen;
       font-weight: bold;
     }

@@ -28,15 +28,14 @@ def addInForum(request):
     context ={'form':form}
     return render(request,'Discussion_forum/addInForum.html',context)
 
-def addInDiscussion(request):
-    form = CreateInDiscussion()
-    if request.method == 'POST':
-        form = CreateInDiscussion(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    context ={'form':form}
-    return render(request,'Discussion_forum/addInDiscussion.html',context)
+def addInQuestion(request):
+    if request.is_ajax and request.method == 'POST':
+        question = Question.objects.create(forum=Forum.objects.filter(name=request.POST["forumname"]).get(), user=User.objects.filter(username=request.POST["username"]).get(), topic=request.POST["topic"], details=request.POST["details"])
+        if question is not None:
+            return JsonResponse({"added": True}, status=200)
+        else:
+            return JsonResponse({"added": False}, status=200)
+    return JsonResponse({}, status=200)
 
 
 def getForums(request):

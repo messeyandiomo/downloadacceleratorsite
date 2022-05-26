@@ -47,18 +47,20 @@
                     {% for q in questionsList %}
                     <div class="forum-item active">
                         <div class="row">
-                            <div class="col-md-10">
-                                <div class="discussion-icon">{{ q.username }}</div>
-                                <a href="forum_post.html" class="forum-item-title">{{ q.topic }}</a>
-                                <div class="forum-sub-title">{{ q.details }}</div>
+                            <div class="col-sm-2">
+                                <div class="discussion-username">{{ q.username }}</div>
                             </div>
-                            <div class="col-md-1 forum-info">
+                            <div class="col-sm-8">
+                                <a href="forum_post.html" class="forum-item-title">{{ q.topic }}</a>
+                                <div class="discussion-sub-title">{{ q.details }}</div>
+                            </div>
+                            <div class="col-sm-1 forum-info">
                                 <span class="views-number">121</span>
                                 <div>
                                     <small>Views</small>
                                 </div>
                             </div>
-                            <div class="col-md-1 forum-info">
+                            <div class="col-sm-1 forum-info">
                                 <span class="views-number">16</span>
                                 <div>
                                     <small>Posts</small>
@@ -69,23 +71,35 @@
                     {% endfor %}
                     {% if username and username != '' %}
                     <!-- Add discussion must be code here -->
-                    <form method="post">
+                    <form method="post" id="addDiscussionForm">
                     {% csrf_token %}
                         <fieldset class="">
-                            <div class="mb-2 row">
+                            <div>
+                                <input type="hidden" name="forumname" value="{{ forumName }}">
+                            </div>
+                            <div>
+                                <input type="hidden" name="username" value="{{ username }}">
+                            </div>
+                            <div class="row">
                                 <label for="idTopic" class="col-sm-2 col-form-label">Topic:</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="idTopic" class="form-control">
+                                    <input type="text" name="topic" id="idTopic" class="form-control">
                                 </div>
                             </div>
-                            <div class="mb-2 row">
+                            <div class="fst-italic text-white text-center mb-2" id="idTopicDanger">
+                                <small>This field must not be empty</small>
+                            </div>
+                            <div class="row">
                                 <label for="idDetails" class="col-sm-2 col-form-label">Details:</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" id="idDetails" rows="3"></textarea>
+                                    <textarea class="form-control" name="details" id="idDetails" rows="3"></textarea>
                                 </div>
                             </div>
+                            <div class="fst-italic text-white text-center mb-2" id="idDetailsDanger">
+                                <small>This field must not be empty</small>
+                            </div>
                             <div class="col-sm-10">
-                                <input id="idAddDiscussion" type="submit" class="btn btn-primary" value="Add Discussion" style="float:right;">
+                                <input id="idAddDiscussion" type="button" class="btn btn-primary" value="Add Discussion" style="float:right;">
                             </div>
                         </fieldset>
                     </form>
@@ -137,147 +151,6 @@
                 {% else %}
                 <!-- The forums list is empty -->
                 {% endif %}
-                <!--<div class="forum-item active">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="forum-icon">
-                                <i class="fab fa-linux"></i>
-                            </div>
-                            <a href="forum_post.html" class="forum-item-title">Linux</a>
-                            <div class="forum-sub-title">Talk linux kernels, operating systems wich use linux kernels like Debian, Ubuntu, Redhat and many others.</div>
-                        </div>
-                        <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                1216
-                            </span>
-                            <div>
-                                <small>Views</small>
-                            </div>
-                        </div>
-                        <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                368
-                            </span>
-                            <div>
-                                <small>Topics</small>
-                            </div>
-                        </div>
-                        <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                140
-                            </span>
-                            <div>
-                                <small>Posts</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="forum-item">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="forum-icon">
-                                <i class="fab fa-python"></i>
-                            </div>
-                            <a href="forum_post.html" class="forum-item-title">Django</a>
-                            <div class="forum-sub-title">New to the community? Please stop by, say hi and tell us a bit about yourself. </div>
-                        </div>
-                        <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                890
-                            </span>
-                            <div>
-                                <small>Views</small>
-                            </div>
-                        </div>
-                        <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                120
-                            </span>
-                            <div>
-                                <small>Topics</small>
-                            </div>
-                        </div>
-                        <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                154
-                            </span>
-                            <div>
-                                <small>Posts</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="forum-item active">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="forum-icon">
-                                
-                                <img src="{% static 'Discussion_forum/images/dac-icon.jpg' %}" alt="downloadaccelerator icon" width="16" height="16">
-                            </div>
-                            <a href="forum_post.html" class="forum-item-title">Download Accelerator</a>
-                            <div class="forum-sub-title">This forum features announcements from the community staff. If there is a new post in this forum, please check it out. </div>
-                        </div>
-                        <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                680
-                            </span>
-                            <div>
-                                <small>Views</small>
-                            </div>
-                        </div>
-                        <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                124
-                            </span>
-                            <div>
-                                <small>Topics</small>
-                            </div>
-                        </div>
-                        <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                61
-                            </span>
-                            <div>
-                                <small>Posts</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="forum-item">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="forum-icon">
-                                <i class="fab fa-java"></i>
-                            </div>
-                            <a href="forum_post.html" class="forum-item-title">Java</a>
-                            <div class="forum-sub-title">This forum is for private, staff member only discussions, usually pertaining to the community itself. </div>
-                        </div>
-                        <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                1450
-                            </span>
-                            <div>
-                                <small>Views</small>
-                            </div>
-                        </div>
-                        <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                652
-                            </span>
-                            <div>
-                                <small>Topics</small>
-                            </div>
-                        </div>
-                        <div class="col-md-1 forum-info">
-                            <span class="views-number">
-                                572
-                            </span>
-                            <div>
-                                <small>Posts</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
             </div>
         </div>
     </div>
@@ -291,7 +164,56 @@
 <script>
 $(
     function(){
-        
+        {% include "downloadaccelerator/include/common.js" %}
+        $('#idAddDiscussion').click(
+            function(){
+
+                var emptyTopic = ($('#idTopic').val().length === 0) ? true : false;
+                var emptyDetails = ($('#idDetails').val().length === 0) ? true : false;
+                var warn = 'This field must not be empty';
+
+                if(!emptyTopic && !emptyDetails){
+                    if(addDiscussion($('#addDiscussionForm'))){
+                        $('#idTopic').val('');
+                        $('#idDetails').val('');
+                        $('#idTopic').focus();
+                        $(this).addClass('wait');
+                        /* reload current page */
+                        location.reload();
+                        $(this).removeClass('wait');
+                    }
+                }
+                else if(emptyTopic && !emptyDetails){
+                    dangerInput($('#idTopic'), $('#idTopicDanger'), $('#idTopicDanger small'), warn);
+                    filledInput($('#idDetails'), $('#idDetailsDanger'));
+                }
+                else if(!emptyTopic && emptyDetails){
+                    filledInput($('#idTopic'), $('idTopicDanger'));
+                    dangerInput($('#idDetails'), $('#idDetailsDanger'), $('#idDetailsDanger small'));
+                }
+                else{
+                    dangerInput($('#idTopic'), $('#idTopicDanger'), $('#idTopicDanger small'), warn);
+                    dangerInput($('#idDetails'), $('#idDetailsDanger'), $('#idDetailsDanger small'));
+                }
+            }
+        );
+
+        function addDiscussion(addDiscussionForm){
+            var ret = false;
+            var serializedData = addDiscussionForm.serialize();
+            $.ajax({
+                async: false,
+                type: 'POST',
+                url: "{% url 'Discussion_forum:addInQuestion' %}",
+                data: serializedData,
+                success: function(response){
+                    if(response["added"]){
+                    ret = true;
+                    }
+                }
+            });
+            return ret;
+        }
     }
 );
 </script>
