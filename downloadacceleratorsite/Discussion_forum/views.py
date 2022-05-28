@@ -50,7 +50,7 @@ def getForums(request):
             return JsonResponse({"exist": False}, status=300)
 
 
-def forums(request, forumName=None):
+def forums(request, forumName=None, discussionId=None):
     context = {}
     if request.method == 'GET':
         username = request.GET.get("username", None)
@@ -58,12 +58,22 @@ def forums(request, forumName=None):
             context = {'username': username}
     if forumName is not None:
         context['forumName'] = forumName
-        questionsList = []
-        questions = Question.objects.filter(forum=Forum.objects.filter(name=forumName).get().id)
-        if questions is not None:
-            for q in questions:
-                questionsList.append({"id": q.id, "forumname": forumName, "username": q.user, "topic": q.topic, "details": q.details})
-            context["questionsList"] = questionsList
+        if discussionId is not None:
+            discussion = Question.objects.get(id=discussionId)
+            context["discussion"] = {"creator": discussion.user, "topic": discussion.topic, "details": discussion.details}
+            answersList = []
+            answers = Answer.objects.filter(question=discussion)
+            if answers is not None:
+                for a in answers:
+                    answersList.append({"poster": a.user, "message": a.message})
+                context["answersList"] = answersList
+        else:
+            questionsList = []
+            questions = Question.objects.filter(forum=Forum.objects.filter(name=forumName).get().id)
+            if questions is not None:
+                for q in questions:
+                    questionsList.append({"id": q.id, "forumname": forumName, "username": q.user, "topic": q.topic, "details": q.details})
+                context["questionsList"] = questionsList
     else:
         forumsList = []
         forums = Forum.objects.all()

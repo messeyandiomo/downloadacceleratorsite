@@ -9,4 +9,5 @@ urlpatterns = [
     path('getforums', getForums, name='getforums'),
     path('forums/', forums, name='forums'),
     path('forums/<str:forumName>', forums, name='forums'),
+    path('forums/<str:forumName>/<int:discussionId>', forums, name='forums'),
 ]
