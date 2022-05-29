@@ -50,7 +50,7 @@
                         </div>
                         <div class="forum-title">
                             <div class="pull-right forum-desc">
-                                <small>Total posts: 2,800</small>
+                                <small>Total answers: {{ count }}</small>
                             </div>
                             <h3>Answers</h3>
                         </div>
@@ -100,7 +100,7 @@
                     <!-- Ouput of the forumName disussion -->
                     <div class="forum-title">
                         <div class="pull-right forum-desc">
-                            <small>Total posts: 20,800</small>
+                            <small>Total posts: {{ count }}</small>
                         </div>
                         <h3>Discussions list</h3>
                     </div>
@@ -126,7 +126,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-1 forum-info">
-                                        <span class="views-number">16</span>
+                                        <span class="views-number">{{ q.numberOfPosts }}</span>
                                         <div>
                                             <small>Posts</small>
                                         </div>
@@ -176,7 +176,7 @@
                 {% elif forumsList %}
                 <div class="forum-title">
                     <div class="pull-right forum-desc">
-                        <small>Total posts: 320,800</small>
+                        <small>Total posts: {{ count }}</small>
                     </div>
                     <h3>Forums list</h3>
                 </div>
@@ -207,13 +207,13 @@
                                 </div>
                             </div>
                             <div class="col-md-1 forum-info">
-                                <span class="views-number">368</span>
+                                <span class="views-number">{{ f.numberOfTopics }}</span>
                                 <div>
                                     <small>Topics</small>
                                 </div>
                             </div>
                             <div class="col-md-1 forum-info">
-                                <span class="views-number">140</span>
+                                <span class="views-number">{{ f.numberOfPosts }}</span>
                                 <div>
                                     <small>Posts</small>
                                 </div>

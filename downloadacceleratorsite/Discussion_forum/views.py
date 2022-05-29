@@ -75,18 +75,31 @@ def forums(request, forumName=None, discussionId=None):
                 for a in answers:
                     answersList.append({"poster": a.user, "message": a.message})
                 context["answersList"] = answersList
+                context["count"] = len(answersList)
         else:
             questionsList = []
             questions = Question.objects.filter(forum=Forum.objects.filter(name=forumName).get().id)
+            totalPosts = 0
             if questions is not None:
                 for q in questions:
-                    questionsList.append({"id": q.id, "forumname": forumName, "username": q.user, "topic": q.topic, "details": q.details})
+                    numberOfPosts = q.answer_set.all().count() + 1
+                    questionsList.append({"id": q.id, "forumname": forumName, "username": q.user, "topic": q.topic, "details": q.details, "numberOfPosts": numberOfPosts})
+                    totalPosts = totalPosts + numberOfPosts
                 context["questionsList"] = questionsList
+                context["count"] = totalPosts
     else:
         forumsList = []
         forums = Forum.objects.all()
         if forums is not None:
+            totalPosts = 0
             for f in forums:
-                forumsList.append({"name": f.name, "title": f.title, "description": f.description})
+                questions = f.question_set.all()
+                numberOfTopics = questions.count()
+                numberOfPosts = 0
+                for q in questions:
+                    numberOfPosts = numberOfPosts + q.answer_set.all().count() + 1
+                forumsList.append({"name": f.name, "title": f.title, "description": f.description, "numberOfTopics": numberOfTopics, "numberOfPosts": numberOfPosts})
+                totalPosts = totalPosts + numberOfPosts
             context["forumsList"] = forumsList
+            context["count"] = totalPosts
     return render(request, 'Discussion_forum/forums.html', context)
