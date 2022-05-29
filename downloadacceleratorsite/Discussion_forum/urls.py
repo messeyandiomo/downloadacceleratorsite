@@ -6,6 +6,7 @@ urlpatterns = [
     path('',home,name='home'),
     path('addInForum/',addInForum,name='addInForum'),
     path('addindiscussion', addInQuestion,name='addInQuestion'),
+    path('addinpost', addInAnswer,name='addInAnswer'),
     path('getforums', getForums, name='getforums'),
     path('forums/', forums, name='forums'),
     path('forums/<str:forumName>', forums, name='forums'),

@@ -37,6 +37,14 @@ def addInQuestion(request):
             return JsonResponse({"added": False}, status=200)
     return JsonResponse({}, status=200)
 
+def addInAnswer(request):
+    if request.is_ajax and request.method == 'POST':
+        answer = Answer.objects.create(question=Question.objects.get(id=request.POST["questionid"]), user=User.objects.get(username=request.POST["username"]), message=request.POST["message"])
+        if answer is not None:
+            return JsonResponse({"added": True}, status=200)
+        else:
+            return JsonResponse({"added": False}, status=200)
+    return JsonResponse({}, status=200)
 
 def getForums(request):
     forumsList = []
@@ -60,7 +68,7 @@ def forums(request, forumName=None, discussionId=None):
         context['forumName'] = forumName
         if discussionId is not None:
             discussion = Question.objects.get(id=discussionId)
-            context["discussion"] = {"creator": discussion.user, "topic": discussion.topic, "details": discussion.details}
+            context["discussion"] = {"id": discussionId, "creator": discussion.user, "topic": discussion.topic, "details": discussion.details}
             answersList = []
             answers = Answer.objects.filter(question=discussion)
             if answers is not None:
