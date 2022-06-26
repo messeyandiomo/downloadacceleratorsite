@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+      
+<head>
+    <title>First Page</title>
+      
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward(); 
+        }
+          
+        setTimeout("preventBack()", 0);
+          
+        window.onunload = function () { null };
+    </script>
+</head>
+  
+<body>
+    <script>
+    window.open("{% url 'Discussion_forum:home' %}", "_self");
+    </script>
+</body>
+  
+</html>

@@ -7,16 +7,10 @@ from django.http import JsonResponse
 # Create your views here.
 
 def home(request):
-    forums=Forum.objects.all()
-    count=forums.count()
-    discussions=[]
-    for i in forums:
-        discussions.append(i.discussion_set.all())
+    return render(request,'Discussion_forum/home.html')
 
-    context={'forums':forums,
-              'count':count,
-              'discussions':discussions}
-    return render(request,'Discussion_forum/home.html',context)
+def forth(request):
+    return render(request,'Discussion_forum/forward.html')
 
 def addInForum(request):
     form = CreateInForum()

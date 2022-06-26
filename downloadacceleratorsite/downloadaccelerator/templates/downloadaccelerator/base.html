@@ -16,6 +16,7 @@
     {% endblock css %}
 
     <title>Download Accelerator</title>
+
   </head>
   <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white shadow">
@@ -102,7 +103,7 @@
     {% endblock content %}
 
 
-  <footer class="text-center text-white" style="background-color: #45637d;">
+    <footer class="text-center text-white" style="background-color: #45637d;">
     {% block footerimage %}
     {% endblock footerimage %}
     <!-- Copyright -->
@@ -115,7 +116,7 @@
       </div>
     {% endblock copyright %}
     <!-- End of Copyright -->
-  </footer>
+    </footer>
   
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -128,6 +129,10 @@
     <script>
     $(
       function(){
+
+        
+        
+
         $('.btn-download').click(
           function() {
             window.open("https://addons.mozilla.org/fr/firefox/addon/download_accelerator/");
@@ -190,13 +195,16 @@
             }
           }
         );
+        
 
         $('#idbuttonuser').click(
           function () {
             if ('{{ username }}' != '') {
               if (logout('{{ username }}')) {
                 $(this).prop('disabled', true);
-                window.open($(location).attr('href').split('?')[0], "_self");
+                window.open("{% url 'Discussion_forum:forward' %}", "_self");
+                //location.replace($(location).attr('href').split('?')[0]);
+                //window.open($(location).attr('href').split('?')[0], "_self");
               }
             }
           }
@@ -243,6 +251,7 @@
           });
           return ret;
         }
+        
       }
     );
 

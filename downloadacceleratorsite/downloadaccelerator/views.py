@@ -20,6 +20,7 @@ def home(request):
         username = request.GET.get("username", None)
         if username is not None :
             context = {'username': username}
+            request.session['username'] = username
     if len(context) != 0:
         return render(request, 'downloadaccelerator/home.html', context)
     else:
@@ -33,6 +34,7 @@ def features(request):
         username = request.GET.get("username", None)
         if username is not None :
             context = {'username': username}
+            request.session['username'] = username
     if len(context) != 0:
         return render(request, 'downloadaccelerator/features.html', context)
     else:
@@ -46,6 +48,7 @@ def download(request):
         username = request.GET.get("username", None)
         if username is not None :
             context = {'username': username}
+            request.session['username'] = username
     if len(context) != 0:
         return render(request, 'downloadaccelerator/download.html', context)
     else:
