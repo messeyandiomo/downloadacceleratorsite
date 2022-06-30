@@ -17,10 +17,10 @@ from django.core.mail import send_mail
 def home(request):
     context = {}
     if request.method == 'GET':
-        username = request.GET.get("username", None)
-        if username is not None :
-            context = {'username': username}
-            request.session['username'] = username
+        if request.user.is_authenticated:
+            username = request.user['username']
+            if username is not None :
+                context = {'username': username}
     if len(context) != 0:
         return render(request, 'downloadaccelerator/home.html', context)
     else:
@@ -31,10 +31,10 @@ def home(request):
 def features(request):
     context = {}
     if request.method == 'GET':
-        username = request.GET.get("username", None)
-        if username is not None :
-            context = {'username': username}
-            request.session['username'] = username
+        if request.user.is_authenticated:
+            username = request.GET.get("username", None)
+            if username is not None :
+                context = {'username': username}
     if len(context) != 0:
         return render(request, 'downloadaccelerator/features.html', context)
     else:
@@ -45,10 +45,10 @@ def features(request):
 def download(request):
     context = {}
     if request.method == 'GET':
-        username = request.GET.get("username", None)
-        if username is not None :
-            context = {'username': username}
-            request.session['username'] = username
+        if request.user.is_authenticated:
+            username = request.GET.get("username", None)
+            if username is not None :
+                context = {'username': username}
     if len(context) != 0:
         return render(request, 'downloadaccelerator/download.html', context)
     else:

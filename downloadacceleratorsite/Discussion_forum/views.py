@@ -54,10 +54,11 @@ def getForums(request):
 
 def forums(request, forumName=None, discussionId=None):
     context = {}
-    if request.method == 'GET':
-        username = request.GET.get("username", None)
-        if username is not None :
-            context = {'username': username}
+    if request.is_ajax and request.method == 'GET':
+        if request.user.is_authenticated:
+            username = request.GET.get("username", None)
+            if username is not None :
+                context = {'username': username}
     if forumName is not None:
         context['forumName'] = forumName
         if discussionId is not None:
