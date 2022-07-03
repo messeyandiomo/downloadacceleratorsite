@@ -18,7 +18,7 @@ def home(request):
     context = {}
     if request.method == 'GET':
         if request.user.is_authenticated:
-            username = request.user['username']
+            username = request.user.get_username()
             if username is not None :
                 context = {'username': username}
     if len(context) != 0:
@@ -32,7 +32,7 @@ def features(request):
     context = {}
     if request.method == 'GET':
         if request.user.is_authenticated:
-            username = request.GET.get("username", None)
+            username = request.user.get_username()
             if username is not None :
                 context = {'username': username}
     if len(context) != 0:
@@ -46,7 +46,7 @@ def download(request):
     context = {}
     if request.method == 'GET':
         if request.user.is_authenticated:
-            username = request.GET.get("username", None)
+            username = request.user.get_username()
             if username is not None :
                 context = {'username': username}
     if len(context) != 0:

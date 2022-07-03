@@ -56,29 +56,34 @@ def forums(request, forumName=None, discussionId=None):
     context = {}
     if request.is_ajax and request.method == 'GET':
         if request.user.is_authenticated:
-            username = request.GET.get("username", None)
+            username = request.user.get_username()
             if username is not None :
                 context = {'username': username}
     if forumName is not None:
         context['forumName'] = forumName
         if discussionId is not None:
             discussion = Question.objects.get(id=discussionId)
+            discussion.numberOfViews += 1
+            discussion.save(update_fields=["numberOfViews"])
             context["discussion"] = {"id": discussionId, "creator": discussion.user, "topic": discussion.topic, "details": discussion.details}
             answersList = []
-            answers = Answer.objects.filter(question=discussion)
+            answers = Answer.objects.filter(question=discussion).order_by("date_created")
             if answers is not None:
                 for a in answers:
-                    answersList.append({"poster": a.user, "message": a.message})
+                    answersList.append({"date_created":a.date_created, "poster": a.user, "message": a.message})
                 context["answersList"] = answersList
                 context["count"] = len(answersList)
         else:
+            forum = Forum.objects.get(name=forumName)
+            forum.numberOfViews += 1
+            forum.save(update_fields=["numberOfViews"])
             questionsList = []
-            questions = Question.objects.filter(forum=Forum.objects.filter(name=forumName).get().id)
+            questions = Question.objects.filter(forum=Forum.objects.filter(name=forumName).get().id).order_by("date_created")
             totalPosts = 0
             if questions is not None:
                 for q in questions:
                     numberOfPosts = q.answer_set.all().count() + 1
-                    questionsList.append({"id": q.id, "forumname": forumName, "username": q.user, "topic": q.topic, "details": q.details, "numberOfPosts": numberOfPosts})
+                    questionsList.append({"id": q.id, "forumname": forumName, "username": q.user, "date_created": q.date_created, "topic": q.topic, "details": q.details, "numberOfViews": q.numberOfViews, "numberOfPosts": numberOfPosts})
                     totalPosts = totalPosts + numberOfPosts
                 context["questionsList"] = questionsList
                 context["count"] = totalPosts
@@ -93,7 +98,7 @@ def forums(request, forumName=None, discussionId=None):
                 numberOfPosts = 0
                 for q in questions:
                     numberOfPosts = numberOfPosts + q.answer_set.all().count() + 1
-                forumsList.append({"name": f.name, "title": f.title, "description": f.description, "numberOfTopics": numberOfTopics, "numberOfPosts": numberOfPosts})
+                forumsList.append({"name": f.name, "title": f.title, "description": f.description, "numberOfViews": f.numberOfViews, "numberOfTopics": numberOfTopics, "numberOfPosts": numberOfPosts})
                 totalPosts = totalPosts + numberOfPosts
             context["forumsList"] = forumsList
             context["count"] = totalPosts

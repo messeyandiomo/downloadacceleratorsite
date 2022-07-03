@@ -120,7 +120,7 @@
                                         <div class="discussion-sub-title">{{ q.details }}</div>
                                     </div>
                                     <div class="col-sm-1 forum-info">
-                                        <span class="views-number">121</span>
+                                        <span class="views-number">{{ q.numberOfViews }}</span>
                                         <div>
                                             <small>Views</small>
                                         </div>
@@ -134,7 +134,10 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            {% if username and username != '' %}
+                        {% else %}
+                        <!-- The questions list is empty -->
+                        {% endif %}
+                        {% if username and username != '' %}
                             <!-- Add discussion must be code here -->
                             <form method="post" id="addDiscussionForm">
                             {% csrf_token %}
@@ -168,9 +171,6 @@
                                     </div>
                                 </fieldset>
                             </form>
-                            {% endif %}
-                        {% else %}
-                        <!-- The questions list is empty -->
                         {% endif %}
                     {% endif %}
                 {% elif forumsList %}
@@ -201,7 +201,7 @@
                                 <div class="forum-sub-title">{{ f.description }}</div>
                             </div>
                             <div class="col-md-1 forum-info">
-                                <span class="views-number">1216</span>
+                                <span class="views-number">{{ f.numberOfViews }}</span>
                                 <div>
                                     <small>Views</small>
                                 </div>

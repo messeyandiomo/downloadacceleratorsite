@@ -8,6 +8,7 @@ class Forum(models.Model):
     title= models.CharField(max_length=300)
     description = models.CharField(max_length=1000,blank=True)
     date_created=models.DateTimeField(auto_now_add=True,null=True)
+    numberOfViews=models.PositiveIntegerField(default=0)
     
     def __str__(self):
         return str(self.title)
@@ -17,7 +18,9 @@ class Question(models.Model):
     forum = models.ForeignKey(Forum,on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     topic = models.CharField(max_length=1000, blank=False, default="")
+    date_created=models.DateTimeField(auto_now_add=True,null=True)
     details = models.TextField(blank=False, null=False, default="")
+    numberOfViews=models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return str(self.forum)
@@ -27,6 +30,7 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.TextField(blank=False, null=False, default="")
+    date_created=models.DateTimeField(auto_now_add=True,null=True)
 
     def __str__(self):
         return str(self.question)
