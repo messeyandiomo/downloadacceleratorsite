@@ -1,0 +1,79 @@
+{% extends "downloadaccelerator/base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'downloadaccelerator/aboutauthor.css' %}">
+{% endblock css %}
+
+{% block aboutAuthor %}
+<a class="nav-link active" style="font-weight: bold;" aria-current="page" href="{% url 'downloadaccelerator:aboutauthor' %}">ABOUT AUTHOR</a>
+{% endblock aboutAuthor %}
+
+{% block content %}
+<div class="container">
+    <div class="row g-5 p-4">
+        <div class="col-sm-12 col-lg-6">
+            <div class="p-5">
+                <div class="row g-5 p-4">
+                    <h1 class="col-sm-12 frlandev">
+                        FREELANCE<br>
+                        DEVELOPER
+                    </h1>
+                </div>
+                <div class="row g-5 p-4">
+                    <p class="col-sm-12">
+                        Helping people turn their ideas into sites & apps that work. Professional and Cost-Effective. Always.
+                    </p>
+                </div>
+                <div class="row g-5 p-4">
+                    <div class="col-sm-6">
+                        <div class="d-grid gap-2 mb-4">
+                            <button type="button" name="" id="" class="btn btn-primary">COME SAY HI</button>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="button" name="" id="" class="btn btn-outline-primary  effect">READ BLOG</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row p-1">
+                            <a class="link facebook" href="http://web.facebook.com/bilal.luqman.5">
+                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="row p-1">
+                            <a class="link github" href="https://github.com/messey-bilal">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="row p-1">
+                            <a class="link linkedin" href="http://www.linkedin.com/in/Messey-A-Ndiomo-Andre-Ebenezer-7547bb98/">
+                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <div class="mt-5 shadow">
+                <img src="{% static 'downloadaccelerator/images/website-development.png' %}" class="img-fluid" alt="" width="100%" height="auto">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block copyrightstyle %}
+style="background-color: white;"
+{% endblock copyrightstyle %}
+
+{% block js %}
+{{ block.super }}
+<script>
+$(
+    function(){
+
+    }
+);
+</script>
+{% endblock js %}

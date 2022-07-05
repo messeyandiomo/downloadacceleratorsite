@@ -52,7 +52,11 @@
               </li>
               <li class="nav-item">
                 {% block aboutAuthor %}
-                <a class="nav-link disabled" style="font-weight: bold;" href="#">ABOUT AUTHOR</a>
+                {% if username and username != '' %}
+                <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:aboutauthor' %}?username={{ username }}">ABOUT AUTHOR</a>
+                {% else %}
+                <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:aboutauthor' %}">ABOUT AUTHOR</a>
+                {% endif %}
                 {% endblock aboutAuthor %}
               </li>
               <li class="nav-item">

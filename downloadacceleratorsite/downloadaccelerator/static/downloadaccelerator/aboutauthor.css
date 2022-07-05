@@ -1,0 +1,51 @@
+.link {
+    color: black;
+}
+
+a i {
+    transition: all 0.3s linear;
+}
+
+a:hover i {
+    transform: scale(1.5);
+}
+
+.facebook:hover {
+    color: blue;
+}
+
+.github:hover {
+    color: black;
+}
+
+.linkedin:hover {
+    color: #04009a;
+}
+
+
+
+.effect {
+    transition: all 0.2s linear 0s;
+}
+
+.effect:before{
+    content: "\f054";
+    font-family: FontAwesome;
+    opacity: 0;
+    transform-origin: left center;
+    transition: all 0.2s linear 0s;
+}
+
+
+.effect:hover{
+    text-indent: 30px;
+    color: #0275d8;
+    background-color: white;
+}
+    
+.effect:hover:before{
+    opacity: 1;
+}
+
+
+    

@@ -47,7 +47,7 @@
                   <div class="pt-1 mb-4">
                     <button class="btn btn-primary btn-block" id="connexionButton" type="button">Login</button>
                   </div>
-                  <a class="small text-muted" data-bs-target="#carouselControls" data-bs-slide="next" href="" id="forgotPassword">Forgot password?</a>
+                  <a class="small text-muted" data-bs-target="#carouselControls" href="#" id="forgotPassword2">Forgot password?</a>
                 </form>
 
                 <form id="forgetPassForm" class="carousel-item">
@@ -90,8 +90,29 @@ style="background-color: white;"
 <script>
 $(
     function(){
-        {% include "downloadaccelerator/include/common.js" %}
-        {% include "downloadaccelerator/include/modalconnexion.js" %}
+      {% include "downloadaccelerator/include/common.js" %}
+      {% include "downloadaccelerator/include/modalconnexion.js" %}
+      {% include "downloadaccelerator/include/modalforgetpass.js" %}
+
+      /* click on forgot password link */
+      $('#forgotPassword2').click(
+          function(e){
+            var emptyName = ($('#connexionName').val().length === 0) ? true : false;
+            if(emptyName){
+              dangerInput($('#connexionName'), $('#nameDanger'), $('#nameDanger small'), 'This field must not be empty');
+            }
+            else {
+              if(userExist($('#connexionName').val())){
+                filledInput($('#connexionName'), $('#nameDanger'));
+                $('#carouselControls').carousel('next');
+                $('#forgetName').val($('#connexionName').val());
+              }
+              else{
+                dangerInput($('#connexionName'), $('#nameDanger'), $('#nameDanger small'), 'This user does not exists');
+              }
+            }
+          }
+      );
     }
     
 );
