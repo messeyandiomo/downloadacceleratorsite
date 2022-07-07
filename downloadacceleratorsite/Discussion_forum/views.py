@@ -1,16 +1,21 @@
 from unicodedata import name
 from django.shortcuts import render,redirect
+from django.contrib.auth import authenticate, login, logout
 from .models import * 
 from .forms import * 
 from django.http import JsonResponse
 
 # Create your views here.
 
-def home(request):
-    return render(request,'Discussion_forum/home.html')
+def loginUser(request):
+    return render(request,'Discussion_forum/login.html')
 
-def forth(request):
-    return render(request,'Discussion_forum/forward.html')
+
+def logoutUser(request):
+    if request.is_ajax and request.method == 'GET':
+        if request.user.is_authenticated:
+            logout(request)
+    return render(request, 'Discussion_forum/logout.html')
 
 def addInForum(request):
     form = CreateInForum()

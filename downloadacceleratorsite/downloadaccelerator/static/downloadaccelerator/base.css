@@ -1,3 +1,7 @@
+  body{
+    overflow-y: scroll;
+  }
+  
   nav .navbar-nav li .nav-link:hover{
     
     color: #4e7fa1 !important;
@@ -58,7 +62,7 @@
     border: none;
   }
 
-  .dropdown>.dropdown-menu {
+  .dropdown>.dropdown-menu, #idusersettings {
     display: none;
     margin-top: 10px;
     margin-left: 9px;
@@ -71,8 +75,11 @@
 
 
 
-  #idbuttonuser{
+  #idbuttonuser, #idsignout{
     color: seagreen;
+  }
+
+  #idbuttonuser{
     box-shadow: none;
   }
 

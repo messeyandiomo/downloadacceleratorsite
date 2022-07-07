@@ -25,12 +25,12 @@
             <img src="{% static 'downloadaccelerator/images/daclogo.png' %}" alt="" width="25" height="25" class="d-inline-block align-text-top">
             DOWNLOAD ACCELERATOR
           </a>
-          <a class="navbar-toggler" href="#" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="navbar-toggler ms-auto" href="#" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             MORE
             <span class="fa fa-angle-down"></span>
           </a>
           <!--navigation-->
-          <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="collapse navbar-collapse order-1" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
                 {% block home %}
@@ -72,7 +72,7 @@
                 {% block forums %}
                 <a class="nav-link text-dark" data-bs-toggle="dropdown" aria-expanded="false" id="forumsList" style="font-weight: bold;" href="#">FORUMS</a>
                 {% endblock forums %}
-                <ul class="dropdown-menu" aria-labelledby="formusList">
+                <ul class="dropdown-menu" id="forumsMenu" aria-labelledby="formusList">
                 </ul>
               </li>
               <li class="nav-item">
@@ -87,13 +87,23 @@
               </li>
             </ul>
           </div>
-          <div class="d-grid gap-2">
+          {% if username and username != '' %}
+          <div class="order-lg-2">
+            <a class="btn" href="" id="idbuttonuser">
+              {{ username }}
+            </a>
+            <ul class="dropdown-menu" id="idusersettings" aria-labelledby="idbuttonuser">
+              <li><a class="dropdown-item" id="idsignout" role="button" href="{% url 'Discussion_forum:logout' %}?username={{ username }}">SignOut</a></li>
+            </ul>
+          </div>
+          {% endif %}
+          <!--<div class="order-lg-2">
             {% if username and username != '' %}
             <button type="button" name="" id="idbuttonuser" class="btn">{{ username }}</button>
             {% else %}
             <button type="button" name="" id="idbuttonuser" class="btn"></button>
             {% endif %}
-          </div>
+          </div>-->
           <!-- End of navigation -->
         </div>
     </nav>
@@ -145,7 +155,7 @@
 
         $('#forumsList').hover(
           function(){
-            if(!$.trim($('ul[class="dropdown-menu"]').html())){
+            if(!$.trim($('#forumsMenu').html())){
               var forums = getForums();
               if(forums != null){
                 var eltLi = null;
@@ -167,16 +177,16 @@
                   {% endif %}
                   eltLi = document.createElement('li');
                   eltLi.appendChild(eltA);
-                  $('ul[class="dropdown-menu"]').append(eltLi);
+                  $('#forumsMenu').append(eltLi);
                 });
               }
             }
-            $('.dropdown-menu').slideDown('slow');
+            $('#forumsMenu').slideDown('slow');
           },
           function () {
             setTimeout(function () {
-              if (!$('.dropdown-menu').is(':hover')) {
-                $('.dropdown-menu').slideUp('slow');
+              if (!$('#forumsMenu').is(':hover')) {
+                $('#forumsMenu').slideUp('slow');
               }
             }, 1000);
           }
@@ -201,45 +211,19 @@
         );
         
 
-        $('#idbuttonuser').click(
+        $('#idbuttonuser').hover(
+          function(){
+            $('#idusersettings').slideDown('slow');
+          },
           function () {
-            if ('{{ username }}' != '') {
-              if (logout('{{ username }}')) {
-                $(this).prop('disabled', true);
-                window.open("{% url 'Discussion_forum:forward' %}", "_self");
-                //location.replace($(location).attr('href').split('?')[0]);
-                //window.open($(location).attr('href').split('?')[0], "_self");
+            setTimeout(function () {
+              if (!$('#idusersettings').is(':hover')) {
+                $('#idusersettings').slideUp('slow');
               }
-            }
+            }, 1000);
           }
         );
 
-        $('#idbuttonuser').hover(
-          function () {
-            if ($(this).html().length != 0) {
-              $(this).html("SignOut");
-            }
-          },
-          function () {
-            $(this).html('{{ username }}');
-          }
-        );
-    
-        function logout(name) {
-          var ret = false;
-          $.ajax({
-            async: false,
-            type: 'GET',
-            url: "{% url 'downloadaccelerator:logoutuser' %}",
-            data: {"username": name},
-            success: function (response) {
-              if (response["success"]){
-                ret = true;
-              }
-            }
-          });
-          return ret;
-        }
 
         function getForums() {
           var ret = null;

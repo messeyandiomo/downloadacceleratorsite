@@ -78,17 +78,6 @@ def checkUser(request):
     return JsonResponse({}, status=400)
 
 
-def logOutUser(request):
-    if request.is_ajax and request.method == 'GET':
-        username = request.GET.get("username", None)
-        if User.objects.filter(username = username).exists():
-            logout(request)
-            return JsonResponse({"success": True}, status=200)
-        else:
-            return JsonResponse({"success": False}, status=300)
-    return JsonResponse({}, status=400)
-
-
 
 def checkUserMail(request):
     if request.is_ajax and request.method == 'GET':
