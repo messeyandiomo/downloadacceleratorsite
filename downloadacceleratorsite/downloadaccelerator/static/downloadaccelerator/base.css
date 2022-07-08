@@ -53,7 +53,7 @@
     color: #4e7fa1 !important;
   }
 
-  .dropdown-item:hover {
+  .dropdown-forum-item:hover {
     color: #4e7fa1 !important;
     background-color: white;
   }
@@ -75,12 +75,15 @@
 
 
 
-  #idbuttonuser, #idsignout{
+  #idbuttonuser{
     color: seagreen;
+    box-shadow: none;
   }
 
-  #idbuttonuser{
-    box-shadow: none;
+
+  .user-setting-item:hover{
+    color: seagreen;
+    background-color: white;
   }
 
 

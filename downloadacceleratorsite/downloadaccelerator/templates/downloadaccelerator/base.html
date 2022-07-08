@@ -93,17 +93,10 @@
               {{ username }}
             </a>
             <ul class="dropdown-menu" id="idusersettings" aria-labelledby="idbuttonuser">
-              <li><a class="dropdown-item" id="idsignout" role="button" href="{% url 'Discussion_forum:logout' %}?username={{ username }}">SignOut</a></li>
+              <li><a class="dropdown-item user-setting-item" role="button" href="{% url 'Discussion_forum:logout' %}?username={{ username }}">Sign Out</a></li>
             </ul>
           </div>
           {% endif %}
-          <!--<div class="order-lg-2">
-            {% if username and username != '' %}
-            <button type="button" name="" id="idbuttonuser" class="btn">{{ username }}</button>
-            {% else %}
-            <button type="button" name="" id="idbuttonuser" class="btn"></button>
-            {% endif %}
-          </div>-->
           <!-- End of navigation -->
         </div>
     </nav>
@@ -165,6 +158,7 @@
                   eltforum = document.createTextNode(element.title);
                   eltA.appendChild(eltforum);
                   eltA.className = 'dropdown-item';
+                  eltA.classList.add('dropdown-forum-item');
                   {% if forumName %}
                   if(element.name == "{{ forumName }}"){
                     eltA.classList.add('choisedForum');
