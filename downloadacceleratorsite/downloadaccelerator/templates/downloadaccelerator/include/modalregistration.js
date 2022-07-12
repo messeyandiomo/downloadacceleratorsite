@@ -5,7 +5,7 @@ function createUser(username, email, password){
     $.ajax({
       async: false,
       type: 'GET',
-      url: "{% url 'downloadaccelerator:createuser' %}",
+      url: "{% url 'Discussion_forum:createuser' %}",
       data: {"username": username, "email": email, "password": password},
       success: function (response) {
         if (response["register"]){

@@ -74,7 +74,7 @@
         $.ajax({
           async: false,
           type: 'POST',
-          url: "{% url 'downloadaccelerator:userauth' %}",
+          url: "{% url 'Discussion_forum:userauth' %}",
           data: serializedData,
           success: function(response){
             if(response["auth"]){

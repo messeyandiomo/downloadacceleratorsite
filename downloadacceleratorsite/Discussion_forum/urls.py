@@ -13,4 +13,9 @@ urlpatterns = [
     path('forums/', forums, name='forums'),
     path('forums/<str:forumName>', forums, name='forums'),
     path('forums/<str:forumName>/<int:discussionId>', forums, name='forums'),
+    path('username', checkUser, name='user'),
+    path('createuser', createUser, name='createuser'),
+    path('userauth', userAuth, name='userauth'),
+    path('checkusermail', checkUserMail, name='checkUserMail'),
+    path('passwordreset', passwordReset, name='passwordreset'),
 ]

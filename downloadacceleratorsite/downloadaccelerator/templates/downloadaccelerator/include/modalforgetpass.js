@@ -34,7 +34,7 @@
         $.ajax({
           async: false,
           type: 'GET',
-          url: "{% url 'downloadaccelerator:checkUserMail' %}",
+          url: "{% url 'Discussion_forum:checkUserMail' %}",
           data: {"username": username, "email": usermail},
           success: function (response) {
             if (response["valid"]){
@@ -52,7 +52,7 @@
         $.ajax({
           async: false,
           type: 'POST',
-          url: "{% url 'downloadaccelerator:passwordreset' %}",
+          url: "{% url 'Discussion_forum:passwordreset' %}",
           data: serializedData,
           success: function(response){
             if(response["reset"]){

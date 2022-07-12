@@ -20,7 +20,7 @@
       $.ajax({
         async: false,
         type: 'GET',
-        url: "{% url 'downloadaccelerator:user' %}",
+        url: "{% url 'Discussion_forum:user' %}",
         data: {"username": username},
         success: function (response) {
           if (!response["valid"]) {
