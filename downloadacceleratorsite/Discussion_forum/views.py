@@ -128,7 +128,7 @@ def forums(request, forumName=None, discussionId=None):
             discussion = Question.objects.get(id=discussionId)
             discussion.numberOfViews += 1
             discussion.save(update_fields=["numberOfViews"])
-            context["discussion"] = {"id": discussionId, "creator": discussion.user, "topic": discussion.topic, "details": discussion.details}
+            context["discussion"] = {"id": discussionId, "date_created":discussion.date_created, "creator": discussion.user, "topic": discussion.topic, "details": discussion.details}
             answersList = []
             answers = Answer.objects.filter(question=discussion).order_by("date_created")
             if answers is not None:

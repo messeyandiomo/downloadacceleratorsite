@@ -41,6 +41,7 @@
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="discussion-username">{{ discussion.creator }}</div>
+                                    <div class="date">{{ discussion.date_created }}</div>
                                 </div>
                                 <div class="col-sm-8">
                                     <a class="forum-item-title">{{ discussion.topic }}</a>
@@ -60,6 +61,7 @@
                                 <div class="row">
                                     <div class="col-sm-2">
                                         <div class="discussion-username">{{ a.poster }}</div>
+                                        <div class="date">{{ a.date_created }}</div>
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="discussion-sub-title">{{ a.message }}</div>
@@ -110,6 +112,7 @@
                                 <div class="row">
                                     <div class="col-sm-2">
                                         <div class="discussion-username">{{ q.username }}</div>
+                                        <div class="date">{{ q.date_created }}</div>
                                     </div>
                                     <div class="col-sm-8">
                                         {% if username and username != '' %}

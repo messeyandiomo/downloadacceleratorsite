@@ -101,6 +101,11 @@
       color:seagreen;
       font-weight: bold;
     }
+    .date{
+      float: left;
+      margin-right: 20px;
+      font-size: 12px;
+    }
     a.forum-item-title {
       color: inherit;
       display: block;
