@@ -1,5 +1,5 @@
-#text-banner-download{
-    margin-left: 10%;
+.download-banner {
+    background-image: url('images/banner-download.png');
 }
 
   /* description of download modal only */

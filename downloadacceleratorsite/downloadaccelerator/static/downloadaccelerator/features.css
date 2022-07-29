@@ -1,6 +1,7 @@
-#text-banner-features{
-    margin-left: 10%;
+.features-banner {
+    background-image: url('images/banner-features.png');
 }
+
 
 #btn-download-features:hover{
     color: white;

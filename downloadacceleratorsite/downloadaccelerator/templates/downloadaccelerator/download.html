@@ -7,23 +7,26 @@
 {% endblock css %}
 
 {% block download %}
-<a class="nav-link active" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}">DOWNLOAD</a>
+<a class="nav-link active" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}">Download</a>
 {% endblock download %}
 
 {% block banner %}
-<div class="main-banner d-flex flex-column justify-content-center">
-	<img src="{% static 'downloadaccelerator/images/banner-download.png' %}" class="img-fluid" alt="" width="100%" height="auto">
-    <div class="container-banner text-banner">
+<header class="banner-properties download-banner">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12">
         <h1 class="text-light">Download Accelerator Features</h1>
-        <div class="text-light font-bold">Explore all Download Accelerator features</div>
+        <p class="text-light font-bold">Explore all Download Accelerator features</p>
         <button type="button" class="btn btn-success font-bold btn-download">TRY DOWNLOAD ACCELERATOR</button>
+      </div>
     </div>
-</div>
+  </div>
+</header>
 {% endblock banner %}
 
 {% block content %}
 <div class="container">
-    <div class="row g-5 p-4">
+    <div class="row g-5">
       <div class="col-sm-12 col-lg-6">
         <div class="p-5">
           <h2>Registration</h2>

@@ -11,6 +11,8 @@ from django.contrib.auth.tokens import default_token_generator
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 
+from mailer import Mailer
+
 # Create your views here.
 
 def loginUser(request):
@@ -51,7 +53,7 @@ def passwordReset(request):
             email_template_name = "password/password_reset_email.html"
             c = {
                 "email":user.email,
-				'domain':'127.0.0.1:8000',
+				'domain':'downloadaccelerator.pythonanywhere.com',
 				'site_name': 'downloadaccelerator',
 				"uid": urlsafe_base64_encode(force_bytes(user.pk)),
 				"user": user,
@@ -59,7 +61,9 @@ def passwordReset(request):
 				'protocol': 'http',
 			}
             email = render_to_string(email_template_name, c)
-            send_mail(subject, email, 'admin@example.com' , [user.email], fail_silently=False)
+            mail = Mailer(email='messey.bilal@gmail.com', password='yonesandra')
+            mail.send(receiver=user.email, subject=subject, message=email)
+            #send_mail(subject, email, 'messandr2578@yahoo.fr' , [user.email], fail_silently=False)
             return JsonResponse({"reset": True}, status=200)
         else:
             return JsonResponse({"reset": False}, status=300)

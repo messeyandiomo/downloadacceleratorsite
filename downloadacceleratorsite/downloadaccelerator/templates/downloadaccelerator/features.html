@@ -6,23 +6,26 @@
 {% endblock css %}
 
 {% block features %}
-<a id="features" class="nav-link active" style="font-weight: bold;" href="{% url 'downloadaccelerator:features' %}">FEATURES</a>
+<a id="features" class="nav-link active" style="font-weight: bold;" href="{% url 'downloadaccelerator:features' %}">Features</a>
 {% endblock features %}
 
 {% block banner %}
-<div class="main-banner d-flex flex-column justify-content-center">
-	<img src="{% static 'downloadaccelerator/images/banner-features.png' %}" class="img-fluid" alt="" width="100%" height="auto">
-  <div class="container-banner text-banner">
-    <h1 class="text-light">Download Accelerator Features</h1>
-    <div class="text-light font-bold">Explore all Download Accelerator features</div>
-    <button type="button" class="btn btn-outline-light font-bold btn-download" id="btn-download-features">TRY DOWNLOAD ACCELERATOR</button>
+<header class="banner-properties features-banner">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12">
+        <h1 class="text-light">Download Accelerator Features</h1>
+        <p class="text-light font-bold">Explore all Download Accelerator features</p>
+        <button type="button" class="btn btn-outline-light font-bold btn-download" id="btn-download-features">TRY DOWNLOAD ACCELERATOR</button>
+      </div>
+    </div>
   </div>
-</div>
+</header>
 {% endblock banner %}
 
 {% block content %}
 <div class="container">
-    <div class="row g-5 p-4">
+    <div class="row g-5">
       <div class="col-sm-12 col-lg-6">
         <div class="p-5">
           <h2>Download Acceleration</h2>

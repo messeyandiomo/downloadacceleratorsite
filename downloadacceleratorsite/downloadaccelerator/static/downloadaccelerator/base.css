@@ -7,6 +7,7 @@
     color: #4e7fa1 !important;
   }
 
+
   nav .navbar-nav li .active{
     color: #4e7fa1 !important;
   }
@@ -33,6 +34,7 @@
       font-weight: bold;
   }
 
+  /*
   .container-banner{
     display: inline-block;
     position: absolute;
@@ -46,8 +48,9 @@
   
 
   .text-banner{
-    margin-left: 10%;
+    margin-left: 5%;
   }
+  */
 
   .navbar-toggler{
     color: #4e7fa1 !important;
@@ -73,7 +76,13 @@
       pointer-events: none;
   }
 
-
+  .banner-properties {
+    height: 50vh;
+    min-height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 
   #idbuttonuser{
     color: seagreen;

@@ -1,3 +1,22 @@
+    .forums-banner {
+      background-image: url('images/banner-forums.png');
+    }
+
+    .java-banner {
+      background-image: url('images/banner-java.png');
+    }
+
+    .dac-banner {
+      background-image: url('images/banner-dac.png');
+    }
+
+    .django-banner {
+      background-image: url('images/banner-django.png');
+    }
+
+    .linux-banner {
+      background-image: url('images/banner-linux.png');
+    }
     
     .white-bg {
         background-color: #ffffff;

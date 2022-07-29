@@ -23,10 +23,10 @@
         <div class="container">
           <a class="navbar-brand text-dark" style="font-weight: bold;" href="#">
             <img src="{% static 'downloadaccelerator/images/daclogo.png' %}" alt="" width="25" height="25" class="d-inline-block align-text-top">
-            DOWNLOAD ACCELERATOR
+            Download Accelerator
           </a>
           <a class="navbar-toggler ms-auto" href="#" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            MORE
+            More
             <span class="fa fa-angle-down"></span>
           </a>
           <!--navigation-->
@@ -35,54 +35,54 @@
               <li class="nav-item">
                 {% block home %}
                 {% if username and username != '' %}
-                <a class="nav-link text-dark" style="font-weight: bold;" aria-current="page" href="{% url 'downloadaccelerator:home' %}?username={{ username }}">HOME</a>
+                <a class="nav-link text-dark" style="font-weight: bold;" aria-current="page" href="{% url 'downloadaccelerator:home' %}?username={{ username }}">Home</a>
                 {% else %}
-                <a class="nav-link text-dark" style="font-weight: bold;" aria-current="page" href="{% url 'downloadaccelerator:home' %}">HOME</a>
+                <a class="nav-link text-dark" style="font-weight: bold;" aria-current="page" href="{% url 'downloadaccelerator:home' %}">Home</a>
                 {% endif %}
                 {% endblock home %}
               </li>
               <li class="nav-item">
                 {% block features %}
                 {% if username and username != '' %}
-                <a id="features" class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:features' %}?username={{ username }}">FEATURES</a>
+                <a id="features" class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:features' %}?username={{ username }}">Features</a>
                 {% else %}
-                <a id="features" class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:features' %}">FEATURES</a>
+                <a id="features" class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:features' %}">Features</a>
                 {% endif %}
                 {% endblock features %}
               </li>
               <li class="nav-item">
                 {% block aboutAuthor %}
                 {% if username and username != '' %}
-                <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:aboutauthor' %}?username={{ username }}">ABOUT AUTHOR</a>
+                <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:aboutauthor' %}?username={{ username }}">About Author</a>
                 {% else %}
-                <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:aboutauthor' %}">ABOUT AUTHOR</a>
+                <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:aboutauthor' %}">About Author</a>
                 {% endif %}
                 {% endblock aboutAuthor %}
               </li>
               <li class="nav-item">
                 {% block download %}
                 {% if username and username != '' %}
-                <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}?username={{ username }}">DOWNLOAD</a>
+                <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}?username={{ username }}">Download</a>
                 {% else %}
-                <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}">DOWNLOAD</a>
+                <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}">Download</a>
                 {% endif %}
                 {% endblock download %}
               </li>
               <li class="nav-item dropdown">
                 {% block forums %}
-                <a class="nav-link text-dark" data-bs-toggle="dropdown" aria-expanded="false" id="forumsList" style="font-weight: bold;" href="#">FORUMS</a>
+                <a class="nav-link text-dark" data-bs-toggle="dropdown" aria-expanded="false" id="forumsList" style="font-weight: bold;" href="#">Forums</a>
                 {% endblock forums %}
                 <ul class="dropdown-menu" id="forumsMenu" aria-labelledby="formusList">
                 </ul>
               </li>
               <li class="nav-item">
                 {% block support %}
-                <a class="nav-link disabled" style="font-weight: bold;">SUPPORT</a>
+                <a class="nav-link disabled" style="font-weight: bold;">Support</a>
                 {% endblock support %}
               </li>
               <li class="nav-item">
                 {% block admin %}
-                <a class="nav-link text-white disabled" style="font-weight: bold;">ADMIN</a>
+                <a class="nav-link text-white disabled" style="font-weight: bold;">Admin</a>
                 {% endblock admin %}
               </li>
             </ul>
