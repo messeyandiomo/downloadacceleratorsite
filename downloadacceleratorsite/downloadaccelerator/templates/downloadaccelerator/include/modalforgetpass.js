@@ -13,10 +13,12 @@
             filledInput($('#forgetPassEmail'), $('#forgetPassNameDanger'))
             $('#forgetPassEmail').tooltip('disable');
             if(checkUserMail($('#forgetName').val(), $('#forgetPassEmail').val())){
+              $(this).closest('.modal').modal('toggle');
+              $(this).closest('html').addClass('wait');
               /* send a new password to the user */
               if(passwordReset($('#forgetPassForm'))){
+                $(this).closest('html').removeClass('wait');
                 window.open("/password_reset/done/", "_self");
-                $('#modal-forget-password').modal('toggle');
               }
             }
             else {

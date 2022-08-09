@@ -11,7 +11,8 @@ from django.contrib.auth.tokens import default_token_generator
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 
-from mailer import Mailer
+import smtplib, ssl
+from email.mime.text import MIMEText
 
 # Create your views here.
 
@@ -54,16 +55,30 @@ def passwordReset(request):
             c = {
                 "email":user.email,
 				'domain':'downloadaccelerator.pythonanywhere.com',
-				'site_name': 'downloadaccelerator',
+				'site_name': 'downloadaccelerator.pythonanywhere.com',
 				"uid": urlsafe_base64_encode(force_bytes(user.pk)),
 				"user": user,
 				'token': default_token_generator.make_token(user),
-				'protocol': 'http',
+				'protocol': 'https',
 			}
-            email = render_to_string(email_template_name, c)
-            mail = Mailer(email='messey.bilal@gmail.com', password='yonesandra')
-            mail.send(receiver=user.email, subject=subject, message=email)
-            #send_mail(subject, email, 'messandr2578@yahoo.fr' , [user.email], fail_silently=False)
+            msgbody = render_to_string(email_template_name, c)
+
+            port = 465  # For SSL
+            smtp_server = "smtp.gmail.com"
+            sender_email = "downloadacceleratorteam@gmail.com"  # Enter your address
+            receiver_email = user.email  # Enter receiver address
+            password = "nrszyykrovtuffsq"
+            ssl_context = ssl.create_default_context()
+
+            msg = MIMEText(msgbody, "plain")
+            msg['Subject'] = subject
+            msg['To'] = receiver_email
+
+            with smtplib.SMTP_SSL(smtp_server, port, context=ssl_context) as server:
+                server.login(sender_email, password)
+                server.sendmail(sender_email, receiver_email, msg.as_string())
+                server.quit()
+            
             return JsonResponse({"reset": True}, status=200)
         else:
             return JsonResponse({"reset": False}, status=300)
