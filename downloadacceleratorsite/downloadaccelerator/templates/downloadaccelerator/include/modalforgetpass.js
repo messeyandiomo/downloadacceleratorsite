@@ -14,12 +14,8 @@
             $('#forgetPassEmail').tooltip('disable');
             if(checkUserMail($('#forgetName').val(), $('#forgetPassEmail').val())){
               $(this).closest('.modal').modal('toggle');
-              $(this).closest('html').addClass('wait');
-              /* send a new password to the user */
-              if(passwordReset($('#forgetPassForm'))){
-                $(this).closest('html').removeClass('wait');
-                window.open("/password_reset/done/", "_self");
-              }
+              passwordReset($('#forgetPassForm'));
+              $('#loadingpasswordreset').modal('show');
             }
             else {
               var warn = 'This mail does not belongs to ' + $('#forgetName').val();
@@ -49,18 +45,14 @@
       }
   
       function passwordReset(forgetPassForm){
-        var ret = false;
         var serializedData = forgetPassForm.serialize();
         $.ajax({
-          async: false,
           type: 'POST',
           url: "{% url 'Discussion_forum:passwordreset' %}",
           data: serializedData,
           success: function(response){
-            if(response["reset"]){
-              ret = true;
-            }
+            $('#loadingpasswordreset').modal('hide');
+            window.open("/password_reset/done/", "_self");
           }
         });
-        return ret;
       }
