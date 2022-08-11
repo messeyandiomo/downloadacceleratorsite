@@ -9,23 +9,9 @@
           var warn = 'This field must not be empty';
           
           if(!emptyName && !emptyPassword){
-            if(userAuth($('#connexionForm'))){
-              $(this).parents('.modal').modal('toggle');
-              $("#welcomemessage").html($('#connexionName').val() + " welcome to forums");
-              $('#welcome').modal('show');
-              setTimeout(
-                function(){
-                  $('#welcome').modal('toggle');
-                  window.open("{% url 'Discussion_forum:forums' %}" + "?username=" + $('#connexionName').val(),"_self");
-                }, 2000
-              );
-            }
-            else{
-              $('#connexionName').tooltip('enable').tooltip('show');
-              $('#connexionPassword').val('');
-              $('#connexionPassword').focus();
-              filledInput($('#connexionPassword'), $('#passwordDanger'));
-            }
+            userAuth($('#connexionForm'));
+            $('body').css('cursor', 'wait');
+            $(this).css('cursor', 'wait');
           }
           else if(emptyName && emptyPassword){
             dangerInput($('#connexionName'), $('#nameDanger'), $('#nameDanger small'), warn);
@@ -69,20 +55,25 @@
     
 
     function userAuth(connexionForm){
-        var ret = false;
         var serializedData = connexionForm.serialize();
         $.ajax({
-          async: false,
           type: 'POST',
           url: "{% url 'Discussion_forum:userauth' %}",
           data: serializedData,
           success: function(response){
+            $('body').css('cursor', 'default');
+            $('#connexionButton').css('cursor', 'pointer');
             if(response["auth"]){
-              ret = true;
+              window.open("{% url 'Discussion_forum:forums' %}" + "?username=" + $('#connexionName').val(),"_self");
+            }
+            else{
+              $('#connexionName').tooltip('enable').tooltip('show');
+              $('#connexionPassword').val('');
+              $('#connexionPassword').focus();
+              filledInput($('#connexionPassword'), $('#passwordDanger'));
             }
           }
         });
-        return ret;
     }
     
     

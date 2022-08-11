@@ -29,7 +29,7 @@
                 <form id="connexionForm" class="carousel-item active">
                   {% csrf_token %}
                   <div class="form-floating">
-                    <input type="text" id="connexionName" name="name" class="form-control" placeholder="">
+                    <input type="text" id="connexionName" name="name" class="form-control" data-toggle="tooltip" data-bs-placement="top" title="The username or password is not correct" placeholder="">
                     <label class="form-label" for="idusername">Username</label>
                   </div>
                   <div class="fst-italic text-white text-center" id="nameDanger">

@@ -51,8 +51,10 @@
           url: "{% url 'Discussion_forum:passwordreset' %}",
           data: serializedData,
           success: function(response){
-            $('#loadingpasswordreset').modal('hide');
-            window.open("/password_reset/done/", "_self");
+            if (response['reset']) {
+              $('#loadingpasswordreset').modal('hide');
+              window.open("/password_reset/done/", "_self");
+            }
           }
         });
       }
