@@ -3,7 +3,6 @@
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'Discussion_forum/forums.css' %}">
-
 {% endblock css %}
 
 {% block forums %}
@@ -88,6 +87,7 @@ style="background-color: white;"
 {% endblock copyrightstyle %}
 
 {% block js %}
+{{ block.super }}
 <script>
 $(
     function(){
