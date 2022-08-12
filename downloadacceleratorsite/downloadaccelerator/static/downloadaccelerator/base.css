@@ -100,10 +100,7 @@
     color: #4e7fa1;
     background-color: white;
   }
-
-  .wait {
-    cursor: wait;
-  }
+  
 
   .transparent-bg{
     background: rgba(0, 0, 0, 0);

@@ -104,7 +104,7 @@
                                     <div class="row">
                                         <label for="idMessage" class="col-sm-2 col-form-label">Message:</label>
                                         <div class="col-sm-8">
-                                            <textarea class="form-control" name="message" id="idMessage" rows="3"></textarea>
+                                            <textarea class="form-control" name="message" id="idMessage" rows="3" autofocus></textarea>
                                         </div>
                                     </div>
                                     <div class="fst-italic text-white text-center mb-2" id="idMessageDanger">
@@ -117,7 +117,7 @@
                             </form>
                             {% endif %}
                     {% else %}
-                    <!-- Ouput of the forumName disussion -->
+                    <!-- Ouput of the forumName discussions -->
                     <div class="forum-title">
                         <div class="pull-right forum-desc">
                             <small>Total posts: {{ count }}</small>
@@ -172,7 +172,7 @@
                                     <div class="row">
                                         <label for="idTopic" class="col-sm-2 col-form-label">Topic:</label>
                                         <div class="col-sm-8">
-                                            <input type="text" name="topic" id="idTopic" class="form-control">
+                                            <input type="text" name="topic" id="idTopic" class="form-control" autofocus>
                                         </div>
                                     </div>
                                     <div class="fst-italic text-white text-center mb-2" id="idTopicDanger">
@@ -263,6 +263,7 @@ style="background-color: white;"
 $(
     function(){
         {% include "downloadaccelerator/include/common.js" %}
+
         $('#idAddDiscussion').click(
             function(){
 
@@ -271,15 +272,9 @@ $(
                 var warn = 'This field must not be empty';
 
                 if(!emptyTopic && !emptyDetails){
-                    $(this).addClass('wait');
-                    if(addDiscussion($('#addDiscussionForm'))){
-                        $('#idTopic').val('');
-                        $('#idDetails').val('');
-                        /* reload current page */
-                        location.reload();
-                        $('#idTopic').focus();
-                    }
-                    $(this).removeClass('wait');
+                    addDiscussion($('#addDiscussionForm'));
+                    $('body').css('cursor', 'wait');
+                    $(this).css('cursor', 'wait');
                 }
                 else if(emptyTopic && !emptyDetails){
                     dangerInput($('#idTopic'), $('#idTopicDanger'), $('#idTopicDanger small'), warn);
@@ -306,50 +301,48 @@ $(
                    dangerInput($('#idMessage'), $('#idMessageDanger'), $('#idMessageDanger small'), warn); 
                 }
                 else{
-                    $(this).addClass('wait');
-                    if(addPost($('#addPostForm'))){
-                        $('#idMessage').val('');
-                        /* reload current page */
-                        location.reload();
-                        $('#idMessage').focus();
-                   }
-                   $(this).removeClass('wait');
+                    addPost($('#addPostForm'));
+                    $('body').css('cursor', 'wait');
+                    $(this).css('cursor', 'wait');
                 }
             }
         );
 
         function addDiscussion(addDiscussionForm){
-            var ret = false;
             var serializedData = addDiscussionForm.serialize();
             $.ajax({
-                async: false,
                 type: 'POST',
                 url: "{% url 'Discussion_forum:addInQuestion' %}",
                 data: serializedData,
                 success: function(response){
                     if(response["added"]){
-                    ret = true;
+                        $('body').css('cursor', 'default');
+                        $('#idAddDiscussion').css('cursor', 'pointer');
+                        $('#idTopic').val('');
+                        $('#idDetails').val('');
+                        /* reload current page */
+                        location.reload();
                     }
                 }
             });
-            return ret;
         }
 
         function addPost(addPostForm){
-            var ret = false;
             var serializedData = addPostForm.serialize();
             $.ajax({
-                async: false,
                 type: 'POST',
                 url: "{% url 'Discussion_forum:addInAnswer' %}",
                 data: serializedData,
                 success: function(response){
                     if(response["added"]){
-                    ret = true;
+                        $('body').css('cursor', 'default');
+                        $('#idAddPost').css('cursor', 'pointer');
+                        $('#idMessage').val('');
+                        /* reload current page */
+                        location.reload();
                     }
                 }
             });
-            return ret;
         }
     }
 );
