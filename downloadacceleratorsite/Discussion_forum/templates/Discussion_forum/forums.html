@@ -3,6 +3,21 @@
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'Discussion_forum/forums.css' %}">
+
+<!-- these scripts must be there to make tinymce to be excute better -->
+<script src="https://cdn.tiny.cloud/1/2cumpvm6pvez6f8vwyo13qudbi4e7o8zdsp097zyxh2er4wo/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink link lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+        toolbar: 'undo redo | link | formatpainter casechange blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist checklist outdent indent | removeformat | ' +
+                 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        branding: false
+    });
+</script>
 {% endblock css %}
 
 {% block forums %}
@@ -63,7 +78,7 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <a class="forum-item-title">{{ discussion.topic }}</a>
-                                    <div class="discussion-sub-title">{{ discussion.details }}</div>
+                                    <div class="discussion-sub-title">{{ discussion.details | safe }}</div>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +97,7 @@
                                         <div class="date">{{ a.date_created }}</div>
                                     </div>
                                     <div class="col-sm-8">
-                                        <div class="discussion-sub-title">{{ a.message }}</div>
+                                        <div class="discussion-sub-title">{{ a.message | safe }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +119,7 @@
                                     <div class="row">
                                         <label for="idMessage" class="col-sm-2 col-form-label">Message:</label>
                                         <div class="col-sm-8">
-                                            <textarea class="form-control" name="message" id="idMessage" rows="3" autofocus></textarea>
+                                            <textarea class="form-control" name="message" id="idMessage" autofocus></textarea>
                                         </div>
                                     </div>
                                     <div class="fst-italic text-white text-center mb-2" id="idMessageDanger">
@@ -138,7 +153,7 @@
                                         {% else %}
                                         <a href="{% url 'Discussion_forum:forums' forumName q.id %}" class="forum-item-title">{{ q.topic }}</a>
                                         {% endif %}
-                                        <div class="discussion-sub-title">{{ q.details }}</div>
+                                        <div class="discussion-sub-title">{{ q.details | safe }}</div>
                                     </div>
                                     <div class="col-sm-1 forum-info">
                                         <span class="views-number">{{ q.numberOfViews }}</span>
@@ -181,7 +196,7 @@
                                     <div class="row">
                                         <label for="idDetails" class="col-sm-2 col-form-label">Details:</label>
                                         <div class="col-sm-8">
-                                            <textarea class="form-control" name="details" id="idDetails" rows="3"></textarea>
+                                            <textarea class="form-control" name="details" id="idDetails"></textarea>
                                         </div>
                                     </div>
                                     <div class="fst-italic text-white text-center mb-2" id="idDetailsDanger">
@@ -259,19 +274,22 @@ style="background-color: white;"
 
 {% block js %}
 {{ block.super }}
+
 <script>
 $(
     function(){
+
         {% include "downloadaccelerator/include/common.js" %}
 
         $('#idAddDiscussion').click(
             function(){
 
                 var emptyTopic = ($('#idTopic').val().length === 0) ? true : false;
-                var emptyDetails = ($('#idDetails').val().length === 0) ? true : false;
+                var emptyDetails = (tinymce.activeEditor.getContent({format: 'text'}).trim().length === 0) ? true : false;
                 var warn = 'This field must not be empty';
 
                 if(!emptyTopic && !emptyDetails){
+                    $('#idDetails').val(tinymce.get('idDetails').getContent());
                     addDiscussion($('#addDiscussionForm'));
                     $('body').css('cursor', 'wait');
                     $(this).css('cursor', 'wait');
@@ -294,13 +312,14 @@ $(
         $('#idAddPost').click(
             function(){
 
-                var emptyMessage = ($('#idMessage').val().length === 0) ? true : false;
+                var emptyMessage = (tinymce.get('idMessage').getContent().trim().length === 0) ? true : false;
                 var warn = 'This field must not be empty';
 
                 if(emptyMessage){
                    dangerInput($('#idMessage'), $('#idMessageDanger'), $('#idMessageDanger small'), warn); 
                 }
                 else{
+                    $('#idMessage').val(tinymce.get('idMessage').getContent());
                     addPost($('#addPostForm'));
                     $('body').css('cursor', 'wait');
                     $(this).css('cursor', 'wait');
@@ -319,7 +338,8 @@ $(
                         $('body').css('cursor', 'default');
                         $('#idAddDiscussion').css('cursor', 'pointer');
                         $('#idTopic').val('');
-                        $('#idDetails').val('');
+                        /* reinitialize tinymce */
+                        tinyMCE.activeEditor.setContent('');
                         /* reload current page */
                         location.reload();
                     }
@@ -337,7 +357,8 @@ $(
                     if(response["added"]){
                         $('body').css('cursor', 'default');
                         $('#idAddPost').css('cursor', 'pointer');
-                        $('#idMessage').val('');
+                        /* reinitialize tinymce */
+                        tinymce.get('idMessage').setContent('');
                         /* reload current page */
                         location.reload();
                     }

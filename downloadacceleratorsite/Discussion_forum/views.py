@@ -14,6 +14,8 @@ from django.core.mail import send_mail
 import smtplib, ssl
 from email.mime.text import MIMEText
 
+import html
+
 # Create your views here.
 
 def loginUser(request):

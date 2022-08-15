@@ -1,3 +1,4 @@
+    /* forums banners */
     .forums-banner {
       background-image: url('images/banner-forums.png');
     }
@@ -17,6 +18,7 @@
     .linux-banner {
       background-image: url('images/banner-linux.png');
     }
+    
     
     .white-bg {
         background-color: #ffffff;
