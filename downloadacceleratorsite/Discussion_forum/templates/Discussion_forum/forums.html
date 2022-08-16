@@ -73,10 +73,14 @@
                         <div class="forum-item active">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <div class="discussion-username">{{ discussion.creator }}</div>
-                                    <div class="date">{{ discussion.date_created }}</div>
+                                    <div class="row">
+                                        <div class="discussion-username">{{ discussion.creator }}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="date">{{ discussion.date_created }}</div>
+                                    </div>
                                 </div>
-                                <div class="col-sm-8">
+                                <div class="col-sm-10">
                                     <a class="forum-item-title">{{ discussion.topic }}</a>
                                     <div class="discussion-sub-title">{{ discussion.details | safe }}</div>
                                 </div>
@@ -93,10 +97,14 @@
                             <div class="forum-item active">
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <div class="discussion-username">{{ a.poster }}</div>
-                                        <div class="date">{{ a.date_created }}</div>
+                                        <div class="row">
+                                            <div class="discussion-username">{{ a.poster }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="date">{{ a.date_created }}</div>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-10">
                                         <div class="discussion-sub-title">{{ a.message | safe }}</div>
                                     </div>
                                 </div>
@@ -143,11 +151,15 @@
                             {% for q in questionsList %}
                             <div class="forum-item active">
                                 <div class="row">
-                                    <div class="col-sm-2">
-                                        <div class="discussion-username">{{ q.username }}</div>
-                                        <div class="date">{{ q.date_created }}</div>
+                                    <div class="col-sm-2 col-md-2">
+                                        <div class="row">
+                                            <div class="discussion-username">{{ q.username }}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="date">{{ q.date_created }}</div>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-10 col-md-8">
                                         {% if username and username != '' %}
                                         <a href="{% url 'Discussion_forum:forums' forumName q.id %}?username={{ username }}" class="forum-item-title">{{ q.topic }}</a>
                                         {% else %}
@@ -155,13 +167,13 @@
                                         {% endif %}
                                         <div class="discussion-sub-title">{{ q.details | safe }}</div>
                                     </div>
-                                    <div class="col-sm-1 forum-info">
+                                    <div class="col-md-1 forum-info">
                                         <span class="views-number">{{ q.numberOfViews }}</span>
                                         <div>
                                             <small>Views</small>
                                         </div>
                                     </div>
-                                    <div class="col-sm-1 forum-info">
+                                    <div class="col-md-1 forum-info">
                                         <span class="views-number">{{ q.numberOfPosts }}</span>
                                         <div>
                                             <small>Posts</small>
@@ -219,7 +231,7 @@
                     {% for f in forumsList %}
                     <div class="forum-item active">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-sm-12 col-md-9">
                                 <div class="forum-icon">
                                     {% if f.name == 'dac' %}
                                     <img src="{% static 'Discussion_forum/images/dac-icon.jpg' %}" alt="downloadaccelerator icon" width="16" height="16">
