@@ -63,225 +63,221 @@
 
 {% block content %}
 <div class="container">
-<div class="row">
-    <div class="col-lg-12">
-        <div class="wrapper wrapper-content animated fadeInRight">
-            <div class="ibox-content forum-container">
-                {% if forumName %}
-                    {% if discussion %}
-                        <!-- The discussion creator name, topic and details -->
-                        <div class="forum-item active">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="row">
-                                        <div class="discussion-username">{{ discussion.creator }}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="date">{{ discussion.date_created }}</div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-10">
-                                    <a class="forum-item-title">{{ discussion.topic }}</a>
-                                    <div class="discussion-sub-title">{{ discussion.details | safe }}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="forum-title">
-                            <div class="pull-right forum-desc">
-                                <small>Total answers: {{ count }}</small>
-                            </div>
-                            <h3>Answers</h3>
-                        </div>
-                        {% if answersList %}
-                            {% for a in answersList %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content forum-container">
+                    {% if forumName %}
+                        {% if discussion %}
+                            <!-- The discussion creator name, topic and details -->
                             <div class="forum-item active">
                                 <div class="row">
                                     <div class="col-sm-2">
                                         <div class="row">
-                                            <div class="discussion-username">{{ a.poster }}</div>
+                                            <div class="discussion-username">{{ discussion.creator }}</div>
                                         </div>
                                         <div class="row">
-                                            <div class="date">{{ a.date_created }}</div>
+                                            <div class="date">{{ discussion.date_created }}</div>
                                         </div>
                                     </div>
                                     <div class="col-sm-10">
-                                        <div class="discussion-sub-title">{{ a.message | safe }}</div>
+                                        <a class="forum-item-title">{{ discussion.topic }}</a>
+                                        <div class="discussion-sub-title">{{ discussion.details | safe }}</div>
                                     </div>
                                 </div>
                             </div>
-                            {% endfor %}
-                        {% else %}
-                        <!-- The answers list is empty -->
-                        {% endif %}
-                        {% if username and username != '' %}
-                            <!-- Add discussion must be code here -->
-                            <form method="post" id="addPostForm">
-                            {% csrf_token %}
-                                <fieldset class="">
-                                    <div>
-                                        <input type="hidden" name="questionid" value="{{ discussion.id }}">
-                                    </div>
-                                    <div>
-                                        <input type="hidden" name="username" value="{{ username }}">
-                                    </div>
+                            <div class="forum-title">
+                                <div class="pull-right forum-desc">
+                                    <small>Total answers: {{ count }}</small>
+                                </div>
+                                <h3>Answers</h3>
+                            </div>
+                            {% if answersList %}
+                                {% for a in answersList %}
+                                <div class="forum-item active">
                                     <div class="row">
-                                        <label for="idMessage" class="col-sm-2 col-form-label">Message:</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" name="message" id="idMessage" autofocus></textarea>
+                                        <div class="col-sm-2">
+                                            <div class="row">
+                                                <div class="discussion-username">{{ a.poster }}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="date">{{ a.date_created }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <div class="discussion-sub-title">{{ a.message | safe }}</div>
                                         </div>
                                     </div>
-                                    <div class="fst-italic text-white text-center mb-2" id="idMessageDanger">
-                                        <small>This field must not be empty</small>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <input id="idAddPost" type="button" class="btn btn-primary" value="Add Post" style="float:right;">
-                                    </div>
-                                </fieldset>
-                            </form>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                            <!-- The answers list is empty -->
                             {% endif %}
-                    {% else %}
-                    <!-- Ouput of the forumName discussions -->
+                            {% if username and username != '' %}
+                                <!-- Add discussion must be code here -->
+                                <form method="post" id="addPostForm">
+                                {% csrf_token %}
+                                    <fieldset class="">
+                                        <div>
+                                            <input type="hidden" name="questionid" value="{{ discussion.id }}">
+                                        </div>
+                                        <div>
+                                            <input type="hidden" name="username" value="{{ username }}">
+                                        </div>
+                                        <div class="row">
+                                            <label for="idMessage" class="col-sm-2 col-form-label">Message:</label>
+                                            <div class="col-sm-8">
+                                                <textarea class="form-control" name="message" id="idMessage" autofocus></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="fst-italic text-white text-center mb-2" id="idMessageDanger">
+                                            <small>This field must not be empty</small>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <input id="idAddPost" type="button" class="btn btn-primary" value="Add Post" style="float:right;">
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                {% endif %}
+                        {% else %}
+                        <!-- Ouput of the forumName discussions -->
+                        <div class="forum-title">
+                            <div class="pull-right forum-desc">
+                                <small>Total posts: {{ count }}</small>
+                            </div>
+                            <h3>Discussions list</h3>
+                        </div>
+                            {% if questionsList %}
+                                {% for q in questionsList %}
+                                <div class="forum-item active">
+                                    <div class="row">
+                                        <div class="col-sm-2 col-md-2">
+                                            <div class="row">
+                                                <div class="discussion-username">{{ q.username }}</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="date">{{ q.date_created }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-10 col-md-8">
+                                            {% if username and username != '' %}
+                                            <a href="{% url 'Discussion_forum:forums' forumName q.id %}?username={{ username }}" class="forum-item-title">{{ q.topic }}</a>
+                                            {% else %}
+                                            <a href="{% url 'Discussion_forum:forums' forumName q.id %}" class="forum-item-title">{{ q.topic }}</a>
+                                            {% endif %}
+                                            <div class="discussion-sub-title">{{ q.details | safe }}</div>
+                                        </div>
+                                        <div class="col-md-1 forum-info">
+                                            <span class="views-number">{{ q.numberOfViews }}</span>
+                                            <div>
+                                                <small>Views</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 forum-info">
+                                            <span class="views-number">{{ q.numberOfPosts }}</span>
+                                            <div>
+                                                <small>Posts</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                            <!-- The questions list is empty -->
+                            {% endif %}
+                            {% if username and username != '' %}
+                                <!-- Add discussion must be code here -->
+                                <form method="post" id="addDiscussionForm">
+                                {% csrf_token %}
+                                    <fieldset class="">
+                                        <div>
+                                            <input type="hidden" name="forumname" value="{{ forumName }}">
+                                        </div>
+                                        <div>
+                                            <input type="hidden" name="username" value="{{ username }}">
+                                        </div>
+                                        <div class="row">
+                                            <label for="idTopic" class="col-sm-2 col-form-label">Topic:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="topic" id="idTopic" class="form-control" autofocus>
+                                            </div>
+                                        </div>
+                                        <div class="fst-italic text-white text-center mb-2" id="idTopicDanger">
+                                            <small>This field must not be empty</small>
+                                        </div>
+                                        <div class="row">
+                                            <label for="idDetails" class="col-sm-2 col-form-label">Details:</label>
+                                            <div class="col-sm-8">
+                                                <textarea class="form-control" name="details" id="idDetails"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="fst-italic text-white text-center mb-2" id="idDetailsDanger">
+                                            <small>This field must not be empty</small>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <input id="idAddDiscussion" type="button" class="btn btn-primary" value="Add Discussion" style="float:right;">
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            {% endif %}
+                        {% endif %}
+                    {% elif forumsList %}
                     <div class="forum-title">
                         <div class="pull-right forum-desc">
                             <small>Total posts: {{ count }}</small>
                         </div>
-                        <h3>Discussions list</h3>
+                        <h3>Forums list</h3>
                     </div>
-                        {% if questionsList %}
-                            {% for q in questionsList %}
-                            <div class="forum-item active">
-                                <div class="row">
-                                    <div class="col-sm-2 col-md-2">
-                                        <div class="row">
-                                            <div class="discussion-username">{{ q.username }}</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="date">{{ q.date_created }}</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-10 col-md-8">
-                                        {% if username and username != '' %}
-                                        <a href="{% url 'Discussion_forum:forums' forumName q.id %}?username={{ username }}" class="forum-item-title">{{ q.topic }}</a>
+                        {% for f in forumsList %}
+                        <div class="forum-item active">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-9">
+                                    <div class="forum-icon">
+                                        {% if f.name == 'dac' %}
+                                        <img src="{% static 'Discussion_forum/images/dac-icon.jpg' %}" alt="downloadaccelerator icon" width="16" height="16">
+                                        {% elif f.name == 'django' %}
+                                        <i class="fab fa-python"></i>
                                         {% else %}
-                                        <a href="{% url 'Discussion_forum:forums' forumName q.id %}" class="forum-item-title">{{ q.topic }}</a>
+                                        <i class="fab fa-{{ f.name }}"></i>
                                         {% endif %}
-                                        <div class="discussion-sub-title">{{ q.details | safe }}</div>
                                     </div>
-                                    <div class="col-md-1 forum-info">
-                                        <span class="views-number">{{ q.numberOfViews }}</span>
-                                        <div>
-                                            <small>Views</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1 forum-info">
-                                        <span class="views-number">{{ q.numberOfPosts }}</span>
-                                        <div>
-                                            <small>Posts</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        {% else %}
-                        <!-- The questions list is empty -->
-                        {% endif %}
-                        {% if username and username != '' %}
-                            <!-- Add discussion must be code here -->
-                            <form method="post" id="addDiscussionForm">
-                            {% csrf_token %}
-                                <fieldset class="">
-                                    <div>
-                                        <input type="hidden" name="forumname" value="{{ forumName }}">
-                                    </div>
-                                    <div>
-                                        <input type="hidden" name="username" value="{{ username }}">
-                                    </div>
-                                    <div class="row">
-                                        <label for="idTopic" class="col-sm-2 col-form-label">Topic:</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" name="topic" id="idTopic" class="form-control" autofocus>
-                                        </div>
-                                    </div>
-                                    <div class="fst-italic text-white text-center mb-2" id="idTopicDanger">
-                                        <small>This field must not be empty</small>
-                                    </div>
-                                    <div class="row">
-                                        <label for="idDetails" class="col-sm-2 col-form-label">Details:</label>
-                                        <div class="col-sm-8">
-                                            <textarea class="form-control" name="details" id="idDetails"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="fst-italic text-white text-center mb-2" id="idDetailsDanger">
-                                        <small>This field must not be empty</small>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <input id="idAddDiscussion" type="button" class="btn btn-primary" value="Add Discussion" style="float:right;">
-                                    </div>
-                                </fieldset>
-                            </form>
-                        {% endif %}
-                    {% endif %}
-                {% elif forumsList %}
-                <div class="forum-title">
-                    <div class="pull-right forum-desc">
-                        <small>Total posts: {{ count }}</small>
-                    </div>
-                    <h3>Forums list</h3>
-                </div>
-                    {% for f in forumsList %}
-                    <div class="forum-item active">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-9">
-                                <div class="forum-icon">
-                                    {% if f.name == 'dac' %}
-                                    <img src="{% static 'Discussion_forum/images/dac-icon.jpg' %}" alt="downloadaccelerator icon" width="16" height="16">
-                                    {% elif f.name == 'django' %}
-                                    <i class="fab fa-python"></i>
+                                    {% if username and username != '' %}
+                                    <a href="{% url 'Discussion_forum:forums' f.name %}?username={{ username }}" class="forum-item-title">{{ f.title }}</a>
                                     {% else %}
-                                    <i class="fab fa-{{ f.name }}"></i>
+                                    <a href="{% url 'Discussion_forum:forums' f.name %}" class="forum-item-title">{{ f.title }}</a>
                                     {% endif %}
+                                    <div class="forum-sub-title">{{ f.description }}</div>
                                 </div>
-                                {% if username and username != '' %}
-                                <a href="{% url 'Discussion_forum:forums' f.name %}?username={{ username }}" class="forum-item-title">{{ f.title }}</a>
-                                {% else %}
-                                <a href="{% url 'Discussion_forum:forums' f.name %}" class="forum-item-title">{{ f.title }}</a>
-                                {% endif %}
-                                <div class="forum-sub-title">{{ f.description }}</div>
-                            </div>
-                            <div class="col-md-1 forum-info">
-                                <span class="views-number">{{ f.numberOfViews }}</span>
-                                <div>
-                                    <small>Views</small>
+                                <div class="col-md-1 forum-info">
+                                    <span class="views-number">{{ f.numberOfViews }}</span>
+                                    <div>
+                                        <small>Views</small>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-1 forum-info">
-                                <span class="views-number">{{ f.numberOfTopics }}</span>
-                                <div>
-                                    <small>Topics</small>
+                                <div class="col-md-1 forum-info">
+                                    <span class="views-number">{{ f.numberOfTopics }}</span>
+                                    <div>
+                                        <small>Topics</small>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-1 forum-info">
-                                <span class="views-number">{{ f.numberOfPosts }}</span>
-                                <div>
-                                    <small>Posts</small>
+                                <div class="col-md-1 forum-info">
+                                    <span class="views-number">{{ f.numberOfPosts }}</span>
+                                    <div>
+                                        <small>Posts</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {% endfor %}
-                {% else %}
-                <!-- The forums list is empty -->
-                {% endif %}
+                        {% endfor %}
+                    {% else %}
+                    <!-- The forums list is empty -->
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
 </div>
-  </div>
 {% endblock content %}
-
-{% block copyrightstyle %}
-style="background-color: white;"
-{% endblock copyrightstyle %}
 
 
 {% block js %}

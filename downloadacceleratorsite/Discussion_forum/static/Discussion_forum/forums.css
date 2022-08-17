@@ -18,6 +18,10 @@
     .linux-banner {
       background-image: url('images/banner-linux.png');
     }
+
+    footer{
+      background-color: white !important;
+    }
     
     
     .white-bg {
