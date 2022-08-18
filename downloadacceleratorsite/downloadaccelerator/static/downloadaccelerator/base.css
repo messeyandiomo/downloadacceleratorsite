@@ -1,14 +1,16 @@
   body{
     overflow-y: scroll;
   }
+
   
-  nav .navbar-nav li .nav-link:hover{
+  
+  .navbar-nav li .nav-link:hover{
     
     color: #4e7fa1 !important;
   }
 
 
-  nav .navbar-nav li .active{
+  .navbar-nav li .active{
     color: #4e7fa1 !important;
   }
 
@@ -34,23 +36,7 @@
       font-weight: bold;
   }
 
-  /*
-  .container-banner{
-    display: inline-block;
-    position: absolute;
-    z-index: 2;
-  }
-
-
-  .main-banner img {
-    z-index: 1;
-  }
   
-
-  .text-banner{
-    margin-left: 5%;
-  }
-  */
 
   .navbar-toggler{
     color: #4e7fa1 !important;
@@ -64,8 +50,8 @@
   .dropdown-menu, .navbar-toggler {
     border: none;
   }
-
-  .dropdown>.dropdown-menu, #idusersettings {
+  
+  .dropdown>.dropdown-menu {
     display: none;
     margin-top: 10px;
     margin-left: 9px;
@@ -109,10 +95,17 @@
 
 
 
-/* Small devices (landscape phones, 544px and up) */
+/* Small devices (landscape phones, 320px and up) */
 @media (min-width: 320px) {
   h1 {font-size: 1.25rem;} /*1rem = 16px*/
   h2 {font-size:1rem;} /*1rem = 16px*/
+  p, .installationInstructions li {font-size: 0.75rem;}
+}
+
+/* Medium devices (landscape phones, 544px and up) */
+@media (min-width: 544px) {
+  h1 {font-size: 2rem;} /*1rem = 16px*/
+  h2 {font-size:1.5rem;} /*1rem = 16px*/
   p, .installationInstructions li {font-size: 0.75rem;}
 }
  
@@ -121,5 +114,22 @@
   h1 {font-size:2.5rem;} /*1rem = 16px*/ 
   h2 {font-size:2rem;} /*1rem = 16px*/
   p, .installationInstructions li {font-size: 1rem;}
+/*
+  .nav{
+    position: relative;
+  }
+  .navbar-brand{
+    position: absolute;
+    left: 10px;
+    top: auto;
+  }
+  .navbar-collapse{
+    position: relative;
+    margin-left: 200px;
+  }
+  #iduseritem{
+    position: absolute;
+    right: 0px;
+  }*/
 }
  

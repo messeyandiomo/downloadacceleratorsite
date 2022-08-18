@@ -83,10 +83,8 @@
             </ul>
           </div>
           {% if username and username != '' %}
-          <div class="order-lg-2">
-            <a class="btn" href="" id="idbuttonuser">
-              {{ username }}
-            </a>
+          <div class="order-lg-2 dropdown" id="iduseritem">
+            <a class="btn" href="" data-bs-toggle="dropdown" aria-expanded="false" id="idbuttonuser">{{ username }}</a>
             <ul class="dropdown-menu" id="idusersettings" aria-labelledby="idbuttonuser">
               <li><a class="dropdown-item user-setting-item" role="button" href="{% url 'Discussion_forum:logout' %}?username={{ username }}">Sign Out</a></li>
             </ul>

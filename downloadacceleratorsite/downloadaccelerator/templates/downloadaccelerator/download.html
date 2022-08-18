@@ -17,7 +17,16 @@
       <div class="col-12">
         <h1 class="text-light">Download Accelerator Features</h1>
         <p class="text-light font-bold">Explore all Download Accelerator features</p>
-        <button type="button" class="btn btn-success font-bold btn-download">TRY DOWNLOAD ACCELERATOR</button>
+        <div class="row">
+          <div class="col-12">
+            <button type="button" class="btn btn-success font-bold btn-download d-none d-lg-inline">TRY DOWNLOAD ACCELERATOR</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <button type="button" class="btn btn-success btn-sm font-bold btn-download d-lg-none">TRY DOWNLOAD ACCELERATOR</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -27,7 +36,7 @@
 {% block content %}
 <div class="container">
     <div class="row g-5">
-      <div class="col-sm-12 col-lg-6">
+      <div class="col-12">
         <div class="p-3">
           <h2>Registration</h2>
           {% if username and username != '' %}
