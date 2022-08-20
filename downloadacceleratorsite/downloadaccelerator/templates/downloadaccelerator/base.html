@@ -32,7 +32,7 @@
           <!--navigation-->
           <div class="collapse navbar-collapse order-1" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item">
+              <li class="nav-item responsive-item">
                 {% block home %}
                 {% if username and username != '' %}
                 <a class="nav-link text-dark" style="font-weight: bold;" aria-current="page" href="{% url 'downloadaccelerator:home' %}?username={{ username }}">Home</a>
@@ -41,7 +41,7 @@
                 {% endif %}
                 {% endblock home %}
               </li>
-              <li class="nav-item">
+              <li class="nav-item responsive-item">
                 {% block features %}
                 {% if username and username != '' %}
                 <a id="features" class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:features' %}?username={{ username }}">Features</a>
@@ -50,7 +50,7 @@
                 {% endif %}
                 {% endblock features %}
               </li>
-              <li class="nav-item">
+              <li class="nav-item responsive-item">
                 {% block aboutAuthor %}
                 {% if username and username != '' %}
                 <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:aboutauthor' %}?username={{ username }}">About Author</a>
@@ -59,7 +59,7 @@
                 {% endif %}
                 {% endblock aboutAuthor %}
               </li>
-              <li class="nav-item">
+              <li class="nav-item responsive-item">
                 {% block download %}
                 {% if username and username != '' %}
                 <a class="nav-link text-dark" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}?username={{ username }}">Download</a>
@@ -68,14 +68,14 @@
                 {% endif %}
                 {% endblock download %}
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown responsive-item">
                 {% block forums %}
                 <a class="nav-link text-dark" data-bs-toggle="dropdown" aria-expanded="false" id="forumsList" style="font-weight: bold;" href="#">Forums</a>
                 {% endblock forums %}
                 <ul class="dropdown-menu" id="forumsMenu" aria-labelledby="formusList">
                 </ul>
               </li>
-              <li class="nav-item">
+              <li class="nav-item responsive-item">
                 {% block admin %}
                 <a class="nav-link text-white disabled" style="font-weight: bold;">Admin</a>
                 {% endblock admin %}
@@ -86,7 +86,7 @@
           <div class="order-lg-2 dropdown" id="iduseritem">
             <a class="btn" href="" data-bs-toggle="dropdown" aria-expanded="false" id="idbuttonuser">{{ username }}</a>
             <ul class="dropdown-menu" id="idusersettings" aria-labelledby="idbuttonuser">
-              <li><a class="dropdown-item user-setting-item" role="button" href="{% url 'Discussion_forum:logout' %}?username={{ username }}">Sign Out</a></li>
+              <li class="responsive-item"><a class="dropdown-item user-setting-item" role="button" href="{% url 'Discussion_forum:logout' %}?username={{ username }}">Sign Out</a></li>
             </ul>
           </div>
           {% endif %}
@@ -154,6 +154,7 @@
                   eltA.href = "{% url 'Discussion_forum:forums' 'elt' %}".replace('elt', element.name);
                   {% endif %}
                   eltLi = document.createElement('li');
+                  eltLi.classList.add('responsive-item');
                   eltLi.appendChild(eltA);
                   $('#forumsMenu').append(eltLi);
                 });

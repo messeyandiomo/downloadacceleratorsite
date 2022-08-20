@@ -29,7 +29,7 @@
                             <a role="button"  class="btn btn-outline-primary  effect" href="#">READ BLOG</a>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-4 text-center networkslinks">
+                    <div class="col-md-4 d-none d-md-block text-center networkslinks">
                         <div class="row p-1">
                             <a class="link facebook" href="http://web.facebook.com/bilal.luqman.5">
                                 <i class="fab fa-facebook-f" aria-hidden="true"></i>
@@ -46,6 +46,17 @@
                             </a>
                         </div>
                     </div>
+                </div>
+                <div class="d-block d-sm-block d-md-none text-center networkslinks-sm">
+                    <a class="link facebook" href="http://web.facebook.com/bilal.luqman.5">
+                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    </a>
+                    <a class="link github mx-5" href="https://github.com/messey-bilal">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a class="link linkedin" href="https://cm.linkedin.com/in/messey-a-ndiomo-andre-ebenezer-7547bb98">
+                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -64,15 +75,33 @@
 <script>
 $(
     function(){
-        $('.frlandev, .comment, .blogbuttons, .networkslinks, .aboutauthorimage').hide();
+        $('.frlandev, .comment, .blogbuttons, .networkslinks, .networkslinks-sm, .aboutauthorimage').hide();
         $('.frlandev').fadeIn('slow', function(){
             $('.comment').fadeIn('slow', function(){
                 $('.blogbuttons').fadeIn('slow', function(){
-                    $('.networkslinks').fadeIn('slow', function(){
-                        $('.aboutauthorimage').fadeIn('slow');
-                    });
+                    if($(window).width() > 768){
+                        $('.networkslinks').css('visibility', 'visible');
+                        $('.networkslinks').fadeIn('slow', function(){
+                            $('.aboutauthorimage').fadeIn('slow');
+                        });
+                    }
+                    else{
+                        $('.networkslinks-sm').css('visibility', 'visible');
+                        $('.networkslinks-sm').fadeIn('slow', function(){
+                            $('.aboutauthorimage').fadeIn('slow');
+                        });
+                    }
                 });
             });
+        });
+
+        $(window).on('resize', function(){
+            if($(window).width() > 768){
+                $('.networkslinks').css('visibility', 'visible');
+            }
+            else{
+                $('.networkslinks-sm').css('visibility', 'visible');
+            }
         });
     }
 );
