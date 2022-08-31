@@ -21,7 +21,7 @@
   <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white shadow">
         <div class="container">
-          <a class="navbar-brand text-dark" style="font-weight: bold;" href="#">
+          <a class="navbar-brand text-dark" style="font-weight: bold;" href="#" translate="no">
             <img src="{% static 'downloadaccelerator/images/daclogo.png' %}" alt="" width="25" height="25" class="d-inline-block align-text-top">
             Download Accelerator
           </a>
@@ -155,6 +155,7 @@
                   {% endif %}
                   eltLi = document.createElement('li');
                   eltLi.classList.add('responsive-item');
+                  eltLi.classList.add('notranslate');
                   eltLi.appendChild(eltA);
                   $('#forumsMenu').append(eltLi);
                 });
