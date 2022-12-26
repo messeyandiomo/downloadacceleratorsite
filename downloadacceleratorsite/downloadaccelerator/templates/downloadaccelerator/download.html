@@ -54,14 +54,32 @@
           <br>
           
           <h2>Installation Instructions</h2>
+          <p>
+            You must have a linux distribution installed on your computer and the browser FireFox installed.<br>
+            After that, install Download Accelerator module integration of <a href="https://addons.mozilla.org/fr/firefox/addon/download_accelerator/">FireFox</a>.<br>
+            Now you have two possibilities:
+          </p>
+          
+          <h4>Installation by debian package</h4>
           <ul class="installationInstructions">
-            <li>First of all, You must have a linux distribution installed on your computer and the browser FireFox installed.</li>
-            <li>Then, install Download Accelerator module integration of <a href="https://addons.mozilla.org/fr/firefox/addon/download_accelerator/">FireFox</a>.</li>
-            <li>If you dont have snapstore installed, install it by typing on your favorite terminal <strong>sudo snap install snap-store</strong> on Ubuntu or <strong>snap install snap-store</strong> in superuser on others distributions.</li>
+            <li>Download the gpg public key which you use to verify the authenticity of debian package <a href="https://github.com/messey-bilal/downloadaccelerator-3.1.gpg">here</a></li>
+            <li>Import the key by typing <strong>gpg --import downloadaccelerator-<i>VERSION</i>.gpg</strong> on terminal</li>
+            <li>Download debian package <a href="{% static 'downloadaccelerator/downloadaccelerator-3.1.deb' %}">here</a></li>
+            <li>Verify that the debian package is the authentic one by typing <strong>dpkg-sig --verify downloadaccelerator-<i>VERSION</i>.deb</strong> to the terminal</li>
+            <li>If the package is authentic, install it by typing <strong>dpkg -i downloadaccelerator-<i>VERSION.deb</i></strong> on terminal</li>
+            <li>Restart computer</li>
+            <li>Download Accelerator is ready</li>
+          </ul>
+
+          <p style="font-weight: bold;">Or</p>
+
+          <h4>Installation by snapstore</h4>
+          <ul class="installationInstructions">
+            <li>If you do not have snapstore installed, install it by typing on your favourite terminal <strong>sudo snap install snap-store</strong> on Ubuntu or <strong>snap install snap-store</strong> in superuser on others distributions.</li>
             <li>Install the Download Accelerator snap from <strong>snap-store</strong>.</li>
             <li>Launch Download Accelerator. This step is very important, to let the configuration of Download Accelerator snap.</li>
-            <li>Retart your user session</li>
-            <li>Once you are restart your session, Download Accelerator is ready to be use.</li>
+            <li>Restart your user session</li>
+            <li>Once you are restart your session, Download Accelerator is ready to be used.</li>
           </ul>
             
         </div>
