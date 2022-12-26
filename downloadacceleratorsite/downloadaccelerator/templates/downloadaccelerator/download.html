@@ -62,9 +62,12 @@
           
           <h4>Installation by debian package</h4>
           <ul class="installationInstructions">
-            <li>Download the gpg public key which you use to verify the authenticity of debian package <a href="https://github.com/messey-bilal/downloadaccelerator-3.1.gpg">here</a></li>
+            <li>Download the gpg public key which you use to verify the authenticity of debian package <a href="https://github.com/messey-bilal/downloadacceleratorkeys">here</a></li>
             <li>Import the key by typing <strong>gpg --import downloadaccelerator-<i>VERSION</i>.gpg</strong> on terminal</li>
-            <li>Download debian package <a href="{% static 'downloadaccelerator/downloadaccelerator-3.1.deb' %}">here</a></li>
+            <li>Get a debian package corresponding to the gpg public key version down below</li>
+              <ul>
+                <li><a href="{% static 'downloadaccelerator/downloadaccelerator-3.1.deb' %}">downloadaccelerator-3.1</a></li>
+              </ul>
             <li>Verify that the debian package is the authentic one by typing <strong>dpkg-sig --verify downloadaccelerator-<i>VERSION</i>.deb</strong> to the terminal</li>
             <li>If the package is authentic, install it by typing <strong>dpkg -i downloadaccelerator-<i>VERSION.deb</i></strong> on terminal</li>
             <li>Restart computer</li>
