@@ -1,109 +1,196 @@
-{% extends "downloadaccelerator/base.html" %}
-{% load static %}
-
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{% static 'downloadaccelerator/jquery-ui.min.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'downloadaccelerator/download.css' %}">
-{% endblock css %}
-
-{% block download %}
-<a class="nav-link active" style="font-weight: bold;" href="{% url 'downloadaccelerator:download' %}">Download</a>
-{% endblock download %}
-
-{% block banner %}
+{% extends "downloadaccelerator/base.html" %} {% load static %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'downloadaccelerator/jquery-ui.min.css' %}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'downloadaccelerator/download.css' %}"
+/>
+{% endblock css %} {% block download %}
+<a
+  class="nav-link active"
+  style="font-weight: bold"
+  href="{% url 'downloadaccelerator:download' %}"
+  >Download</a
+>
+{% endblock download %} {% block banner %}
 <header class="banner-properties download-banner">
   <div class="container h-100">
     <div class="row h-100 align-items-center">
       <div class="col-12">
         <h1 class="text-light">Download Accelerator Features</h1>
-        <p class="text-light font-bold">Explore all Download Accelerator features</p>
+        <p class="text-light font-bold">
+          Explore all Download Accelerator features
+        </p>
         <div class="row">
           <div class="col-12">
-            <button type="button" class="btn btn-success font-bold btn-download d-none d-lg-inline">TRY DOWNLOAD ACCELERATOR</button>
+            <button
+              type="button"
+              class="btn btn-success font-bold btn-download d-none d-lg-inline"
+            >
+              TRY DOWNLOAD ACCELERATOR
+            </button>
           </div>
         </div>
         <div class="row">
           <div class="col-12">
-            <button type="button" class="btn btn-success btn-sm font-bold btn-download d-lg-none">TRY DOWNLOAD ACCELERATOR</button>
+            <button
+              type="button"
+              class="btn btn-success btn-sm font-bold btn-download d-lg-none"
+            >
+              TRY DOWNLOAD ACCELERATOR
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </header>
-{% endblock banner %}
-
-{% block content %}
+{% endblock banner %} {% block content %}
 <div class="container">
-    <div class="row g-5">
-      <div class="col-12">
-        <div class="p-3">
-          <h2>Registration</h2>
-          {% if username and username != '' %}
-          <p>Thus, you may access to the <a>forums</a> and if you have any questions about Download Accelerator, you will contact its conceptor. So you can register <a>here</a>.</p>
-          {% else %}
-          <p>Thus, you may access to the <a id="idforumconnexion" href="" data-bs-toggle="modal" data-bs-target="#modal-connexion">forums</a> and if you have any questions about Download Accelerator, you will contact its conceptor. So you can register <a id="idforumregistration" data-bs-toggle="modal" data-bs-target="#modal-registration" href="">here</a>.</p>
-          {% include "downloadaccelerator/include/modalregistration.html" %}
-          {% include "downloadaccelerator/include/modalconnexion.html" %}
-          {% include "downloadaccelerator/include/modalforgetpass.html" %}
-          {% include "downloadaccelerator/include/modalwelcome.html" %}
-          {% include "downloadaccelerator/include/modalloadingpasswordreset.html" %}
-          {% endif %}
-          
-          
-          <br>
-          
-          <h2>Installation Instructions</h2>
-          <p>
-            You must have a linux distribution installed on your computer and the browser FireFox installed.<br>
-            After that, install Download Accelerator module integration of <a href="https://addons.mozilla.org/fr/firefox/addon/download_accelerator/">FireFox</a>.<br>
-            Now you have two possibilities:
-          </p>
-          
-          <h4>Installation by debian package</h4>
-          <ul class="installationInstructions">
-            <li>Download the gpg public key which you use to verify the authenticity of debian package <a href="https://github.com/messey-bilal/downloadacceleratorkeys">here</a></li>
-            <li>Import the key by typing <strong>gpg --import downloadaccelerator-<i>VERSION</i>.gpg</strong> on terminal</li>
-            <li>Get a debian package corresponding to the gpg public key version down below</li>
-              <ul>
-                <li><a href="{% static 'downloadaccelerator/downloadaccelerator-3.1.deb' %}">downloadaccelerator-3.1</a></li>
-              </ul>
-            <li>Verify that the debian package is the authentic one by typing <strong>dpkg-sig --verify downloadaccelerator-<i>VERSION</i>.deb</strong> to the terminal</li>
-            <li>If the package is authentic, install it by typing <strong>dpkg -i downloadaccelerator-<i>VERSION.deb</i></strong> on terminal</li>
-            <li>Restart computer</li>
-            <li>Download Accelerator is ready</li>
-          </ul>
+  <div class="row g-5">
+    <div class="col-12">
+      <div class="p-3">
+        <h2>Registration</h2>
+        {% if username and username != '' %}
+        <p>
+          Thus, you may access to the <a>forums</a> and if you have any
+          questions about Download Accelerator, you will contact its conceptor.
+          So you can register <a>here</a>.
+        </p>
+        {% else %}
+        <p>
+          Thus, you may access to the
+          <a
+            id="idforumconnexion"
+            href=""
+            data-bs-toggle="modal"
+            data-bs-target="#modal-connexion"
+            >forums</a
+          >
+          and if you have any questions about Download Accelerator, you will
+          contact its conceptor. So you can register
+          <a
+            id="idforumregistration"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-registration"
+            href=""
+            >here</a
+          >.
+        </p>
+        {% include "downloadaccelerator/include/modalregistration.html" %} {%
+        include "downloadaccelerator/include/modalconnexion.html" %} {% include
+        "downloadaccelerator/include/modalforgetpass.html" %} {% include
+        "downloadaccelerator/include/modalwelcome.html" %} {% include
+        "downloadaccelerator/include/modalloadingpasswordreset.html" %} {% endif
+        %}
 
-          <p style="font-weight: bold;">Or</p>
+        <br />
 
-          <h4>Installation by snapstore</h4>
-          <ul class="installationInstructions">
-            <li>If you do not have snapstore installed, install it by typing on your favourite terminal <strong>sudo snap install snap-store</strong> on Ubuntu or <strong>snap install snap-store</strong> in superuser on others distributions.</li>
-            <li>Install the Download Accelerator snap from <strong>snap-store</strong>.</li>
-            <li>Launch Download Accelerator. This step is very important, to let the configuration of Download Accelerator snap.</li>
-            <li>Restart your user session</li>
-            <li>Once you are restart your session, Download Accelerator is ready to be used.</li>
+        <h2>Installation Instructions</h2>
+        <p>
+          You must have a linux distribution installed on your computer and the
+          browser FireFox installed.<br />
+          After that, install Download Accelerator module integration of
+          <a
+            href="https://addons.mozilla.org/fr/firefox/addon/download_accelerator/"
+            >FireFox</a
+          >.<br />
+          Now you have two possibilities:
+        </p>
+
+        <h4>Installation by debian package</h4>
+        <ul class="installationInstructions">
+          <li>
+            Download the gpg public key which you use to verify the authenticity
+            of debian package
+            <a href="https://github.com/messey-bilal/downloadacceleratorkeys"
+              >here</a
+            >
+          </li>
+          <li>
+            Import the key by typing
+            <strong>gpg --import downloadaccelerator-<i>VERSION</i>.gpg</strong>
+            on terminal
+          </li>
+          <li>
+            Get a debian package corresponding to the gpg public key version
+            down below
+          </li>
+          <ul>
+            <li>
+              <a
+                href="{% static 'downloadaccelerator/downloadaccelerator-3.2.deb' %}"
+                >downloadaccelerator-3.2</a
+              >
+            </li>
+            <li>
+              <a
+                href="{% static 'downloadaccelerator/downloadaccelerator-3.1.deb' %}"
+                >downloadaccelerator-3.1</a
+              >
+            </li>
           </ul>
-            
-        </div>
+          <li>
+            Verify that the debian package is the authentic one by typing
+            <strong
+              >dpkg-sig --verify downloadaccelerator-<i>VERSION</i>.deb</strong
+            >
+            to the terminal
+          </li>
+          <li>
+            If the package is authentic, install it by typing
+            <strong>dpkg -i downloadaccelerator-<i>VERSION.deb</i></strong> on
+            terminal
+          </li>
+          <li>Restart computer</li>
+          <li>Download Accelerator is ready</li>
+        </ul>
+
+        <p style="font-weight: bold">Or</p>
+
+        <h4>Installation by snapstore</h4>
+        <ul class="installationInstructions">
+          <li>
+            If you do not have snapstore installed, install it by typing on your
+            favourite terminal <strong>sudo snap install snap-store</strong> on
+            Ubuntu or <strong>snap install snap-store</strong> in superuser on
+            others distributions.
+          </li>
+          <li>
+            Install the Download Accelerator snap from
+            <strong>snap-store</strong>.
+          </li>
+          <li>
+            Launch Download Accelerator. This step is very important, to let the
+            configuration of Download Accelerator snap.
+          </li>
+          <li>Restart your user session</li>
+          <li>
+            Once you are restart your session, Download Accelerator is ready to
+            be used.
+          </li>
+        </ul>
       </div>
     </div>
+  </div>
 </div>
-{% endblock content %}
-
-
-{% block js %}
-{{ block.super }}
-<script type="text/javascript" src="{% static 'downloadaccelerator/jquery-ui.min.js' %}"></script>
+{% endblock content %} {% block js %} {{ block.super }}
+<script
+  type="text/javascript"
+  src="{% static 'downloadaccelerator/jquery-ui.min.js' %}"
+></script>
 <script>
-$(
-  function(){
-    {% include "downloadaccelerator/include/common.js" %}
-    {% include "downloadaccelerator/include/modalregistration.js" %}
-    {% include "downloadaccelerator/include/modalconnexion.js" %}
-    {% include "downloadaccelerator/include/modalforgetpass.js" %}
-  }
-);
+  $(
+    function(){
+      {% include "downloadaccelerator/include/common.js" %}
+      {% include "downloadaccelerator/include/modalregistration.js" %}
+      {% include "downloadaccelerator/include/modalconnexion.js" %}
+      {% include "downloadaccelerator/include/modalforgetpass.js" %}
+    }
+  );
 </script>
 {% endblock js %}
-

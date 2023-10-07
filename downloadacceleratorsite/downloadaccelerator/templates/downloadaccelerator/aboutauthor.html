@@ -1,108 +1,131 @@
-{% extends "downloadaccelerator/base.html" %}
-{% load static %}
-
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{% static 'downloadaccelerator/aboutauthor.css' %}">
-{% endblock css %}
-
-{% block aboutAuthor %}
-<a class="nav-link active" style="font-weight: bold;" aria-current="page" href="{% url 'downloadaccelerator:aboutauthor' %}">About Author</a>
-{% endblock aboutAuthor %}
-
-{% block content %}
+{% extends "downloadaccelerator/base.html" %} {% load static %} {% block css %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'downloadaccelerator/aboutauthor.css' %}"
+/>
+{% endblock css %} {% block aboutAuthor %}
+<a
+  class="nav-link active"
+  style="font-weight: bold"
+  aria-current="page"
+  href="{% url 'downloadaccelerator:aboutauthor' %}"
+  >About Author</a
+>
+{% endblock aboutAuthor %} {% block content %}
 <div class="container">
-    <div class="row g-5 p-4 mt-3">
-        <div class="col-sm-12 col-lg-6">
-            <div class="p-3">
-                <div class="row g-5 py-3">
-                    <h1 class="col-12 frlandev">FREELANCE DEVELOPER</h1>
-                </div>
-                <div class="row g-5 py-3">
-                    <p class="col-12 comment">Helping people turn their ideas into sites & apps that work. Professional and Cost-Effective. Always.</p>
-                </div>
-                <div class="row g-5 py-3">
-                    <div class="col-sm-12 col-md-8 blogbuttons">
-                        <div class="d-grid mb-4">
-                            <a role="button" class="btn btn-primary" href="http://web.facebook.com/bilal.luqman.5">COME SAY HI</a>
-                        </div>
-                        <div class="d-grid">
-                            <a role="button"  class="btn btn-outline-primary  effect" href="#">READ BLOG</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 d-none d-md-block text-center networkslinks">
-                        <div class="row p-1">
-                            <a class="link facebook" href="http://web.facebook.com/bilal.luqman.5">
-                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                        <div class="row p-1">
-                            <a class="link github" href="https://github.com/messey-bilal">
-                                <i class="fab fa-github" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                        <div class="row p-1">
-                            <a class="link linkedin" href="https://cm.linkedin.com/in/messey-a-ndiomo-andre-ebenezer-7547bb98">
-                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-block d-sm-block d-md-none text-center networkslinks-sm">
-                    <a class="link facebook" href="http://web.facebook.com/bilal.luqman.5">
-                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                    </a>
-                    <a class="link github mx-5" href="https://github.com/messey-bilal">
-                        <i class="fab fa-github" aria-hidden="true"></i>
-                    </a>
-                    <a class="link linkedin" href="https://cm.linkedin.com/in/messey-a-ndiomo-andre-ebenezer-7547bb98">
-                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
+  <div class="row g-5 p-4 mt-3">
+    <div class="col-sm-12 col-lg-6">
+      <div class="p-3">
+        <div class="row g-5 py-3">
+          <h1 class="col-12 frlandev">FREELANCE DEVELOPER</h1>
         </div>
-        <div class="col-sm-12 col-lg-6">
-            <div class="mt-5 shadow aboutauthorimage">
-                <img src="{% static 'downloadaccelerator/images/web-development.png' %}" class="img-fluid" alt="" width="100%" height="auto">
-            </div>
+        <div class="row g-5 py-3">
+          <p class="col-12 comment">
+            Helping people turn their ideas into sites & apps that work.
+            Professional and Cost-Effective. Always.
+          </p>
         </div>
+        <div class="row g-5 py-3">
+          <div class="col-sm-12 col-md-8 blogbuttons">
+            <div class="d-grid mb-4">
+              <a
+                role="button"
+                class="btn btn-primary"
+                href="https://messeyandiomo.onrender.com/"
+                >COME SAY HI</a
+              >
+            </div>
+            <div class="d-grid">
+              <a role="button" class="btn btn-outline-primary effect" href="#"
+                >READ BLOG</a
+              >
+            </div>
+          </div>
+          <div class="col-md-4 d-none d-md-block text-center networkslinks">
+            <div class="row p-1">
+              <a
+                class="link facebook"
+                href="http://web.facebook.com/bilal.luqman.5"
+              >
+                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="row p-1">
+              <a class="link github" href="https://github.com/messeyandiomo">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="row p-1">
+              <a
+                class="link linkedin"
+                href="https://cm.linkedin.com/in/messey-a-ndiomo-andre-ebenezer-7547bb98"
+              >
+                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="d-block d-sm-block d-md-none text-center networkslinks-sm">
+          <a
+            class="link facebook"
+            href="http://web.facebook.com/bilal.luqman.5"
+          >
+            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+          </a>
+          <a class="link github mx-5" href="https://github.com/messeyandiomo">
+            <i class="fab fa-github" aria-hidden="true"></i>
+          </a>
+          <a
+            class="link linkedin"
+            href="https://cm.linkedin.com/in/messey-a-ndiomo-andre-ebenezer-7547bb98"
+          >
+            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
     </div>
+    <div class="col-sm-12 col-lg-6">
+      <div class="mt-5 shadow aboutauthorimage">
+        <img
+          src="{% static 'downloadaccelerator/images/web-development.png' %}"
+          class="img-fluid"
+          alt=""
+          width="100%"
+          height="auto"
+        />
+      </div>
+    </div>
+  </div>
 </div>
-{% endblock content %}
-
-
-{% block js %}
-{{ block.super }}
+{% endblock content %} {% block js %} {{ block.super }}
 <script>
-$(
-    function(){
-        $('.frlandev').fadeIn('slow', function(){
-            $('.comment').fadeIn('slow', function(){
-                $('.blogbuttons').fadeIn('slow', function(){
-                    if($(window).width() > 768){
-                        $('.networkslinks').css('visibility', 'visible');
-                        $('.networkslinks').fadeIn('slow', function(){
-                            $('.aboutauthorimage').fadeIn('slow');
-                        });
-                    }
-                    else{
-                        $('.networkslinks-sm').css('visibility', 'visible');
-                        $('.networkslinks-sm').fadeIn('slow', function(){
-                            $('.aboutauthorimage').fadeIn('slow');
-                        });
-                    }
-                });
+  $(function () {
+    $(".frlandev").fadeIn("slow", function () {
+      $(".comment").fadeIn("slow", function () {
+        $(".blogbuttons").fadeIn("slow", function () {
+          if ($(window).width() > 768) {
+            $(".networkslinks").css("visibility", "visible");
+            $(".networkslinks").fadeIn("slow", function () {
+              $(".aboutauthorimage").fadeIn("slow");
             });
+          } else {
+            $(".networkslinks-sm").css("visibility", "visible");
+            $(".networkslinks-sm").fadeIn("slow", function () {
+              $(".aboutauthorimage").fadeIn("slow");
+            });
+          }
         });
+      });
+    });
 
-        $(window).on('resize', function(){
-            if($(window).width() > 768){
-                $('.networkslinks').css('visibility', 'visible');
-            }
-            else{
-                $('.networkslinks-sm').css('visibility', 'visible');
-            }
-        });
-    }
-);
+    $(window).on("resize", function () {
+      if ($(window).width() > 768) {
+        $(".networkslinks").css("visibility", "visible");
+      } else {
+        $(".networkslinks-sm").css("visibility", "visible");
+      }
+    });
+  });
 </script>
 {% endblock js %}
